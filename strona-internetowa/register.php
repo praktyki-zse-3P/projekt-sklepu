@@ -76,9 +76,9 @@ if (isset($_POST['register'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rejestracja</title>
-    <link rel="stylesheet" href="login.css">
+    <link rel="stylesheet" href="register.css">
     
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    
     <script>
         
         function togglePassword() {
@@ -100,76 +100,4 @@ if (isset($_POST['register'])) {
         }
     </script>
 </head>
-<body>
-    <div class="login-container">
-        <div class="login-box">
-            <h2>Rejestracja</h2>
-            <form action="register.php" method="POST">
-                <?php
-                if (isset($error_message)) {
-                    echo "<p style='color: red;'>$error_message</p>";
-                }
-                ?>
-                <!-- Imię -->
-                <div class="textbox">
-                    <input type="text" placeholder="Imię" name="imie" required>
-                </div>
 
-                <!-- Nazwisko -->
-                <div class="textbox">
-                    <input type="text" placeholder="Nazwisko" name="nazwisko" required>
-                </div>
-
-                <!-- Miejscowość -->
-                <div class="textbox">
-                    <input type="text" placeholder="Miejscowość" name="miejscowosc" required>
-                </div>
-
-                <!-- Ulica -->
-                <div class="textbox">
-                    <input type="text" placeholder="Ulica" name="ulica" required>
-                </div>
-
-                <!-- Nr mieszkania -->
-                <div class="textbox">
-                    <input type="text" placeholder="Nr mieszkania" name="nr_mieszkania" required>
-                </div>
-
-                <!-- Kod pocztowy -->
-                <div class="textbox">
-                    <input type="text" placeholder="Kod pocztowy" name="kod_pocztowy" required>
-                </div>
-
-                <!-- Numer telefonu -->
-                <div class="textbox">
-                    <input type="text" placeholder="Numer telefonu" name="telefon" required>
-                </div>
-
-                <!-- Adres e-mail -->
-                <div class="textbox">
-                    <input type="email" placeholder="Adres e-mail" name="email" required>
-                </div>
-
-                <!-- Hasło -->
-                <div class="textbox password-container">
-                    <input type="password" id="password" placeholder="Hasło" name="password" required>
-                    <i id="password-toggle" class="fas fa-eye-slash" onclick="togglePassword()"></i>
-                </div>
-
-                <!-- Powtórz hasło -->
-                <div class="textbox password-container">
-                    <input type="password" id="repeat_password" placeholder="Powtórz hasło" name="repeat_password" required>
-                </div>
-
-                <!-- Przycisk submit -->
-                <input type="submit" name="register" value="Zarejestruj się" class="btn-login">
-
-                <!-- Link do logowania -->
-                <div class="signup-link">
-                    <p>Masz już konto? <a href="login.php">Zaloguj się</a></p>
-                </div>
-            </form>
-        </div>
-    </div>
-</body>
-</html>
