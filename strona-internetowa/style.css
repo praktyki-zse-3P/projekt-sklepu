@@ -1,12 +1,105 @@
-*{
-    background-color: #e8eff5;
+/* -------Sections-----------------------------------------------------------------------------------------------------------------------------------*/
+* {
+    margin: 0;
+    padding: 0;
+    font-family: "Futura-CondensedExtraBold", sans-serif;
+    font-size:16px;
 }
 
-#footer{
+#section-footer {
     background-color: #d0d7dc;
-    width:100%;
-    height:30px;
+    width: 100%;
+    height: 30px;
     text-align: right;
 }
 
+#section-middle {
+    width: 100%;
+    height: 1000px;
+    background-color: aquamarine;
+    display: flex;
+
+
+}
+
+.category {
+    width: 100%; 
+    height:50px;
+    background-color: white;
+    display: flex;
+    justify-content: space-between; 
+    align-items: center;
+    border:2px solid black;
+}
+
+/* --------* Divy - contenty----------------------------------------------------------------------------------------------------------------------------*/
+
+.content-left, .content-middle, .content-right{
+    background-color: white;
+    align-items: center;
+    display: flex;
+    
+}
+
+
+
+/* --------* Przyciski - content-prawo-----------------------------------------------------------------------------------------------------------------------------*/
+
+.button-icon {
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.elements {
+    width: 25px;
+    height: 25px;
+    background-color: white;
+}
+
+.button-icon:hover .elements {
+    filter: brightness(1.2); /* Jaśniejszy obrazek po najechaniu */
+}
+
+.button-icon:focus {
+    outline: none; /* Usunięcie obramowania przy kliknięciu */
+}
+
+.button-icon:active .elements {
+    transform: scale(0.9); /* Efekt kliknięcia - zmniejszenie obrazka */
+}
+/* ------------Przyciski - content-middle-----------------------------------------------------------------------------------------------------------------------*/
+
+.category-button {
+    padding: 10px 20px;
+    font-size: 16px;
+    border: 0px;
+    background-color: white;
+    color: #333;
+    cursor: pointer;
+    transition: transform 0.2s, text-decoration 0.2s;
+}
+
+.category-button:hover {
+    transform: scale(1.1);
+    text-decoration: underline;
+}
+
+
+/* ----------Logo itp----------------------------------------------------------------------------------------------------------------------------------*/
+
+#logo{
+    width:230px;
+    height:30px;
+    background-color: white;
+}
+
+/* -------Contents-----------------------------------------------------------------------------------------------------------------------------------*/
+
+.content-middle button {
+    margin-right: 10px; /*odstępy między przyciskami */
+}
 

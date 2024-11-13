@@ -2,30 +2,49 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>EliteWalk</title>
+    <title>AirKingDom</title>
     <link rel="stylesheet" href="style.css">
 
-    <link rel="icon" href="favicon (1).ico" type="image/x-icon">
+    <link rel="icon" href="favicon (3).ico" type="image/x-icon">
 
 </head>
 <body>
-    <section id="footer">
-        <button id="zaloguj">Zaloguj się</button>
+    <section id="section-footer">
+        <img id="logo" src="/images/logo.png">
+        <button class="buttons">Zaloguj się</button>
     </section>
 
 
-    <section id="up">
-        <div>
-            <button>Nowe i Polecane</button>
-            <button>Mężczyźni</button>
-            <button>Kobiety</button>
-            <button>Unisex</button>
+    <section id="section-middle">
+        <div class="category">
+            <div class="content-left">
+                
+            </div>
+
+            <div class="content-middle">
+                <button class="category-button" onclick="this.classList.toggle('active')">Nowe i Polecane</button>
+                <button class="category-button" onclick="this.classList.toggle('active')">Mężczyźni</button>
+                <button class="category-button" onclick="this.classList.toggle('active')">Kobiety</button>
+                <button class="category-button" onclick="this.classList.toggle('active')">Unisex</button>
+            </div>
+            
+            <div class="content-right">
+                <button class="button-icon">
+                    <img class="elements" src="/images/search.png" alt="search">
+                </button>
+                <button class="button-icon">
+                    <img class="elements" src="/images/heart.png" alt="heart">
+                </button>
+                <button class="button-icon">
+                    <img class="elements" src="/images/shopping-bag.png" alt="shopping bag">
+                </button>
+            </div>
         </div>
-        
+
     </section>
 
 
-    <section id="bottom">
+    <section id="section-bottom">
         
     </section>
 </body>
