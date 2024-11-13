@@ -29,21 +29,23 @@
     display: flex;
     justify-content: space-between; 
     align-items: center;
-    border:2px solid black;
 }
 
 /* --------* Divy - contenty----------------------------------------------------------------------------------------------------------------------------*/
 
-.content-left, .content-middle, .content-right{
+.content-left, .content-middle, .content-right {
     background-color: white;
     align-items: center;
     display: flex;
-    
 }
 
+.content-middle {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
 
-
-/* --------* Przyciski - content-prawo-----------------------------------------------------------------------------------------------------------------------------*/
+/* -------- Przyciski - content-prawo-----------------------------------------------------------------------------------------------------------------------------*/
 
 .button-icon {
     border: none;
@@ -61,16 +63,17 @@
 }
 
 .button-icon:hover .elements {
-    filter: brightness(1.2); /* Jaśniejszy obrazek po najechaniu */
+    filter: brightness(1.2); 
 }
 
 .button-icon:focus {
-    outline: none; /* Usunięcie obramowania przy kliknięciu */
+    outline: none; 
 }
 
 .button-icon:active .elements {
-    transform: scale(0.9); /* Efekt kliknięcia - zmniejszenie obrazka */
+    transform: scale(0.9); 
 }
+
 /* ------------Przyciski - content-middle-----------------------------------------------------------------------------------------------------------------------*/
 
 .category-button {
@@ -88,18 +91,17 @@
     text-decoration: underline;
 }
 
+/*----------Logo itp----------------------------------------------------------------------------------------------------------------------------------*/
 
-/* ----------Logo itp----------------------------------------------------------------------------------------------------------------------------------*/
-
-#logo{
-    width:230px;
-    height:30px;
+#logo {
+    width: 230px;
+    height: 30px;
     background-color: white;
 }
 
-/* -------Contents-----------------------------------------------------------------------------------------------------------------------------------*/
+/*-------Contents-----------------------------------------------------------------------------------------------------------------------------------*/
 
 .content-middle button {
-    margin-right: 10px; /*odstępy między przyciskami */
+    margin-right: 10px; 
 }
 
