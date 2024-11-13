@@ -75,9 +75,12 @@
     align-items: center;
 }
 
+
 .elements {
-    width: 25px;
-    height: 25px;
+    width: 20px;
+    height: 20px;
+    padding: 5px 5px;   
+    z-index: 1; 
 }
 
 .button-icon:hover .elements {
@@ -93,9 +96,9 @@
 }
 
 .button-icon:hover .elements {
-    border:none;
-    border-radius: 100%; 
-    background-color: #333;
+    background-color: #bebebe;          
+    border-radius: 100%;  
+    border: none;                  
     
 }
 
