@@ -89,6 +89,8 @@
 .category-button:hover {
     transform: scale(1.1);
     text-decoration: underline;
+    text-underline-offset: 5px;
+    text-decoration-thickness: 2px;
 }
 
 /*----------Logo itp----------------------------------------------------------------------------------------------------------------------------------*/
@@ -96,8 +98,10 @@
 #logo {
     width: 230px;
     height: 30px;
-    background-color: white;
+    background-color:none;
 }
+
+
 
 /*-------Contents-----------------------------------------------------------------------------------------------------------------------------------*/
 
