@@ -9,15 +9,24 @@
 #section-header {
     background-color: white;
     width: 100%;
+<<<<<<< Updated upstream
     height: 180px; 
+=======
+    height: 130px; 
+>>>>>>> Stashed changes
     display: flex; 
     justify-content: center; 
     align-items: center; 
 }
 
 #section-header img {
+<<<<<<< Updated upstream
     width:250px;
     height: 220px;
+=======
+    width:200px;
+    height: 140px;
+>>>>>>> Stashed changes
     display: block;
     margin:0; 
 }
