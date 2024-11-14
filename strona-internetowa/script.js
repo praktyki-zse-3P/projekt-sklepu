@@ -42,3 +42,14 @@ document.querySelectorAll('.button-icon').forEach(button => {
         }
     });
 });
+
+
+// Funkcja do przełączania widoczności panelu
+function togglePanel() {
+    const panel = document.getElementById('sliding-panel');
+    panel.classList.toggle('visible'); // Przełącz widoczność panelu
+    panel.classList.toggle('hidden');  // Przełącz między ukrytym a widocznym stanem
+}
+
+// Przypisujemy akcję kliknięcia do nagłówka
+document.getElementById('header').addEventListener('click', togglePanel);
