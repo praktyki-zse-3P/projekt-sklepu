@@ -9,15 +9,16 @@
 
 </head>
 <body>
-    <section id="section-footer">
-        <button class="button-login" onclick="openLoginModal()">Zaloguj się</button>
+    <section id="section-header">
+        <img src="logo1.png" alt="Logo strony">
     </section>
 
 
     <section id="section-middle">
         <div class="category">
             <div class="content-left">
-                <img id="logo" src="logo.png">
+            <button class="button-icon">
+                    <img class="elements" src="user.png" alt="heart" onclick="openLoginModal()">
             </div>
 
             <div class="content-middle">
@@ -79,11 +80,25 @@
                 <div class="textbox">
                     <input type="email" placeholder="Adres e-mail" name="email" required>
                 </div>
+                <div class="textbox">
+                    <input type="text" placeholder="Miejscowość" name="miejscowosc" required>
+                </div>
+                <div class="textbox">
+                    <input type="text" placeholder="Ulica" name="ulica" required>
+                </div>
+                <div class="textbox">
+                    <input type="text" placeholder="Nr mieszkania" name="nr_mieszkania" required>
+                </div>
+                <div class="textbox">
+                    <input type="text" placeholder="Kod pocztowy" name="kod_pocztowy" required>
+                </div>
+                <div class="textbox">
+                    <input type="text" placeholder="Telefon" name="telefon" required>
+                </div>
                 <div class="textbox password-container">
                     <input type="password" id="password" placeholder="Hasło" name="password" required>
                     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
                     <i class="fas fa-eye-slash" onclick="togglePassword()"></i>
-                    
                 </div>
                 <div class="textbox password-container">
                     <input type="password" id="repeat_password" placeholder="Powtórz hasło" name="repeat_password" required>

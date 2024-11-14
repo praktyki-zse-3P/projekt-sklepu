@@ -38,7 +38,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['login'])) {
                     header("Location: dashboard.php");
                 } else {
                    
-                    header("Location: user_dashboard.php");
+                    header("Location: index.html");
                 }
                 exit();
             } else {
