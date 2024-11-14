@@ -17,31 +17,20 @@
 
 </head>
 <body>
-<<<<<<< Updated upstream
     <section id="section-header">
-        <p id="header" onclick="tooglePanel()">ZAREJESTRUJ SIĘ,ABY MIEĆ WCZESNY DOSTĘP!</p>
-
-
-        
-
+       
+        <p id="header" onclick="showAccessDiv()">ZAREJESTRUJ SIĘ, ABY MIEĆ WCZESNY DOSTĘP!</p>
     </section>
-=======
-    
->>>>>>> Stashed changes
 
-    <div id="sliding-panel" class="hidden">
-        <p >Panel wysuwany!</p>
+
+    <div id="earlyAccessMessage" class="hidden">
+        <p>Gratulacje! Uzyskałeś wczesny dostęp!</p>
     </div>
 
 
     <section id="section-middle">
         <div class="category">
-
-            
-
-            <div class="content-left">
-                
-            </div>
+            <div class="content-left"></div>
 
             <div class="content-middle">
                 <button class="category-button" onclick="this.classList.toggle('active')">Nowe i Polecane</button>
@@ -76,22 +65,12 @@
             <a href="#" class="cta-button">Zobacz więcej</a>
         </div>
 
-
         <div class="video-background">
             <video src="animacja(1).mp4" id="animacja" type="video/mp4" autoplay loop muted playsinline ></video>
         </div>
 
-        <div class="display-mezczyzni">
-            
-        </div>
-
+        <div class="display-mezczyzni"></div>
     </section>
-
-
-
-
-
-    
 
     <div id="loginModal" class="modal">
         <div class="modal-content">
@@ -112,44 +91,12 @@
         </div>
     </div>
 
-
     <div id="registerModal" class="modal">
         <div class="modal-content">
             <span class="close" onclick="closeRegisterModal()">&times;</span>
             <h2>Rejestracja</h2>
             <form action="register.php" method="POST">
-                <div class="textbox">
-                    <input type="text" placeholder="Imię" name="imie" required>
-                </div>
-                <div class="textbox">
-                    <input type="text" placeholder="Nazwisko" name="nazwisko" required>
-                </div>
-                <div class="textbox">
-                    <input type="email" placeholder="Adres e-mail" name="email" required>
-                </div>
-                <div class="textbox">
-                    <input type="text" placeholder="Miejscowość" name="miejscowosc" required>
-                </div>
-                <div class="textbox">
-                    <input type="text" placeholder="Ulica" name="ulica" required>
-                </div>
-                <div class="textbox">
-                    <input type="text" placeholder="Nr mieszkania" name="nr_mieszkania" required>
-                </div>
-                <div class="textbox">
-                    <input type="text" placeholder="Kod pocztowy" name="kod_pocztowy" required>
-                </div>
-                <div class="textbox">
-                    <input type="text" placeholder="Telefon" name="telefon" required>
-                </div>
-                <div class="textbox password-container">
-                    <input type="password" id="password" placeholder="Hasło" name="password" required>
-                    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
-                    <i class="fas fa-eye-slash" onclick="togglePassword()"></i>
-                </div>
-                <div class="textbox password-container">
-                    <input type="password" id="repeat_password" placeholder="Powtórz hasło" name="repeat_password" required>
-                </div>
+        
                 <input type="submit" name="register" value="Zarejestruj się" class="btn-register">
                 <div class="login-link">
                     <p>Masz już konto? <a href="#" onclick="openLoginModal(); closeRegisterModal();">Zaloguj się</a></p>
@@ -158,22 +105,7 @@
         </div>
     </div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-   
-
-
     <script src="script.js"></script>
+
 </body>
 </html>
