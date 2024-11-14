@@ -18,15 +18,23 @@
 </head>
 <body>
     <section id="section-header">
-        <p id="header" onclick="showAccessDiv()">ZAREJESTRUJ SIĘ, ABY MIEĆ WCZESNY DOSTĘP!</p>
+        <div id="header">
+            <p id="header_word" onclick="showAccessDiv()">ZAREJESTRUJ SIĘ, ABY MIEĆ WCZESNY DOSTĘP!</p>
+        </div>
     </section>
 
-    <div id="earlyAccessMessage" class="hidden">
+    <div id="earlyAccessMessage">
         <span class="close-btn" onclick="closeAccessDiv()">&times;</span>
 
-        <div class="earlyAccessMessage1"><h4 class="naglowek">Darmowa dostawa przy zamówieniach powyżej 150zł!</h4></div>
-        <div class="earlyAccessMessage1"><h4 class="naglowek">Zarejestruj się, aby mieć wczesny dostęp do ofert i produktów!</h4></div>
-        <div class="earlyAccessMessage1"><h4 class="naglowek">Darmowy zwrot produktów do 14 dni!</h4></div>
+        <div class="earlyAccessMessage-box"><h4>Darmowa dostawa przy zamówieniach powyżej 150zł!</h4>
+        <p class="slider-text">Złóż zamówienie o wartości co najmniej 150 zł i ciesz się darmową dostawą! Aby dowiedzieć się więcej, odwiedź naszą stronę z często zadawanymi pytaniami dotyczącymi dostawy.</p>
+        </div>
+        <div class="earlyAccessMessage-box"><h4>Zarejestruj się, aby mieć wczesny dostęp do ofert i produktów!</h4>
+        <p class="slider-text">Zarejestruj się bezpłatnie, aby korzystać z wyjątkowych ofert i mieć wcześniejszy dostęp do wyprzedaży</p>
+        </div>
+        <div class="earlyAccessMessage-box"><h4>Darmowy zwrot produktów do 14 dni!</h4>
+        <p class="slider-text">Masz 30 dni na darmowy zwrot lub wymianę produktów.</p>
+        </div>
     </div>
 
 
@@ -68,16 +76,16 @@
         </div>
 
         <div class="video-background">
-            <video src="animacja(1).mp4" id="animacja" type="video/mp4" autoplay loop muted playsinline ></video>
+            <video src="animacja(1).mp4" id="animation" type="video/mp4" autoplay loop muted playsinline ></video>
         </div>
 
         <div class="display-mezczyzni"></div>
     </section>
 
     <div id="loginModal" class="modal">
-        <div class="modal-content">
+        <div class="login-content">
             <span class="close" onclick="closeLoginModal()">&times;</span>
-            <h2>Logowanie</h2>
+            <h2>Logowanie</>
             <form action="login.php" method="POST">
                 <div class="textbox">
                     <input type="email" placeholder="Adres e-mail" name="email" required>
@@ -94,7 +102,7 @@
     </div>
 
     <div id="registerModal" class="modal">
-        <div class="modal-content">
+        <div class="register-content">
             <span class="close" onclick="closeRegisterModal()">&times;</span>
             <h2>Rejestracja</h2>
             <form action="register.php" method="POST">

@@ -49,21 +49,23 @@ function toggleEarlyAccessMessage() {
     messageDiv.classList.toggle('hidden');
 }
 
+// Funkcja do wyświetlania panelu
+
 function showAccessDiv() {
-    document.getElementById('earlyAccessMessage').classList.remove('hidden');
+    var messageDiv = document.getElementById('earlyAccessMessage');
+    messageDiv.classList.add('visible'); 
     document.addEventListener('click', handleOutsideClick);
 }
 
-// Funkcja do ukrywania div po kliknięciu poza jego obszarem
-function handleOutsideClick(event) {
-    const accessDiv = document.getElementById('earlyAccessMessage');
-    if (!accessDiv.contains(event.target) && event.target.id !== 'header') {
-        accessDiv.classList.add('hidden');
-        document.removeEventListener('click', handleOutsideClick);
-    }
+function closeAccessDiv() {
+    var messageDiv = document.getElementById('earlyAccessMessage');
+    messageDiv.classList.remove('visible'); 
+    document.removeEventListener('click', handleOutsideClick);
 }
 
-function closeAccessDiv() {
-    document.getElementById('earlyAccessMessage').classList.add('hidden');
-    document.removeEventListener('click', handleOutsideClick);
+function handleOutsideClick(event) {
+    const accessDiv = document.getElementById('earlyAccessMessage');
+    if (!accessDiv.contains(event.target) && event.target.id !== 'header_word') {
+        closeAccessDiv(); 
+    }
 }
