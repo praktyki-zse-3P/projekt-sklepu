@@ -33,3 +33,12 @@ function togglePassword() {
         icon.classList.add("fa-eye-slash");
     }
 }
+
+//Funkcja do mozliwosci klikniecia w background przycisku i dzialania jego
+document.querySelectorAll('.button-icon').forEach(button => {
+    button.addEventListener('click', function() {
+        if (button.querySelector('img').alt === 'user') {
+            openLoginModal(); 
+        }
+    });
+});
