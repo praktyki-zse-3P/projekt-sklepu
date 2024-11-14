@@ -44,6 +44,26 @@ document.querySelectorAll('.button-icon').forEach(button => {
 });
 
 
+function toggleEarlyAccessMessage() {
+    var messageDiv = document.getElementById('earlyAccessMessage');
+    messageDiv.classList.toggle('hidden');
+}
+
 function showAccessDiv() {
     document.getElementById('earlyAccessMessage').classList.remove('hidden');
+    document.addEventListener('click', handleOutsideClick);
+}
+
+// Funkcja do ukrywania div po kliknięciu poza jego obszarem
+function handleOutsideClick(event) {
+    const accessDiv = document.getElementById('earlyAccessMessage');
+    if (!accessDiv.contains(event.target) && event.target.id !== 'header') {
+        accessDiv.classList.add('hidden');
+        document.removeEventListener('click', handleOutsideClick);
+    }
+}
+
+function closeAccessDiv() {
+    document.getElementById('earlyAccessMessage').classList.add('hidden');
+    document.removeEventListener('click', handleOutsideClick);
 }
