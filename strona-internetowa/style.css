@@ -114,6 +114,10 @@
     margin-right:auto;
 }
 
+
+/* --------SECTION-MIDDLE - CONTENT MIDDLE- sliding menu--------------------------------------------------------------------------------------------*/
+
+
 /* --------SECTION-MIDDLE - CONTENT RIGHT - background circle of buttons--------------------------------------------------------------------------------------------*/
 
 .button-icon{
@@ -161,6 +165,8 @@
 .button-icon:active .elements {
     transform: scale(0.8); 
 }
+
+
 
 /* --------* MIDDLE CONTENT - including buttons-- and video-background-------------------------------------------------------------------------------------------------------------------*/
 .content-middle {
@@ -257,6 +263,16 @@
     position: relative;
 }
 
+.register-content {
+    background: #fff;
+    padding: 40px;
+    border-radius: 8px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    width: 400px;
+    text-align: center;
+    position: relative;
+}
+
 .close {
     position: absolute;
     top: 10px;
@@ -326,6 +342,37 @@
 /*-------CSS for register.css-----------------------------------------------------tu coś bedzie------------------------------------------------------------------------------------------------------------*/
 
 
+
+.btn-register {
+    width: 100%;
+    padding: 12px;
+    background-color: #2575fc;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn-register:hover {
+    background-color: #1c3849;
+}
+
+
+.login-link {
+    margin-top: 20px;
+}
+
+.login-link a {
+    color: #2575fc;
+    text-decoration: none;
+}
+
+.login-link a:hover {
+    text-decoration: underline;
+
+}
 
 
 

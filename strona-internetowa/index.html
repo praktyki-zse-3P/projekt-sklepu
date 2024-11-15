@@ -42,12 +42,15 @@
         <div class="category">
             <div class="content-left"></div>
 
-            <div class="content-middle">
-                <button class="category-button" onclick="this.classList.toggle('active')">Nowe i Polecane</button>
-                <button class="category-button" onclick="this.classList.toggle('active')">Mężczyźni</button>
-                <button class="category-button" onclick="this.classList.toggle('active')">Kobiety</button>
-                <button class="category-button" onclick="this.classList.toggle('active')">Unisex</button>
+            <div class="content-middle">    
+                <button class="category-button" onmouseover="showMenuDiv('showMenuDiv')">Nowe i Polecane</button>
+                <button class="category-button" onmouseover="showMenuDiv('showMenuDiv')" >Mężczyźni</button>
+                <button class="category-button" onmouseover="showMenuDiv('showMenuDiv')">Kobiety</button>
+                <button class="category-button" onmouseover="showMenuDiv('showMenuDiv')">Unisex</button>
             </div>
+            
+            
+            
             
             <div class="content-right">
                 <button class="button-icon">
@@ -85,7 +88,7 @@
     <div id="loginModal" class="modal">
         <div class="login-content">
             <span class="close" onclick="closeLoginModal()">&times;</span>
-            <h2>Logowanie</>
+            <h2>Logowanie</h2>
             <form action="login.php" method="POST">
                 <div class="textbox">
                     <input type="email" placeholder="Adres e-mail" name="email" required>
@@ -106,7 +109,36 @@
             <span class="close" onclick="closeRegisterModal()">&times;</span>
             <h2>Rejestracja</h2>
             <form action="register.php" method="POST">
-        
+                <div class="textbox">
+                    <input type="text" placeholder="Imię" name="imie" required>
+                </div>
+                <div class="textbox">
+                    <input type="text" placeholder="Nazwisko" name="nazwisko" required>
+                </div>
+                <div class="textbox">
+                    <input type="email" placeholder="Adres e-mail" name="email" required>
+                </div>
+                <div class="textbox">
+                    <input type="password" placeholder="Hasło" name="password" required>
+                </div>
+                <div class="textbox">
+                    <input type="password" placeholder="Powtórz hasło" name="repeat_password" required>
+                </div>
+                <div class="textbox">
+                    <input type="text" placeholder="Miejscowość" name="miejscowosc" required>
+                </div>
+                <div class="textbox">
+                    <input type="text" placeholder="Ulica" name="ulica" required>
+                </div>
+                <div class="textbox">
+                    <input type="text" placeholder="Numer mieszkania" name="nr_mieszkania" required>
+                </div>
+                <div class="textbox">
+                    <input type="text" placeholder="Kod pocztowy (00-000)" name="kod_pocztowy" pattern="\d{2}-\d{3}" required>
+                </div>
+                <div class="textbox">
+                    <input type="tel" placeholder="Telefon (9 cyfr)" name="telefon" pattern="[0-9]{9}" required>
+                </div>
                 <input type="submit" name="register" value="Zarejestruj się" class="btn-register">
                 <div class="login-link">
                     <p>Masz już konto? <a href="#" onclick="openLoginModal(); closeRegisterModal();">Zaloguj się</a></p>
@@ -114,6 +146,8 @@
             </form>
         </div>
     </div>
+    
+    
 
     <script src="script.js"></script>
 
