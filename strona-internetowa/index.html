@@ -16,6 +16,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Mrs+Sheppards&display=swap" rel="stylesheet">
 
 </head>
+
 <body>
     <section id="section-header">
         <div id="header">
@@ -43,14 +44,11 @@
             <div class="content-left"></div>
 
             <div class="content-middle">    
-                <button class="category-button" onmouseover="showMenuDiv('showMenuDiv')">Nowe i Polecane</button>
-                <button class="category-button" onmouseover="showMenuDiv('showMenuDiv')" >Mężczyźni</button>
-                <button class="category-button" onmouseover="showMenuDiv('showMenuDiv')">Kobiety</button>
-                <button class="category-button" onmouseover="showMenuDiv('showMenuDiv')">Unisex</button>
+                <button class="category-button" onmouseover="showAccessDiv_category()">Nowe i Polecane</button>
+                <button class="category-button" onmouseover="showAccessDiv_category()">Mężczyźni</button>
+                <button class="category-button" onmouseover="showAccessDiv_category()">Kobiety</button>
+                <button class="category-button" onmouseover="showAccessDiv_category()">Unisex</button>
             </div>
-            
-            
-            
             
             <div class="content-right">
                 <button class="button-icon">
@@ -71,7 +69,18 @@
                 </button>
             </div>
         </div>
-   
+
+        <div id="container-category-button-access">
+
+            <span class="close-btn-category" onclick="closeAccessDiv_category()">&times;</span>
+            
+            <div class="category-button-access" id="nowe-i-polecane-access">Cos jest napisane -test</div>
+            <div class="category-button-access" id="mezczyzni-access">Cos jest napisane -test</div>
+            <div class="category-button-access" id="kobiety-access">Cos jest napisane -test</div>
+            <div class="category-button-access" id="unisex-access">Cos jest napisane -test</div>
+        </div>
+        
+
         <div class="content-overlay">
             <h1>AirKingDom</h1>
             <p id="wlk">Walk like King</p>
@@ -82,8 +91,13 @@
             <video src="animacja(1).mp4" id="animation" type="video/mp4" autoplay loop muted playsinline ></video>
         </div>
 
-        <div class="display-mezczyzni"></div>
+        
+
     </section>
+
+
+
+
 
     <div id="loginModal" class="modal">
         <div class="login-content">

@@ -24,6 +24,7 @@
     width: 100%;
     height: 1000px;
     background-color: aquamarine;
+    z-index: 1;
 }
 
 /* --------* ALL CONTENTS - Styles for all-----------------------------------------------------------------------------------------------------------------*/
@@ -66,8 +67,6 @@
 
 
 /* --------SECTION-HEADER - Sliding (earlyAccessMessage)---------------------------------------------------------------------------------------------------------------------------*/
-
-
 
 #earlyAccessMessage {
     position: fixed;
@@ -114,8 +113,34 @@
     margin-right:auto;
 }
 
-
 /* --------SECTION-MIDDLE - CONTENT MIDDLE- sliding menu--------------------------------------------------------------------------------------------*/
+
+#container-category-button-access {
+    width: 100%;
+    height: 200px;
+    max-height: 200px;
+    background-color: white;
+    z-index: 1000;
+    display: none; /* Element jest domyślnie ukryty */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    transition: transform 0.3s ease-in-out; /* Animacja przesunięcia */
+}
+
+/* Kiedy element ma być widoczny */
+#container-category-button-access.show {
+    display: block; /* Ustawienie na block, aby był widoczny */
+    transform: translateY(0); /* Płynna animacja pojawiania się */
+}
+
+.close-btn-category {
+    position: absolute;
+    left:97%;
+    cursor: pointer;
+    font-size: 50px;
+}
+
+    
 
 
 /* --------SECTION-MIDDLE - CONTENT RIGHT - background circle of buttons--------------------------------------------------------------------------------------------*/
@@ -201,14 +226,13 @@
     height:770px;
     overflow: hidden;
     background-color: red;
-    
+    z-index: 1;
 }
 
 #animation{
     height: 770px;
     width:100%;
     object-fit: cover;
-    
 }
 
 /* --------Content-overlay on video----------------------------------------------------------------------------------------------------------------------------*/

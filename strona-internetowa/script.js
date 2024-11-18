@@ -43,13 +43,12 @@ document.querySelectorAll('.button-icon').forEach(button => {
     });
 });
 
+// Funkcja do wyświetlania panelu-gora
 
 function toggleEarlyAccessMessage() {
     var messageDiv = document.getElementById('earlyAccessMessage');
     messageDiv.classList.toggle('hidden');
 }
-
-// Funkcja do wyświetlania panelu
 
 function showAccessDiv() {
     var messageDiv = document.getElementById('earlyAccessMessage');
@@ -70,5 +69,31 @@ function handleOutsideClick(event) {
     }
 }
 
+//------Funcja-do-wyswietlania-panelu-category-------------------------------------------------------
 
 
+
+function toggleEarlyAccessMessage_category() {
+    var messageDiv = document.getElementById('container-category-button-access');
+    messageDiv.classList.toggle('hidden');
+}
+
+// Funkcja do pokazania panelu
+// Funkcja do pokazania panelu
+function showAccessDiv_category() {
+    var messageDiv = document.getElementById('container-category-button-access');
+    messageDiv.classList.add('show'); // Dodajemy klasę 'show' dla widoczności
+}
+
+// Funkcja do zamknięcia panelu
+function closeAccessDiv_category() {
+    var messageDiv = document.getElementById('container-category-button-access');
+    messageDiv.classList.remove('show'); // Usuwamy klasę 'show' dla ukrycia
+}
+
+function handleOutsideClick_category(event) {
+    const accessDiv = document.getElementById('container-category-button-access');
+    if (!accessDiv.contains(event.target) && event.target.id !== 'category-button') {
+        closeAccessDiv(); 
+    }
+}
