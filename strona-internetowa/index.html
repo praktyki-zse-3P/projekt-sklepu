@@ -4,26 +4,21 @@
     <meta charset="UTF-8">
     <title>AirKingDom</title>
     <link rel="stylesheet" href="style.css">
-
     <link rel="icon" href="favicon.ico" type="image/x-icon">
-
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bangers&display=swap" rel="stylesheet">
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Mrs+Sheppards&display=swap" rel="stylesheet">
-
 </head>
-
 <body>
+    <!-- Header Section -->
     <section id="section-header">
         <div id="header">
             <p id="header_word" onclick="showAccessDiv()">ZAREJESTRUJ SIĘ, ABY MIEĆ WCZESNY DOSTĘP!</p>
         </div>
     </section>
 
+    <!-- Early Access Message -->
     <div id="earlyAccessMessage">
         <span class="close-btn" onclick="closeAccessDiv()">&times;</span>
 
@@ -39,130 +34,177 @@
     </div>
 
 
+    <!-- Category Section -->
     <section id="section-middle">
         <div class="category">
             <div class="content-left"></div>
-
-            <div class="content-middle">    
-                <button class="category-button" onmouseover="showAccessDiv_category('nowe-i-polecane')">Nowe i Polecane</button>
-                <button class="category-button" onmouseover="showAccessDiv_category('mezczyzni')">Mężczyźni</button>
-                <button class="category-button" onmouseover="showAccessDiv_category('kobiety')">Kobiety</button>
-                <button class="category-button" onmouseover="showAccessDiv_category('unisex')">Unisex</button>
+            <div class="content-middle">
+                <button class="category-button">Nowe i Polecane</button>
+                <button class="category-button">Mężczyźni</button>
+                <button class="category-button">Kobiety</button>
+                <button class="category-button">Unisex</button>
             </div>
-            
             <div class="content-right">
-                <button class="button-icon">
-                    <div class="background-circle"></div>
-                    <img class="elements" src="search.png" alt="search">
-                </button>
-                <button class="button-icon">
-                    <div class="background-circle"></div>
-                    <img class="elements" src="user.png" alt="user" onclick="openLoginModal()">
-                </button>
-                <button class="button-icon">
-                    <div class="background-circle"></div>
-                    <img class="elements" src="heart.png" alt="heart">
-                </button>
-                <button class="button-icon">
+                <button class="button-icon"><div class="background-circle"></div><img class="elements" src="search.png" alt="search"></button>
+                <button class="button-icon"><div class="background-circle"></div><img class="elements" src="user.png" alt="user" onclick="openLoginModal()"></button>
+                <button class="button-icon"><div class="background-circle"></div><img class="elements" src="heart.png" alt="heart"></button>
+                <button class="button-icon" onclick="openCart()">
                     <div class="background-circle"></div>
                     <img class="elements" src="shopping-bag.png" alt="shopping bag">
+                    <span id="cart-count">0</span>
                 </button>
             </div>
         </div>
 
+        <!-- Category Button Access -->
         <div id="container-category-button-access">
             <span class="close-btn-category" onclick="closeAccessDiv_category()">&times;</span>
             
-            <div class="category-button-access" id="nowe-i-polecane-access">Cos jest napisane -test1</div>
-            <div class="category-button-access" id="mezczyzni-access">Cos jest napisane -test2</div>
-            <div class="category-button-access" id="kobiety-access">Cos jest napisane -test3</div>
-            <div class="category-button-access" id="unisex-access">Cos jest napisane -test4</div>
-        </div>
-        
+            
+            <div class="category-button-access" id="nowe-i-polecane-access">
+                <h3>Nowe i Polecane</h3>
+                <ul id="left" type="none">
+                    <li>but1</li>
+                    <li>but2</li>
+                    <li>but3</li>
+                    <li>but4</li>
+                    <li>but5</li>
+                    <li>but6</li>
+                </ul>
 
-        <div class="content-overlay">
-            <h1>AirKingDom</h1>
-            <p id="wlk">Walk like King</p>
-            <a href="#" class="cta-button">Zobacz więcej</a>
+                <ul id="right" type="none">
+                    <li>but7</li>
+                    <li>but8</li>
+                    <li>but9</li>
+                    <li>but10</li>
+                    <li>but11</li>
+                    <li>but12</li>
+                </ul>
+            </div>
+            <div class="category-button-access">Cos jest napisane -test2</div>
+            <div class="category-button-access">Cos jest napisane -test3</div>
+            <div class="category-button-access">Cos jest napisane -test4</div>
         </div>
 
+        <!-- Video Background -->
         <div class="video-background">
             <video src="animacja(1).mp4" id="animation" type="video/mp4" autoplay loop muted playsinline ></video>
         </div>
 
+        <!-- Notification Container -->
+        <div id="notification-container"></div>
+
+        <!-- Products Section -->
+        <h6>PRODUKTY</h6>
+        <div id="products-container"></div>
+
+        <!-- Product Modal -->
+        <div id="modal-template" class="modal">
+            <div class="modal-content">
+                <span class="close-btn">&times;</span>
+                <h2 class="product-name"></h2>
+                <p class="price"></p>
+                <div class="product-main-image">
+                    <img class="main-product-image" src="" alt="Produkt" style="width:100%; height:auto;">
+                </div>
+                <div class="product-thumbnails"></div>
+                <p>Rozmiar:
+                    <div class="size-options"></div>
+                </p>
+                <button class="add-to-cart" onclick="addToCart()">Dodaj do koszyka</button>
+                <button class="add-to-favorites">&#9733; Dodaj do ulubionych</button>
+            </div>
+        </div>
+
+        <!-- Cart Modal -->
+        <div id="cart-modal" style="display: none;">
+            <div>
+                <h2>Twój koszyk</h2>
+                <div id="cart-modal"></div>
+                <div id="cart-items"></div>
+                <div id="cart-total"></div>
+                <button onclick="closeCart()">Zamknij</button>
+                <button onclick="checkout()">Do kasy</button>
+            </div>
+        </div>
         
+        <span id="cart-count">0</span>
 
+        <!-- Login Modal -->
+        <div id="loginModal" class="modal">
+            <div class="login-content">
+                <span class="close" onclick="closeLoginModal()">&times;</span>
+                <h2>Logowanie</h2>
+                <form action="login.php" method="POST">
+                    <div class="textbox">
+                        <input type="email" placeholder="Adres e-mail" name="email" required>
+                    </div>
+                    <div class="textbox">
+                        <input type="password" placeholder="Hasło" name="password" required>
+                    </div>
+                    <input type="submit" name="login" value="Zaloguj się" class="btn-login">
+                    <div class="signup-link">
+                        <p>Nie masz konta? <a href="#" onclick="openRegisterModal(); closeLoginModal();">Zarejestruj się</a></p>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Register Modal -->
+        <div id="registerModal" class="modal">
+            <div class="register-content">
+                <span class="close" onclick="closeRegisterModal()">&times;</span>
+                <h2>Rejestracja</h2>
+                <form action="register.php" method="POST">
+                    <div class="textbox">
+                        <input type="text" placeholder="Imię" name="imie" required>
+                    </div>
+                    <div class="textbox">
+                        <input type="text" placeholder="Nazwisko" name="nazwisko" required>
+                    </div>
+                    <div class="textbox">
+                        <input type="email" placeholder="Adres e-mail" name="email" required>
+                    </div>
+                    <div class="textbox">
+                        <input type="password" placeholder="Hasło" name="password" required>
+                    </div>
+                    <div class="textbox">
+                        <input type="password" placeholder="Powtórz hasło" name="repeat_password" required>
+                    </div>
+                    <div class="textbox">
+                        <input type="text" placeholder="Miejscowość" name="miejscowosc" required>
+                    </div>
+                    <div class="textbox">
+                        <input type="text" placeholder="Ulica" name="ulica" required>
+                    </div>
+                    <div class="textbox">
+                        <input type="text" placeholder="Numer mieszkania" name="nr_mieszkania" required>
+                    </div>
+                    <div class="textbox">
+                        <input type="text" placeholder="Kod pocztowy (00-000)" name="kod_pocztowy" pattern="\d{2}-\d{3}" required>
+                    </div>
+                    <div class="textbox">
+                        <input type="tel" placeholder="Telefon (9 cyfr)" name="telefon" pattern="[0-9]{9}" required>
+                    </div>
+                    <input type="submit" name="register" value="Zarejestruj się" class="btn-register">
+                    <div class="login-link">
+                        <p>Masz już konto? <a href="#" onclick="openLoginModal(); closeRegisterModal();">Zaloguj się</a></p>
+                    </div>
+                </form>
+            </div>
+        </div>
     </section>
-
-
-
-
-
-    <div id="loginModal" class="modal">
-        <div class="login-content">
-            <span class="close" onclick="closeLoginModal()">&times;</span>
-            <h2>Logowanie</h2>
-            <form action="login.php" method="POST">
-                <div class="textbox">
-                    <input type="email" placeholder="Adres e-mail" name="email" required>
-                </div>
-                <div class="textbox">
-                    <input type="password" placeholder="Hasło" name="password" required>
-                </div>
-                <input type="submit" name="login" value="Zaloguj się" class="btn-login">
-                <div class="signup-link">
-                    <p>Nie masz konta? <a href="#" onclick="openRegisterModal(); closeLoginModal();">Zarejestruj się</a></p>
-                </div>
-            </form>
-        </div>
-    </div>
-
-    <div id="registerModal" class="modal">
-        <div class="register-content">
-            <span class="close" onclick="closeRegisterModal()">&times;</span>
-            <h2>Rejestracja</h2>
-            <form action="register.php" method="POST">
-                <div class="textbox">
-                    <input type="text" placeholder="Imię" name="imie" required>
-                </div>
-                <div class="textbox">
-                    <input type="text" placeholder="Nazwisko" name="nazwisko" required>
-                </div>
-                <div class="textbox">
-                    <input type="email" placeholder="Adres e-mail" name="email" required>
-                </div>
-                <div class="textbox">
-                    <input type="password" placeholder="Hasło" name="password" required>
-                </div>
-                <div class="textbox">
-                    <input type="password" placeholder="Powtórz hasło" name="repeat_password" required>
-                </div>
-                <div class="textbox">
-                    <input type="text" placeholder="Miejscowość" name="miejscowosc" required>
-                </div>
-                <div class="textbox">
-                    <input type="text" placeholder="Ulica" name="ulica" required>
-                </div>
-                <div class="textbox">
-                    <input type="text" placeholder="Numer mieszkania" name="nr_mieszkania" required>
-                </div>
-                <div class="textbox">
-                    <input type="text" placeholder="Kod pocztowy (00-000)" name="kod_pocztowy" pattern="\d{2}-\d{3}" required>
-                </div>
-                <div class="textbox">
-                    <input type="tel" placeholder="Telefon (9 cyfr)" name="telefon" pattern="[0-9]{9}" required>
-                </div>
-                <input type="submit" name="register" value="Zarejestruj się" class="btn-register">
-                <div class="login-link">
-                    <p>Masz już konto? <a href="#" onclick="openLoginModal(); closeRegisterModal();">Zaloguj się</a></p>
-                </div>
-            </form>
-        </div>
-    </div>
-    
-    
 
     <script src="script.js"></script>
 
+
+
 </body>
 </html>
+
+
+
+
+
+
+
