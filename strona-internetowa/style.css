@@ -142,7 +142,13 @@
     transform: translateY(100%); /* Ukryj element przez przesunięcie */
 }
     
-
+.close-btn-category{
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+    font-size: 50px;
+}
 
 /* --------SECTION-MIDDLE - CONTENT RIGHT - background circle of buttons--------------------------------------------------------------------------------------------*/
 

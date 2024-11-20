@@ -73,26 +73,38 @@ function handleOutsideClick(event) {
 
 
 
-function toggleEarlyAccessMessage_category() {
+// Funkcja do pokazania panelu
+function showAccessDiv_category(category) {
     var messageDiv = document.getElementById('container-category-button-access');
-    messageDiv.classList.toggle('hidden');
+    messageDiv.classList.add('visible'); // Pokaż panel
+
+    // Ukryj wszystkie sekcje
+    const sections = document.querySelectorAll('.category-button-access');
+    sections.forEach(section => section.style.display = 'none');
+
+    // Pokaż tylko odpowiednią sekcję
+    const categorySection = document.getElementById(category + '-access');
+    if (categorySection) {
+        categorySection.style.display = 'block';
+    }
+
+    document.addEventListener('click', handleOutsideClick_category); // Dodaj nasłuchiwacz do kliknięcia poza panelem
 }
 
-function showAccessDiv_category() {
-    var messageDiv = document.getElementById('container-category-button-access');
-    messageDiv.classList.add('visible'); 
-    document.addEventListener('click', handleOutsideClick_category);
-}
-
+// Funkcja do zamknięcia panelu
 function closeAccessDiv_category() {
     var messageDiv = document.getElementById('container-category-button-access');
-    messageDiv.classList.remove('visible'); 
-    document.removeEventListener('click', handleOutsideClick_category);
+    messageDiv.classList.remove('visible'); // Ukryj panel
+    document.removeEventListener('click', handleOutsideClick_category); // Usuń nasłuchiwacz kliknięcia
 }
 
+// Funkcja do obsługi kliknięcia poza panelem
 function handleOutsideClick_category(event) {
     const accessDiv = document.getElementById('container-category-button-access');
-    if (!accessDiv.contains(event.target) && event.target.id !== 'category-button') {
-        closeAccessDiv_category(); 
+    const categoryButtons = document.querySelectorAll('.category-button');
+
+    // Jeśli kliknięcie miało miejsce poza panelem i przyciskami, zamknij panel
+    if (!accessDiv.contains(event.target) && !Array.from(categoryButtons).includes(event.target)) {
+        closeAccessDiv_category();
     }
 }
