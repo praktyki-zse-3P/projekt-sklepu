@@ -33,13 +33,31 @@
         </div>
     </div>
 
-
     <!-- Category Section -->
     <section id="section-middle">
         <div class="category">
             <div class="content-left"></div>
             <div class="content-middle">
-                <button class="category-button">Nowe i Polecane</button>
+                <div class="category-button-access" id="nowe-i-polecane-access">
+                    <h3>Nowe i Polecane</h3>
+                    <ul id="left" type="none">
+                        <li>but1</li>
+                        <li>but2</li>
+                        <li>but3</li>
+                        <li>but4</li>
+                        <li>but5</li>
+                        <li>but6</li>
+                    </ul>
+    
+                    <ul id="right" type="none">
+                        <li>but7</li>
+                        <li>but8</li>
+                        <li>but9</li>
+                        <li>but10</li>
+                        <li>but11</li>
+                        <li>but12</li>
+                    </ul>
+                </div>
                 <button class="category-button">Mężczyźni</button>
                 <button class="category-button">Kobiety</button>
                 <button class="category-button">Unisex</button>
@@ -59,28 +77,7 @@
         <!-- Category Button Access -->
         <div id="container-category-button-access">
             <span class="close-btn-category" onclick="closeAccessDiv_category()">&times;</span>
-            
-            
-            <div class="category-button-access" id="nowe-i-polecane-access">
-                <h3>Nowe i Polecane</h3>
-                <ul id="left" type="none">
-                    <li>but1</li>
-                    <li>but2</li>
-                    <li>but3</li>
-                    <li>but4</li>
-                    <li>but5</li>
-                    <li>but6</li>
-                </ul>
-
-                <ul id="right" type="none">
-                    <li>but7</li>
-                    <li>but8</li>
-                    <li>but9</li>
-                    <li>but10</li>
-                    <li>but11</li>
-                    <li>but12</li>
-                </ul>
-            </div>
+            <div class="category-button-access">Cos jest napisane -test1</div>
             <div class="category-button-access">Cos jest napisane -test2</div>
             <div class="category-button-access">Cos jest napisane -test3</div>
             <div class="category-button-access">Cos jest napisane -test4</div>
@@ -120,7 +117,6 @@
         <div id="cart-modal" style="display: none;">
             <div>
                 <h2>Twój koszyk</h2>
-                <div id="cart-modal"></div>
                 <div id="cart-items"></div>
                 <div id="cart-total"></div>
                 <button onclick="closeCart()">Zamknij</button>
@@ -196,15 +192,5 @@
     </section>
 
     <script src="script.js"></script>
-
-
-
 </body>
 </html>
-
-
-
-
-
-
-
