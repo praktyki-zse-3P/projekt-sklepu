@@ -116,30 +116,31 @@
 /* --------SECTION-MIDDLE - CONTENT MIDDLE- sliding menu--------------------------------------------------------------------------------------------*/
 
 #container-category-button-access {
+    position: fixed;
+    visibility: hidden;
+    left: 0;
     width: 100%;
-    height: 200px;
-    max-height: 200px;
+    height: 300px;
     background-color: white;
     z-index: 1000;
-    display: none; /* Element jest domyślnie ukryty */
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transform: translateY(-5%); /* Startuje przesunięty w dół względem swojej pozycji */
+    transition: transform 0.5s ease-in-out; /* Płynne przesunięcie */
     overflow: hidden;
-    transition: transform 0.3s ease-in-out; /* Animacja przesunięcia */
 }
 
-/* Kiedy element ma być widoczny */
-#container-category-button-access.show {
-    display: block; /* Ustawienie na block, aby był widoczny */
-    transform: translateY(0); /* Płynna animacja pojawiania się */
+#container-category-button-access.visible {
+    transform: translateY(0); /* Element wraca na swoje miejsce */
+    visibility: visible;
 }
 
-.close-btn-category {
-    position: absolute;
-    left:97%;
-    cursor: pointer;
-    font-size: 50px;
+#container-category-button-access.hidden {
+    transform: translateY(100%); /* Ukryj element przez przesunięcie */
 }
-
     
 
 

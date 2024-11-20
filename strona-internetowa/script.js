@@ -78,22 +78,21 @@ function toggleEarlyAccessMessage_category() {
     messageDiv.classList.toggle('hidden');
 }
 
-// Funkcja do pokazania panelu
-// Funkcja do pokazania panelu
 function showAccessDiv_category() {
     var messageDiv = document.getElementById('container-category-button-access');
-    messageDiv.classList.add('show'); // Dodajemy klasę 'show' dla widoczności
+    messageDiv.classList.add('visible'); 
+    document.addEventListener('click', handleOutsideClick_category);
 }
 
-// Funkcja do zamknięcia panelu
 function closeAccessDiv_category() {
     var messageDiv = document.getElementById('container-category-button-access');
-    messageDiv.classList.remove('show'); // Usuwamy klasę 'show' dla ukrycia
+    messageDiv.classList.remove('visible'); 
+    document.removeEventListener('click', handleOutsideClick_category);
 }
 
 function handleOutsideClick_category(event) {
     const accessDiv = document.getElementById('container-category-button-access');
     if (!accessDiv.contains(event.target) && event.target.id !== 'category-button') {
-        closeAccessDiv(); 
+        closeAccessDiv_category(); 
     }
 }
