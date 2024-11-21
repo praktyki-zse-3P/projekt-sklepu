@@ -15,6 +15,33 @@ function closeRegisterModal() {
     document.getElementById("registerModal").style.display = "none";
 }
 
+
+//CART MODAL
+
+function showAccessShop() {
+    var messageDiv = document.getElementById('cart-modal');
+    messageDiv.classList.add('visible'); 
+    document.addEventListener('click', handleOutsideClick_shop);
+}
+
+function closeAccessShop() {
+    var messageDiv = document.getElementById('cart-modal');
+    messageDiv.classList.remove('visible'); 
+    document.removeEventListener('click', handleOutsideClick_shop);
+}
+
+function toggleEarlyAccessShop() {
+    var messageDiv = document.getElementById('cart-modal');
+    messageDiv.classList.toggle('hidden');
+}
+
+function handleOutsideClick_shop(event) {
+    const accessDiv = document.getElementById('cart-modal');
+    if (!accessDiv.contains(event.target) && event.target.id !== '') {
+        closeAccessShop(); 
+    }
+}
+
 // Funkcja do pokazywania i ukrywania hasła
 function togglePassword() {
     var passwordField = document.getElementById("password");
@@ -311,7 +338,7 @@ function closeCart() {
     cartModal.style.display = 'none';
 }
 
-// Funkcja aktualizująca zawartość koszyka w modal
+// Funkcja aktualizująca zawartość koszyka
 function updateCart() {
     const cartItemsContainer = document.getElementById('cart-items');
     const cartTotalContainer = document.getElementById('cart-total');
@@ -326,19 +353,31 @@ function updateCart() {
             const cartItem = document.createElement('div');
             cartItem.classList.add('cart-item');
 
+            // Dodajemy obrazek produktu
+            const itemImage = document.createElement('img');
+            itemImage.src = `${item.mainImage}`; // Używamy ścieżki do obrazka bez "images/"
+            itemImage.alt = item.name;
+            itemImage.style.width = '100px';  // Ustalamy rozmiar obrazka
+            cartItem.appendChild(itemImage);
+
+            // Dodajemy nazwę produktu
             const itemName = document.createElement('p');
-            itemName.innerText = `${item.name} (Rozmiar: ${item.selectedSize})`; // Wyświetlamy rozmiar
+            itemName.innerText = `${item.name} (Rozmiar: ${item.selectedSize})`;
             cartItem.appendChild(itemName);
 
+            // Dodajemy cenę produktu
             const itemPrice = document.createElement('p');
-            itemPrice.innerText = item.price;
+            itemPrice.innerText = `${item.price}`;
             cartItem.appendChild(itemPrice);
 
+            // Dodajemy przedmiot do kontenera koszyka
             cartItemsContainer.appendChild(cartItem);
 
+            // Sumujemy cenę wszystkich produktów
             total += parseFloat(item.price.replace('$', '').replace(',', ''));
         });
 
+        // Wyświetlamy łączną cenę
         cartTotalContainer.innerHTML = `<strong>Łączna cena: $${total.toFixed(2)}</strong>`;
     }
 }

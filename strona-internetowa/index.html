@@ -32,6 +32,7 @@
         <p class="slider-text">Masz 30 dni na darmowy zwrot lub wymianę produktów.</p>
         </div>
     </div>
+
         <section id="section-middle">
             <div class="category">
                 <div class="content-left"></div>
@@ -55,8 +56,9 @@
                     <button class="button-icon"><div class="background-circle"></div><img class="elements" src="user.png" alt="user" onclick="openLoginModal()"></button>
                     <button class="button-icon"><div class="background-circle"></div><img class="elements" src="heart.png" alt="heart"></button>
                     <button class="button-icon" onclick="openCart()">
-                        <div class="background-circle"></div>
-                        <img class="elements" src="shopping-bag.png" alt="shopping bag">
+
+                    <div class="background-circle" onclick="showAccessShop()"></div>
+                    <img class="elements" src="shopping-bag.png" alt="shopping bag" onclick="showAccessShop()">
                         <span id="cart-count">0</span>
                     </button>
                 </div>
@@ -150,25 +152,27 @@
 
 
 
-
+        
         <!--Video Text -->
         <div class="content-overlay">
             <h1>AirKingDom</h1>
             <p id="wlk">Walk like King</p>
             <a href="#" class="cta-button">Zobacz więcej</a>
         </div>
+    
         <!-- Video Background -->
         <div class="video-background">
             <video src="animacja(1).mp4" id="animation" type="video/mp4" autoplay loop muted playsinline ></video>
         </div>
-
+        
+    
         <!-- Notification Container -->
         <div id="notification-container"></div>
 
         <!-- Products Section -->
         <h6>PRODUKTY</h6>
         <div id="products-container"></div>
-
+    
         <!-- Product Modal -->
         <div id="modal-template" class="modal">
             <div class="modal-content">
@@ -186,19 +190,17 @@
                 <button class="add-to-cart">Dodaj do koszyka</button>
             </div>
         </div>
-
-        <!-- Cart Modal -->
-        <div id="cart-modal" style="display: none;">
-            <div>
-                <h2>Twój koszyk</h2>
-                <div id="cart-items"></div>
-                <div id="cart-total"></div>
-                <button onclick="closeCart()">Zamknij</button>
-                <button onclick="checkout()">Do kasy</button>
-            </div>
+        <div id="cart-modal">
+            <div id="cart-items"></div>
+            <div id="cart-total"></div> <!-- Tu będzie wyświetlana łączna cena -->
         </div>
+    </section>
+       
+
+
         
-        <span id="cart-count">0</span>
+
+
 
         <!-- Login Modal -->
         <div id="loginModal" class="modal">
