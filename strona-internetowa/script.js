@@ -308,6 +308,7 @@ function addToCart(product, modal) {
     cartInfo.style.padding = '5px 10px';
     cartInfo.style.borderRadius = '5px';
     cartInfo.innerText = `${product.name} (Rozmiar: ${selectedSize}) dodano do koszyka!`;
+    
     modal.appendChild(cartInfo);
 
     // Znikanie informacji po 3 sekundach
@@ -338,8 +339,9 @@ function closeCart() {
     cartModal.style.display = 'none';
 }
 
-// Funkcja aktualizująca zawartość koszyka
-function updateCart() {
+
+
+function updateCartDynamic() {
     const cartItemsContainer = document.getElementById('cart-items');
     const cartTotalContainer = document.getElementById('cart-total');
     cartItemsContainer.innerHTML = ''; // Czyścimy poprzednią zawartość
@@ -349,37 +351,69 @@ function updateCart() {
         cartTotalContainer.innerHTML = '';
     } else {
         let total = 0;
-        cart.forEach(item => {
+        cart.forEach((item, index) => {
             const cartItem = document.createElement('div');
             cartItem.classList.add('cart-item');
+            cartItem.style.display = 'flex';
+            cartItem.style.justifyContent = 'space-between';
+            cartItem.style.alignItems = 'center';
+            cartItem.style.marginBottom = '10px';
 
-            // Dodajemy obrazek produktu
+            // Obrazek produktu
             const itemImage = document.createElement('img');
-            itemImage.src = `${item.mainImage}`; // Używamy ścieżki do obrazka bez "images/"
+            itemImage.src = `${item.mainImage}`;
             itemImage.alt = item.name;
-            itemImage.style.width = '100px';  // Ustalamy rozmiar obrazka
+            itemImage.style.width = '50px';
+            itemImage.style.marginRight = '10px';
             cartItem.appendChild(itemImage);
 
-            // Dodajemy nazwę produktu
-            const itemName = document.createElement('p');
-            itemName.innerText = `${item.name} (Rozmiar: ${item.selectedSize})`;
-            cartItem.appendChild(itemName);
+            // Nazwa i rozmiar produktu
+            const itemDetails = document.createElement('div');
+            itemDetails.style.flexGrow = '1';
+            itemDetails.innerText = `${item.name} (Rozmiar: ${item.selectedSize})`;
+            cartItem.appendChild(itemDetails);
 
-            // Dodajemy cenę produktu
+            // Cena produktu
             const itemPrice = document.createElement('p');
             itemPrice.innerText = `${item.price}`;
+            itemPrice.style.marginRight = '10px';
             cartItem.appendChild(itemPrice);
 
-            // Dodajemy przedmiot do kontenera koszyka
+            // Przycisk usuwania
+            const removeButton = document.createElement('button');
+            removeButton.innerText = 'Usuń';
+            removeButton.style.backgroundColor = 'red';
+            removeButton.style.color = 'white';
+            removeButton.style.border = 'none';
+            removeButton.style.padding = '5px 10px';
+            removeButton.style.borderRadius = '5px';
+            removeButton.style.cursor = 'pointer';
+
+            // Obsługa kliknięcia w przycisk usuwania
+            removeButton.addEventListener('click', () => {
+                cart.splice(index, 1); // Usuwamy element z koszyka
+                updateCartDynamic(); // Dynamicznie odświeżamy widok koszyka
+                updateCartCount(); // Aktualizujemy licznik produktów
+            });
+            cartItem.appendChild(removeButton);
+
+            // Dodanie elementu do kontenera koszyka
             cartItemsContainer.appendChild(cartItem);
 
-            // Sumujemy cenę wszystkich produktów
+            // Obliczanie łącznej ceny
             total += parseFloat(item.price.replace('$', '').replace(',', ''));
         });
 
-        // Wyświetlamy łączną cenę
+        // Wyświetlanie łącznej ceny
         cartTotalContainer.innerHTML = `<strong>Łączna cena: $${total.toFixed(2)}</strong>`;
     }
+}
+
+// Funkcja otwierająca modal koszyka z dynamiczną aktualizacją
+function openCart() {
+    const cartModal = document.getElementById('cart-modal');
+    cartModal.style.display = 'block';
+    updateCartDynamic(); // Dynamicznie odświeżamy zawartość koszyka
 }
 
 // Inicjalizowanie strony - tworzenie produktów

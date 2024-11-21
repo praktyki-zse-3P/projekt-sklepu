@@ -770,7 +770,7 @@ h2 {
 /* ----------------------------------------------*/
 
 #cart-modal {
-    width: 650px;
+    width: 350px;
     height: 770px;
     top: 88px;
     right: -653px;
@@ -814,6 +814,9 @@ h2 {
     margin: 0;
 }
 
+#cart-total{
+    margin-left:15px;
+}
 /* ----------------------------------------------*/
 
 .checkout-btn {
