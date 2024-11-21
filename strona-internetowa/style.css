@@ -71,6 +71,7 @@ body{
 
 
 
+
 /* --------SECTION-HEADER - Sliding (earlyAccessMessage)---------------------------------------------------------------------------------------------------------------------------*/
 
 #earlyAccessMessage {
@@ -242,6 +243,77 @@ li:hover{
     transform: scale(0.8); 
 }
 
+.search-container {
+    position: relative;
+    width: 300px;
+    background: none;
+}
+
+
+#search-input {
+    width: 85%;
+    padding: 12px;
+    padding-right: 30px; 
+    font-size: 16px;
+    border-radius: 25px;
+    border: 1px solid #ccc;
+    overflow: hidden;
+    z-index: -1; 
+}
+
+
+#search-results {
+    margin-top: 10px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    display: none; 
+}
+.button-icon-search {
+    position: absolute;
+    right: 5px; 
+    top:24px;
+    transform: translateY(-50%);
+    border-radius: 50%;
+    border: none;
+    background:none;
+    cursor: pointer;
+    padding: 10px;
+}
+
+
+
+.background-circle-search {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #bebebe;
+    border-radius: 50%;
+    opacity: 0; 
+    transition: opacity 0.3s ease;
+    z-index: -2; 
+    width: 40px;
+    height: 40px;
+}
+
+
+.button-icon-search {
+    z-index: 1; 
+}
+
+
+.button-icon-search:hover .background-circle-search {
+    opacity: 1; 
+}
+
+.button-icon-search:hover .elements {
+    filter: brightness(1.2); 
+}
+
+.button-icon-search:active .elements {
+    transform: scale(0.8); 
+}
 
 
 /* --------* MIDDLE CONTENT - including buttons-- and video-background-------------------------------------------------------------------------------------------------------------------*/
@@ -519,11 +591,12 @@ h2 {
 
 
 
-  .product-preview {
+.product-preview {
     margin: 20px;
     display: inline-block;
     text-align: center;
 }
+
 .product-thumbnail {
     width: 200px;
     height: auto;
@@ -620,6 +693,7 @@ h2 {
 .add-to-cart {
     display: inline-block;
     padding: 12px 20px;
+    margin-top:15px;
     background-color: #007BFF;
     color: white;
     font-size: 16px;
@@ -731,10 +805,24 @@ h2 {
 
 /*bullshit*/
 
-
-
-
-
+.close-modal {
+    position: relative;
+    display: block;
+    margin-left:auto;
+    color: #aaa;
+    font-size: 35px;
+    font-weight: bold;
+    top: 10px;
+    right: 20px;
+    border:none;
+    background-color: white;
+}
+.close-modal:hover,
+.close-modal:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
 
 
 

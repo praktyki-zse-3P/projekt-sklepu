@@ -44,7 +44,14 @@
                 </div>
                 
                 <div class="content-right">
-                    <button class="button-icon"><div class="background-circle"></div><img class="elements" src="search.png" alt="search"></button>
+                    <div class="search-container">
+                        <input type="text" id="search-input" placeholder="Wyszukaj produkt..." />
+                        <button class="button-icon-search" id="search-button">
+                            <div class="background-circle-search"></div>
+                            <img class="elements" src="search.png" alt="search">
+                        </button>
+                    </div>
+                    <div id="search-results"></div>
                     <button class="button-icon"><div class="background-circle"></div><img class="elements" src="user.png" alt="user" onclick="openLoginModal()"></button>
                     <button class="button-icon"><div class="background-circle"></div><img class="elements" src="heart.png" alt="heart"></button>
                     <button class="button-icon" onclick="openCart()">
