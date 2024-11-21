@@ -152,6 +152,7 @@
 
 /* --------SECTION-MIDDLE - CONTENT MIDDLE- sliding menu - TEXT--------------------------------------------------------------------------------------------*/
 
+/* Styl dla głównego kontenera */
 .category-button-access{
     display: inline-block;
     width:600px;
@@ -188,7 +189,6 @@ li:hover{
     transition: 0.2s ease-in-out;
     cursor:pointer;
 }
-
 /* --------SECTION-MIDDLE - CONTENT RIGHT - background circle of buttons--------------------------------------------------------------------------------------------*/
 
 .button-icon{
