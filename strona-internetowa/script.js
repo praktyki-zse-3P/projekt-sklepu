@@ -1,4 +1,3 @@
-
 // Funkcje do otwierania i zamykania modali
 function openLoginModal() {
     document.getElementById("loginModal").style.display = "flex";
@@ -135,7 +134,6 @@ const products = [
         ],
         sizes: [38, 39, 40, 41, 42, 43, 44, 45]
     },
-
     {
         id: 'yeezyslied',
         name: 'Yeezy Slide',
@@ -149,6 +147,9 @@ const products = [
         sizes: [38, 39, 40, 41, 42, 43, 44, 45]
     }
 ];
+
+// Przechowywanie produktów w koszyku
+let cart = [];
 
 // Funkcja tworząca HTML dla każdego produktu
 function createProductHTML(product) {
@@ -176,12 +177,15 @@ function createProductHTML(product) {
     document.getElementById('products-container').appendChild(productContainer);
 }
 
-// Funkcja otwierająca okno modalne dla wybranego produktu
+// Funkcja do otwierania okna modalnego dla wybranego produktu
 function openProductWindow(productId) {
     const product = products.find(p => p.id === productId);
     const modal = document.getElementById('modal-template').cloneNode(true);
     modal.style.display = 'block';
     modal.removeAttribute('id'); // Usuwamy id z kopii
+
+    // Zablokowanie przewijania tła
+    document.body.style.overflow = 'hidden';
 
     // Uzupełniamy dane w oknie modalnym
     modal.querySelector('.product-name').innerText = product.name;
@@ -200,21 +204,42 @@ function openProductWindow(productId) {
     // Dodajemy opcje rozmiarów
     const sizeOptions = modal.querySelector('.size-options');
     product.sizes.forEach(size => {
-    const sizeButton = document.createElement('button');
-    sizeButton.innerText = size;
-    sizeButton.onclick = () => {
-        // Oznacz aktywny rozmiar
-        sizeOptions.querySelectorAll('button').forEach(btn => btn.classList.remove('active'));
-        sizeButton.classList.add('active');
-    };
-    sizeOptions.appendChild(sizeButton);
-});
+        const sizeButton = document.createElement('button');
+        sizeButton.innerText = size;
+        sizeButton.onclick = () => {
+            // Oznacz aktywny rozmiar
+            sizeOptions.querySelectorAll('button').forEach(btn => btn.classList.remove('active'));
+            sizeButton.classList.add('active');
+            // Usuwamy ewentualny komunikat o błędzie
+            const errorText = modal.querySelector('.size-error');
+            if (errorText) errorText.remove();
+        };
+        sizeOptions.appendChild(sizeButton);
+    });
 
-    // Dodajemy modal do body
+    // Dodajemy przycisk dodania do koszyka
+    const addToCartButton = modal.querySelector('.add-to-cart');
+    addToCartButton.onclick = () => addToCart(product, modal);  // Przekazujemy modal, żeby sprawdzić rozmiar
+
+    // Dodajemy przycisk zamknięcia
+    const closeButton = modal.querySelector('.close-modal');
+    closeButton.onclick = () => closeModal(modal); // Zamknięcie modalu po kliknięciu w przycisk 'x'
+
+    // Zamknięcie modalu, jeśli użytkownik kliknie poza oknem
+    modal.addEventListener('click', (e) => {
+        if (!modal.querySelector('.modal-content').contains(e.target)) {
+            closeModal(modal);
+        }
+    });
+
+    // Dodanie modal do body
     document.body.appendChild(modal);
+}
 
-    // Dodajemy event dla przycisku zamykania
-    modal.querySelector('.close-btn').onclick = () => closeModal(modal);
+// Funkcja do zamknięcia modalu
+function closeModal(modal) {
+    modal.style.display = 'none'; // Ukrywa modal
+    document.body.style.overflow = ''; // Przywraca przewijanie tła
 }
 
 // Funkcja zmieniająca główne zdjęcie
@@ -223,15 +248,99 @@ function changeImage(modal, src) {
     mainImage.src = src; // Zmieniamy src głównego zdjęcia
 }
 
-// Funkcja zamykająca modal
-function closeModal(modal) {
-    modal.style.display = 'none';
-    modal.remove(); // Usuwamy modal z DOM
+// Funkcja dodająca produkt do koszyka
+function addToCart(product, modal) {
+    const sizeSelected = modal.querySelector('.size-options button.active');  // Sprawdzamy, czy wybrano rozmiar
+
+    if (!sizeSelected) {
+        // Jeśli nie wybrano rozmiaru, wyświetlamy komunikat o błędzie w oknie modalnym
+        let errorText = modal.querySelector('.size-error');
+        if (!errorText) {
+            errorText = document.createElement('p');
+            errorText.classList.add('size-error');
+            errorText.style.color = 'red';
+            errorText.innerText = 'Proszę wybrać rozmiar!';
+            modal.querySelector('.size-options').appendChild(errorText);
+        }
+        return;  // Zatrzymujemy dodawanie do koszyka
+    }
+
+    const selectedSize = sizeSelected.innerText; // Pobieramy wybrany rozmiar
+
+    // Dodajemy produkt do koszyka z wybranym rozmiarem
+    cart.push({ ...product, selectedSize });
+    
+    // Wyświetlamy informację o dodaniu do koszyka w prawym górnym rogu modalu
+    const cartInfo = document.createElement('div');
+    cartInfo.classList.add('cart-info');
+    cartInfo.style.position = 'absolute';
+    cartInfo.style.top = '10px';
+    cartInfo.style.right = '10px';
+    cartInfo.style.backgroundColor = 'green';
+    cartInfo.style.color = 'white';
+    cartInfo.style.padding = '5px 10px';
+    cartInfo.style.borderRadius = '5px';
+    cartInfo.innerText = `${product.name} (Rozmiar: ${selectedSize}) dodano do koszyka!`;
+    modal.appendChild(cartInfo);
+
+    // Znikanie informacji po 3 sekundach
+    setTimeout(() => {
+        cartInfo.remove();
+    }, 3000);  // 3000 ms = 3 sekundy
+
+    // Aktualizujemy liczbę produktów w koszyku
+    updateCartCount();
 }
 
-// Funkcja dodająca produkt do koszyka
-function addToCart() {
-    alert('Produkt dodany do koszyka!');
+// Funkcja aktualizująca liczbę produktów w koszyku
+function updateCartCount() {
+    const cartCount = document.getElementById('cart-count');
+    cartCount.innerText = cart.length;
+}
+
+// Funkcja otwierająca modal z koszykiem
+function openCart() {
+    const cartModal = document.getElementById('cart-modal');
+    cartModal.style.display = 'block';
+    updateCart(); // Aktualizujemy zawartość koszyka
+}
+
+// Funkcja zamykająca modal z koszykiem
+function closeCart() {
+    const cartModal = document.getElementById('cart-modal');
+    cartModal.style.display = 'none';
+}
+
+// Funkcja aktualizująca zawartość koszyka w modal
+function updateCart() {
+    const cartItemsContainer = document.getElementById('cart-items');
+    const cartTotalContainer = document.getElementById('cart-total');
+    cartItemsContainer.innerHTML = ''; // Czyścimy poprzednią zawartość
+
+    if (cart.length === 0) {
+        cartItemsContainer.innerHTML = '<p>Twój koszyk jest pusty.</p>';
+        cartTotalContainer.innerHTML = '';
+    } else {
+        let total = 0;
+        cart.forEach(item => {
+            const cartItem = document.createElement('div');
+            cartItem.classList.add('cart-item');
+
+            const itemName = document.createElement('p');
+            itemName.innerText = `${item.name} (Rozmiar: ${item.selectedSize})`; // Wyświetlamy rozmiar
+            cartItem.appendChild(itemName);
+
+            const itemPrice = document.createElement('p');
+            itemPrice.innerText = item.price;
+            cartItem.appendChild(itemPrice);
+
+            cartItemsContainer.appendChild(cartItem);
+
+            total += parseFloat(item.price.replace('$', '').replace(',', ''));
+        });
+
+        cartTotalContainer.innerHTML = `<strong>Łączna cena: $${total.toFixed(2)}</strong>`;
+    }
 }
 
 // Inicjalizowanie strony - tworzenie produktów
@@ -240,28 +349,6 @@ window.onload = () => {
 };
 
 
-function showNotification(message) {
-    const container = document.getElementById('notification-container');
-
-    // Tworzymy nowe powiadomienie
-    const notification = document.createElement('div');
-    notification.classList.add('notification');
-    notification.innerText = message;
-
-    // Dodajemy powiadomienie do kontenera
-    container.appendChild(notification);
-
-    // Automatyczne usunięcie powiadomienia po 3 sekundach
-    setTimeout(() => {
-        notification.style.opacity = '0'; // Efekt zanikania
-        setTimeout(() => notification.remove(), 500); // Usuń po efektach
-    }, 3000);
-}
-
-// Wywołanie przy dodaniu do koszyka
-function addToCart() {
-    showNotification('Produkt dodany do koszyka!');
-}
 
 
 
@@ -269,81 +356,5 @@ function addToCart() {
 
 
 
-let cart = []; // Koszyk przechowuje produkty jako obiekty
 
-// Dodaj produkt do koszyka
-function addToCart(productId) {
-    const product = products.find(p => p.id === productId);
 
-    // Sprawdź, czy produkt już istnieje w koszyku
-    const existingProduct = cart.find(item => item.id === productId);
-    if (existingProduct) {
-        existingProduct.quantity += 1; // Zwiększ ilość
-    } else {
-        cart.push({ ...product, quantity: 1 }); // Dodaj nowy produkt
-    }
-
-    updateCartCount();
-    showNotification('Dodano do koszyka!');
-}
-
-// Aktualizuj licznik produktów w koszyku
-function updateCartCount() {
-    const cartCount = cart.reduce((sum, item) => sum + item.quantity, 0);
-    document.getElementById('cart-count').innerText = cartCount;
-}
-
-// Otwórz modal koszyka
-function openCart() {
-    const modal = document.getElementById('cart-modal');
-    const cartItemsContainer = document.getElementById('cart-items');
-    const cartTotal = document.getElementById('cart-total');
-
-    // Wyczyszczenie listy produktów
-    cartItemsContainer.innerHTML = '';
-
-    // Wypełnij szczegóły koszyka
-    let total = 0;
-    cart.forEach(item => {
-        const productRow = document.createElement('div');
-        productRow.classList.add('cart-item');
-        productRow.innerHTML = `
-            <span>${item.name}</span>
-            <span>${item.quantity} x ${item.price}</span>
-            <button onclick="removeFromCart('${item.id}')">Usuń</button>
-        `;
-        cartItemsContainer.appendChild(productRow);
-
-        total += parseFloat(item.price.replace('$', '')) * item.quantity;
-    });
-
-    // Zaktualizuj łączną kwotę
-    cartTotal.innerText = `$${total.toFixed(2)}`;
-
-    modal.style.display = 'block';
-}
-
-// Zamknij modal koszyka
-function closeCart() {
-    const modal = document.getElementById('cart-modal');
-    modal.style.display = 'none';
-}
-
-// Usuń produkt z koszyka
-function removeFromCart(productId) {
-    cart = cart.filter(item => item.id !== productId);
-    updateCartCount();
-    openCart(); // Odśwież widok koszyka
-}
-
-// Przejdź do kasy
-function checkout() {
-    if (cart.length === 0) {
-        alert('Koszyk jest pusty!');
-        return;
-    }
-    alert('Dziękujemy za zakupy!');
-    cart = []; // Wyczyść koszyk po zakończeniu zakupów
-    updateCartCount();
-    closeCart();
-}

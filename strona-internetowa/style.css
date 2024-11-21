@@ -8,6 +8,11 @@
     user-select: none;
 }
 
+
+body{
+    overflow-x:hidden;
+}
+
 #section-header {
     background-color: black;
     color: white;
@@ -722,3 +727,15 @@ h2 {
     background-color: #FF4500;
     color: white;
 }
+
+
+/*bullshit*/
+
+
+
+
+
+
+
+
+

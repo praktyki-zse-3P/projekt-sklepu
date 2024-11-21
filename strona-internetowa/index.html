@@ -144,16 +144,6 @@
 
 
 
-
-
-        <!-- Category Button Access -->
-        <div id="container-category-button-access">
-            <span class="close-btn-category" onclick="closeAccessDiv_category()">&times;</span>
-            <div class="category-button-access">Cos jest napisane -test1</div>
-            <div class="category-button-access">Cos jest napisane -test2</div>
-            <div class="category-button-access">Cos jest napisane -test3</div>
-            <div class="category-button-access">Cos jest napisane -test4</div>
-        </div>
         <!--Video Text -->
         <div class="content-overlay">
             <h1>AirKingDom</h1>
@@ -175,18 +165,18 @@
         <!-- Product Modal -->
         <div id="modal-template" class="modal">
             <div class="modal-content">
-                <span class="close-btn">&times;</span>
+                <!-- Przycisk zamknięcia w prawym górnym rogu -->
+                <button class="close-modal" onclick="closeModal()">x</button>
+                
                 <h2 class="product-name"></h2>
                 <p class="price"></p>
-                <div class="product-main-image">
-                    <img class="main-product-image" src="" alt="Produkt" style="width:100%; height:auto;">
-                </div>
+                <img class="main-product-image" src="" alt="Product Image">
+                
                 <div class="product-thumbnails"></div>
-                <p>Rozmiar:
-                    <div class="size-options"></div>
-                </p>
-                <button class="add-to-cart" onclick="addToCart()">Dodaj do koszyka</button>
-                <button class="add-to-favorites">&#9733; Dodaj do ulubionych</button>
+                
+                <div class="size-options"></div>
+                
+                <button class="add-to-cart">Dodaj do koszyka</button>
             </div>
         </div>
 
