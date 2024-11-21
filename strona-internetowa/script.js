@@ -546,6 +546,30 @@ const products = [
         sizes: [38, 39, 40, 41, 42, 43, 44, 45]
     },
     {
+        id: 'aj4cacao',
+        name: 'Air Jordan 4 Cacao Wow',
+        price: '$260.99',
+        mainImage: 'images/aj4cacao/aj4cacao1.jpg',
+        thumbnails: [
+            'images/aj4cacao/aj4cacao1.jpg',
+            'images/aj4cacao/aj4cacao2.jpg',
+            'images/aj4cacao/aj4cacao3.jpg'
+        ],
+        sizes: [38, 39, 40, 41, 42, 43, 44, 45]
+    },
+    {
+        id: 'aj4military',
+        name: 'Air Jordan 4 Military Black',
+        price: '$530.99',
+        mainImage: 'images/aj4military/aj4military1.jpg',
+        thumbnails: [
+            'images/aj4military/aj4military1.jpg',
+            'images/aj4military/aj4military2.jpg',
+            'images/aj4military/aj4military.jpg'
+        ],
+        sizes: [38, 39, 40, 41, 42, 43, 44, 45]
+    },
+    {
         id: 'aj4metallicgold',
         name: 'Air Jordan 4 Metallic Gold',
         price: '$264.99',
@@ -617,6 +641,68 @@ const products = [
         ],
         sizes: [38, 39, 40, 41, 42, 43, 44, 45]
     },
+    {
+        id: 'newbalance550unc',
+        name: 'New Balance 550 UNC',
+        price: '$239.99',
+        mainImage: 'images/newbalance550unc/newbalance5501.jpg',
+        thumbnails: [
+            'images/newbalance550unc/newbalance5501.jpg',
+            'images/newbalance550unc/newbalance5502.jpg',
+            'images/newbalance550unc/newbalance5503.jpg'
+        ],
+        sizes: [38, 39, 40, 41, 42, 43, 44, 45]
+    },
+    {
+        id: 'newbalance550pink',
+        name: 'New Balance 550 White Pink Sea Salt',
+        price: '$119.99',
+        mainImage: 'images/newbalance550pink/newbalance5501.jpg',
+        thumbnails: [
+            'images/newbalance550pink/newbalance5501.jpg',
+            'images/newbalance550pink/newbalance5502.jpg',
+            'images/newbalance550pink/newbalance5503.jpg'
+        ],
+        sizes: [38, 39, 40, 41, 42, 43, 44, 45]
+    },
+    {
+        id: 'newbalance550white',
+        name: 'New Balance 550 White Grey',
+        price: '$144.99',
+        mainImage: 'images/newbalance550white/newbalance5501.jpg',
+        thumbnails: [
+            'images/newbalance550white/newbalance5501.jpg',
+            'images/newbalance550white/newbalance5502.jpg',
+            'images/newbalance550white/newbalance5503.jpg'
+        ],
+        sizes: [38, 39, 40, 41, 42, 43, 44, 45]
+    },
+    {
+        id: 'newbalance530silver',
+        name: 'New Balance 530 Silver Navy',
+        price: '$156.99',
+        mainImage: 'images/newbalance530silver/newbalance5301.jpg',
+        thumbnails: [
+            'images/newbalance530silver/newbalance5301.jpg',
+            'images/newbalance530silver/newbalance5302.jpg',
+            'images/newbalance530silver/newbalance5303.jpg'
+        ],
+        sizes: [38, 39, 40, 41, 42, 43, 44, 45]
+    },
+    {
+        id: 'newbalance530pink',
+        name: 'New Balance 530 Pink Sugar',
+        price: '$156.99',
+        mainImage: 'images/newbalance530pink/newbalance5301.jpg',
+        thumbnails: [
+            'images/newbalance530pink/newbalance5301.jpg',
+            'images/newbalance530pink/newbalance5302.jpg',
+            'images/newbalance530pink/newbalance5303.jpg'
+        ],
+        sizes: [38, 39, 40, 41, 42, 43, 44, 45]
+    },
+    
+    
 ];
 
 // Przechowywanie produktów w koszyku
