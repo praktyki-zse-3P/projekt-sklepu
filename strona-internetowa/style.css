@@ -564,6 +564,14 @@ h2 {
     font-family: 'Lucida Console';
     font-weight: bold; 
   }
+
+  h5{
+    font-family: "Lugrasimo", cursive;
+    font-weight: 400;
+    font-style: normal;
+    text-align: center;
+    font-size: 20px;
+  }
   .price{
     padding-top: 9px;
     font-size:20px;
@@ -668,6 +676,13 @@ h2 {
     border-radius: 5px; 
 }
 
+#products-container {
+    display: grid;
+    grid-template-columns: repeat(10, minmax(200px, 1fr));
+    gap: 40px;
+    padding: 20px;
+    background-color: #f8f9fa;
+}
 
 /*---------------Przycisk tabeli rozmiarow--------------- */
 

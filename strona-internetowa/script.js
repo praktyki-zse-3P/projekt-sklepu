@@ -138,41 +138,485 @@ function handleOutsideClick_category(event) {
 // Dane o produktach
 const products = [
     {
+        id: 'yeezyslidebone',
+        name: 'Yeezy Slide Bone',
+        price: '$175.99',
+        mainImage: 'images/yeezyslidebone/YeezySlideBone1.jpg',
+        thumbnails: [
+            'images/yeezyslidebone/YeezySlideBone1.jpg',
+            'images/yeezyslidebone/YeezySlideBone2.jpg',
+            'images/yeezyslidebone/YeezySlideBone3.jpg'
+        ],
+        sizes: [38, 39, 40, 41, 42, 43, 44, 45]
+    },
+    {
+        id: 'yeezyslide',
+        name: 'Yeezy Slide Onyx',
+        price: '$129.99',
+        mainImage: 'images/yeezyslide/YeezySlides1.jpg',
+        thumbnails: [
+            'images/yeezyslide/YeezySlides1.jpg',
+            'images/yeezyslide/YeezySlides2.jpg',
+            'images/yeezyslide/YeezySlides3.jpg'
+        ],
+        sizes: [38, 39, 40, 41, 42, 43, 44, 45]
+    },
+    {
+        id: 'yeezyfoamrunner',
+        name: 'Yeezy Foam Runner Carbon',
+        price: '$156.99',
+        mainImage: 'images/foamrnr/foamrnr1.jpg',
+        thumbnails: [
+            'images/foamrnr/foamrnr1.jpg',
+            'images/foamrnr/foamrnr2.jpg',
+            'images/foamrnr/foamrnr3.jpg'
+        ],
+        sizes: [38, 39, 40, 41, 42, 43, 44, 45]
+    },
+    {
         id: 'yeezy350',
         name: 'Yeezy 350 Beluga',
         price: '$249.99',
-        mainImage: 'yeezy350beluga/yeezy350beluga1.jpg',
+        mainImage: 'images/yeezy350beluga/yeezy350beluga1.jpg',
         thumbnails: [
-            'yeezy350beluga/yeezy350beluga1.jpg',
-            'yeezy350beluga/yeezy350beluga2.jpg',
-            'yeezy350beluga/yeezy350beluga3.jpg'
+            'images/yeezy350beluga/yeezy350beluga1.jpg',
+            'images/yeezy350beluga/yeezy350beluga2.jpg',
+            'images/yeezy350beluga/yeezy350beluga3.jpg'
         ],
         sizes: [38, 39, 40, 41, 42, 43, 44, 45]
     },
     {
-        id: 'nikeshox',
-        name: 'Nike Shox TL Black',
+        id: 'yeezy350zebra',
+        name: 'Yeezy 350 Zebra',
+        price: '$360.99',
+        mainImage: 'images/yeezy350zebra/yeezy3501.jpg',
+        thumbnails: [
+            'images/yeezy350zebra/yeezy3501.jpg',
+            'images/yeezy350zebra/yeezy3502.jpg',
+            'images/yeezy350zebra/yeezy3503.jpg'
+        ],
+        sizes: [38, 39, 40, 41, 42, 43, 44, 45]
+    },
+
+    {
+        id: 'yeezy350sesame',
+        name: 'Yeezy 350 Sesame',
+        price: '$325.99',
+        mainImage: 'images/yeezy350sesame/yeezy3501.jpg',
+        thumbnails: [
+            'images/yeezy350sesame/yeezy3501.jpg',
+            'images/yeezy350sesame/yeezy3502.jpg',
+            'images/yeezy350sesame/yeezy3503.jpg'
+        ],
+        sizes: [38, 39, 40, 41, 42, 43, 44, 45]
+    },
+
+    {
+        id: 'yeezy350oreo',
+        name: 'Yeezy 350 Oreo',
+        price: '$554.99',
+        mainImage: 'images/yeezy350oreo/yeezy3501.jpg',
+        thumbnails: [
+            'images/yeezy350oreo/yeezy3501.jpg',
+            'images/yeezy350oreo/yeezy3502.jpg',
+            'images/yeezy350oreo/yeezy3503.jpg'
+        ],
+        sizes: [38, 39, 40, 41, 42, 43, 44, 45]
+    },
+    {
+        id: 'yeezy350darksalt',
+        name: 'Yeezy 350 Dark Salt',
+        price: '$340.99',
+        mainImage: 'images/yeezy350darksalt/yeezy3501.jpg',
+        thumbnails: [
+            'images/yeezy350darksalt/yeezy3501.jpg',
+            'images/yeezy350darksalt/yeezy3502.jpg'
+        ],
+        sizes: [38, 39, 40, 41, 42, 43, 44, 45]
+    },
+    {
+        id: 'yeezy500',
+        name: 'Yeezy 500 Utility Black',
+        price: '$340.99',
+        mainImage: 'images/yeezy500/yeezy5001.jpg',
+        thumbnails: [
+            'images/yeezy500/yeezy5001.jpg',
+            'images/yeezy500/yeezy5002.jpg',
+            'images/yeezy500/yeezy5003.jpg'
+        ],
+        sizes: [38, 39, 40, 41, 42, 43, 44, 45]
+    },
+    {
+        id: 'yeezy500white',
+        name: 'Yeezy 500 Bone White',
+        price: '$180.99',
+        mainImage: 'images/yeezy500white/yeezy5001.jpg',
+        thumbnails: [
+            'images/yeezy500white/yeezy5001.jpg',
+            'images/yeezy500white/yeezy5002.jpg',
+            'images/yeezy500white/yeezy5003.jpg'
+        ],
+        sizes: [38, 39, 40, 41, 42, 43, 44, 45]
+    },
+    {
+        id: 'nikeaf1supreme',
+        name: 'Nike Air Force 1 Supreme',
+        price: '$120.99',
+        mainImage: 'images/nikeaf1s/nikeaf1s.jpg',
+        thumbnails: [
+            'images/nikeaf1s/nikeaf1s.jpg',
+        ],
+        sizes: [38, 39, 40, 41, 42, 43, 44, 45]
+    },
+    {
+        id: 'nikeaf1',
+        name: 'Nike Air Force 1',
+        price: '$120.99',
+        mainImage: 'images/af1/af11.jpg',
+        thumbnails: [
+            'images/af1/af11.jpg',
+            'images/af1/af12.jpg',
+            'images/af1/af13.jpg'
+        ],
+        sizes: [38, 39, 40, 41, 42, 43, 44, 45]
+    },
+    {
+        id: 'nikeaf1tiffany',
+        name: 'Nike Air Force 1 Tiffany & Co. 1837',
+        price: '$1599.99',
+        mainImage: 'images/af1tiffany/af1tiffany1.jpg',
+        thumbnails: [
+            'images/af1tiffany/af1tiffany1.jpg',
+            'images/af1tiffany/af1tiffany2.jpg',
+            'images/af1tiffany/af1tiffany3.jpg'
+        ],
+        sizes: [38, 39, 40, 41, 42, 43, 44, 45]
+    },
+    {
+        id: 'dunkfuchsia',
+        name: 'Nike Dunk Fuchsia',
+        price: '$156.99',
+        mainImage: 'images/dunkfuchsia/dunk1.jpg',
+        thumbnails: [
+            'images/dunkfuchsia/dunk1.jpg',
+            'images/dunkfuchsia/dunk2.jpg',
+            'images/dunkfuchsia/dunk3.jpg'
+        ],
+        sizes: [38, 39, 40, 41, 42, 43, 44, 45]
+    },
+    {
+        id: 'dunkvalerianblue',
+        name: 'Nike Dunk Valerian Blue',
+        price: '$168.99',
+        mainImage: 'images/dunkvalerianblue/dunk1.jpg',
+        thumbnails: [
+            'images/dunkvalerianblue/dunk1.jpg',
+            'images/dunkvalerianblue/dunk2.jpg',
+            'images/dunkvalerianblue/dunk3.jpg'
+        ],
+        sizes: [38, 39, 40, 41, 42, 43, 44, 45]
+    },
+    {
+        id: 'dunkunc',
+        name: 'Nike Dunk UNC',
+        price: '$156.99',
+        mainImage: 'images/dunkunc/dunkunc1.jpg',
+        thumbnails: [
+            'images/dunkunc/dunkunc1.jpg',
+            'images/dunkunc/dunkunc2.jpg',
+            'images/dunkunc/dunkunc3.jpg'
+        ],
+        sizes: [38, 39, 40, 41, 42, 43, 44, 45]
+    },
+    {
+        id: 'dunkpink',
+        name: 'Nike Dunk Triple Pink',
+        price: '$180.99',
+        mainImage: 'images/dunkpink/dunk1.jpg',
+        thumbnails: [
+            'images/dunkpink/dunk1.jpg',
+            'images/dunkpink/dunk2.jpg',
+            'images/dunkpink/dunk3.jpg'
+        ],
+        sizes: [38, 39, 40, 41, 42, 43, 44, 45]
+    },
+    {
+        id: 'dunkpanda',
+        name: 'Nike Dunk Panda',
+        price: '$84.99',
+        mainImage: 'images/dunkpanda/dunk1.jpg',
+        thumbnails: [
+            'images/dunkpanda/dunk1.jpg',
+            'images/dunkpanda/dunk2.jpg'
+        ],
+        sizes: [38, 39, 40, 41, 42, 43, 44, 45]
+    },
+    {
+        id: 'dunkblackgum',
+        name: 'Nike Dunk Blackgum',
+        price: '$120.99',
+        mainImage: 'images/dunkblackgum/dunkblackgum1.jpg',
+        thumbnails: [
+            'images/dunkblackgum/dunkblackgum1.jpg',
+            'images/dunkblackgum/dunkblackgum2.jpg',
+            'images/dunkblackgum/dunkblackgum3.jpg'
+        ],
+        sizes: [38, 39, 40, 41, 42, 43, 44, 45]
+    },
+    {
+        id: 'dunkts',
+        name: 'Nike Dunk Travis Scott',
+        price: '$1199.99',
+        mainImage: 'images/dunkts/dunkts1.jpg',
+        thumbnails: [
+            'images/dunkts/dunkts1.jpg',
+            'images/dunkts/dunkts2.jpg',
+            'images/dunkts/dunkts3.jpg'
+        ],
+        sizes: [38, 39, 40, 41, 42, 43, 44, 45]
+    },
+
+    {
+        id: 'dunkstrangelove',
+        name: 'Nike Dunk Strange Love',
+        price: '$1499.99',
+        mainImage: 'images/dunkstrangelove/dunk1.jpg',
+        thumbnails: [
+            'images/dunkstrangelove/dunk1.jpg',
+            'images/dunkstrangelove/dunk2.jpg',
+            'images/dunkstrangelove/dunk3.jpg'
+        ],
+        sizes: [38, 39, 40, 41, 42, 43, 44, 45]
+    },
+    {
+        id: 'dunksupreme',
+        name: 'Nike Dunk Supreme Black',
+        price: '$842.99',
+        mainImage: 'images/dunksupreme/dunk1.jpg',
+        thumbnails: [
+            'images/dunksupreme/dunk1.jpg',
+            'images/dunksupreme/dunk2.jpg',
+            'images/dunksupreme/dunk3.jpg'
+        ],
+        sizes: [38, 39, 40, 41, 42, 43, 44, 45]
+    },
+    {
+        id: 'dunkof',
+        name: 'Nike Dunk Off-White Lot 50',
+        price: '$1567.99',
+        mainImage: 'images/dunkof/dunk1.jpg',
+        thumbnails: [
+            'images/dunkof/dunk1.jpg',
+            'images/dunkof/dunk2.jpg',
+            'images/dunkof/dunk3.jpg'
+        ],
+        sizes: [38, 39, 40, 41, 42, 43, 44, 45]
+    },
+
+    {
+        id: 'aj1cement',
+        name: 'Air Jordan 1 High White Cement',
+        price: '$240.99',
+        mainImage: 'images/aj1cement/aj11.jpg',
+        thumbnails: [
+            'images/aj1cement/aj11.jpg',
+            'images/aj1cement/aj12.jpg',
+            'images/aj1cement/aj13.jpg'
+        ],
+        sizes: [38, 39, 40, 41, 42, 43, 44, 45]
+    },
+    {
+        id: 'aj1green',
+        name: 'Air Jordan 1 High Lucky Green',
+        price: '$279.99',
+        mainImage: 'images/aj1green/aj11.jpg',
+        thumbnails: [
+            'images/aj1green/aj11.jpg',
+            'images/aj1green/aj12.jpg',
+            'images/aj1green/aj13.jpg'
+        ],
+        sizes: [38, 39, 40, 41, 42, 43, 44, 45]
+    },
+    {
+        id: 'aj1taxi',
+        name: 'Air Jordan 1 High Taxi',
         price: '$199.99',
-        mainImage: 'nikeshox/NikeShox1.jpg',
+        mainImage: 'images/aj1taxi/aj11.jpg',
         thumbnails: [
-            'nikeshox/NikeShox1.jpg',
-            'nikeshox/NikeShox2.jpg',
-            'nikeshox/NikeShox3.jpg'
+            'images/aj1taxi/aj11.jpg',
+            'images/aj1taxi/aj12.jpg',
+            'images/aj1taxi/aj13.jpg'
         ],
         sizes: [38, 39, 40, 41, 42, 43, 44, 45]
     },
     {
-        id: 'yeezyslied',
-        name: 'Yeezy Slide',
-        price: '$149.99',
-        mainImage: 'yeezyslide/YeezySlides1.jpg',
+        id: 'aj1pink',
+        name: 'Air Jordan 1 High Washed Pink',
+        price: '$252.99',
+        mainImage: 'images/aj1pink/aj11.jpg',
         thumbnails: [
-            'yeezyslide/YeezySlides1.jpg',
-            'yeezyslide/YeezySlides2.jpg',
-            'yeezyslide/YeezySlides3.jpg'
+            'images/aj1pink/aj11.jpg',
+            'images/aj1pink/aj12.jpg',
+            'images/aj1pink/aj13.jpg'
         ],
         sizes: [38, 39, 40, 41, 42, 43, 44, 45]
-    }
+    },
+    {
+        id: 'aj1unc',
+        name: 'Air Jordan 1 High University Blue (UNC)',
+        price: '$484.99',
+        mainImage: 'images/aj1unc/aj11.jpg',
+        thumbnails: [
+            'images/aj1unc/aj11.jpg',
+            'images/aj1unc/aj12.jpg',
+            'images/aj1unc/aj13.jpg'
+        ],
+        sizes: [38, 39, 40, 41, 42, 43, 44, 45]
+    },
+    {
+        id: 'aj1bubblegum',
+        name: 'Air Jordan 1 High Atmosphere Bubble Gum',
+        price: '$250.99',
+        mainImage: 'images/aj1bubblegum/aj11.jpg',
+        thumbnails: [
+            'images/aj1bubblegum/aj11.jpg',
+            'images/aj1bubblegum/aj12.jpg',
+            'images/aj1bubblegum/aj13.jpg'
+        ],
+        sizes: [38, 39, 40, 41, 42, 43, 44, 45]
+    },
+    {
+        id: 'aj1balvin',
+        name: 'Air Jordan 1 High J. Balvin',
+        price: '$620.99',
+        mainImage: 'images/aj1balvin/aj1balvin1.jpg',
+        thumbnails: [
+            'images/aj1balvin/aj1balvin1.jpg',
+            'images/aj1balvin/aj1balvin2.jpg',
+            'images/aj1balvin/aj1balvin3.jpg'
+        ],
+        sizes: [38, 39, 40, 41, 42, 43, 44, 45]
+    },
+    {
+        id: 'aj1ts',
+        name: 'Air Jordan 1 High Travis Scott',
+        price: '$2409.99',
+        mainImage: 'images/aj1ts/aj1ts1.jpg',
+        thumbnails: [
+            'images/aj1ts/aj1ts1.jpg',
+            'images/aj1ts/aj1ts2.jpg',
+            'images/aj1ts/aj1ts3.jpg'
+        ],
+        sizes: [38, 39, 40, 41, 42, 43, 44, 45]
+    },
+    {
+        id: 'aj1dior',
+        name: 'Air Jordan 1 High Dior',
+        price: '$14199.99',
+        mainImage: 'images/aj1dior/aj1dior1.jpg',
+        thumbnails: [
+            'images/aj1dior/aj1dior1.jpg',
+            'images/aj1dior/aj1dior2.jpg',
+            'images/aj1dior/aj1dior3.jpg'
+        ],
+        sizes: [38, 39, 40, 41, 42, 43, 44, 45]
+    },
+    {
+        id: 'aj1of',
+        name: 'Air Jordan 1 High Off-White NRG',
+        price: '$8439.99',
+        mainImage: 'images/aj1of/aj1of1.jpg',
+        thumbnails: [
+            'images/aj1of/aj1of1.jpg',
+            'images/aj1of/aj1of2.jpg',
+            'images/aj1of/aj1of3.jpg'
+        ],
+        sizes: [38, 39, 40, 41, 42, 43, 44, 45]
+    },
+    {
+        id: 'aj4whitethunder',
+        name: 'Air Jordan 4 White Thunder',
+        price: '$190.99',
+        mainImage: 'images/aj4whitethunder/aj4whitethunder1.jpg',
+        thumbnails: [
+            'images/aj4whitethunder/aj4whitethunder1.jpg',
+            'images/aj4whitethunder/aj4whitethunder2.jpg',
+            'images/aj4whitethunder/aj4whitethunder3.jpg'
+        ],
+        sizes: [38, 39, 40, 41, 42, 43, 44, 45]
+    },
+    {
+        id: 'aj4metallicgold',
+        name: 'Air Jordan 4 Metallic Gold',
+        price: '$264.99',
+        mainImage: 'images/aj4metallicgold/aj4metallicgold1.jpg',
+        thumbnails: [
+            'images/aj4metallicgold/aj4metallicgold1.jpg',
+            'images/aj4metallicgold/aj4metallicgold2.jpg',
+            'images/aj4metallicgold/aj4metallicgold3.jpg'
+        ],
+        sizes: [38, 39, 40, 41, 42, 43, 44, 45]
+    },
+    {
+        id: 'aj4metallicgreen',
+        name: 'Air Jordan 4 Metallic Green',
+        price: '$1155.99',
+        mainImage: 'images/aj4mgreen/aj4mgreen1.jpg',
+        thumbnails: [
+            'images/aj4mgreen/aj4mgreen1.jpg',
+            'images/aj4mgreen/aj4mgreen2.jpg',
+            'images/aj4mgreen/aj4mgreen3.jpg'
+        ],
+        sizes: [38, 39, 40, 41, 42, 43, 44, 45]
+    },
+    {
+        id: 'aj4metallicorange',
+        name: 'Air Jordan 4 Metallic Orange',
+        price: '$1155.99',
+        mainImage: 'images/aj4morange/aj4morange1.jpg',
+        thumbnails: [
+            'images/aj4morange/aj4mcorange1.jpg',
+            'images/aj4morange/aj4morange2.jpg',
+            'images/aj4morange/aj4mcorange3.jpg'
+        ],
+        sizes: [38, 39, 40, 41, 42, 43, 44, 45]
+    },
+    {
+        id: 'aj4ts',
+        name: 'Air Jordan 4 Cactus Jack',
+        price: '$2049.99',
+        mainImage: 'images/aj4ts/aj4ts1.jpg',
+        thumbnails: [
+            'images/aj4ts/aj4ts1.jpg',
+            'images/aj4ts/aj4ts2.jpg',
+            'images/aj4ts/aj4ts3.jpg'
+        ],
+        sizes: [38, 39, 40, 41, 42, 43, 44, 45]
+    },
+    {
+        id: 'aj4bcat',
+        name: 'Air Jordan 4 Black Cat',
+        price: '$1350.99',
+        mainImage: 'images/aj4bcat/aj4bcat1.jpg',
+        thumbnails: [
+            'images/aj4bcat/aj4bcat1.jpg',
+            'images/aj4bcat/aj4bcat2.jpg',
+            'images/aj4bcat/aj4bcat3.jpg'
+        ],
+        sizes: [38, 39, 40, 41, 42, 43, 44, 45]
+    },
+    {
+        id: 'aj4kaws',
+        name: 'Air Jordan 4 Kaws Gray',
+        price: '$3375.99',
+        mainImage: 'images/aj4kaws/aj4kaws1.jpg',
+        thumbnails: [
+            'images/aj4kaws/aj4kaws1.jpg',
+            'images/aj4kaws/aj4kaws2.jpg',
+            'images/aj4kaws/aj4kaws3.jpg'
+        ],
+        sizes: [38, 39, 40, 41, 42, 43, 44, 45]
+    },
 ];
 
 // Przechowywanie produktów w koszyku
@@ -339,7 +783,12 @@ function closeCart() {
     cartModal.style.display = 'none';
 }
 
-
+// Funkcja usuwająca przedmiot z koszyka
+function removeFromCart(index) {
+    cart.splice(index, 1); // Usuwamy przedmiot z tablicy `cart`
+    updateCart(); // Aktualizujemy zawartość koszyka w modalu
+    updateCartCount(); // Aktualizujemy liczbę produktów w koszyku
+}
 
 function updateCartDynamic() {
     const cartItemsContainer = document.getElementById('cart-items');
