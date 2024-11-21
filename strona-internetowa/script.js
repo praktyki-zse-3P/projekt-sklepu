@@ -575,9 +575,9 @@ const products = [
         price: '$1155.99',
         mainImage: 'images/aj4morange/aj4morange1.jpg',
         thumbnails: [
-            'images/aj4morange/aj4mcorange1.jpg',
+            'images/aj4morange/aj4morange1.jpg',
             'images/aj4morange/aj4morange2.jpg',
-            'images/aj4morange/aj4mcorange3.jpg'
+            'images/aj4morange/aj4morange3.jpg'
         ],
         sizes: [38, 39, 40, 41, 42, 43, 44, 45]
     },

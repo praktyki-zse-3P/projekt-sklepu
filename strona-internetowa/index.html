@@ -168,7 +168,15 @@
     
         <!-- Notification Container -->
         <div id="notification-container"></div>
-
+        <div class="sort-container">
+            <label for="sort">Sortuj według:</label>
+            <select id="sort" onchange="sortProducts()">
+                <option value="name-asc">Nazwa (A-Z)</option>
+                <option value="name-desc">Nazwa (Z-A)</option>
+                <option value="price-asc">Cena (rosnąco)</option>
+                <option value="price-desc">Cena (malejąco)</option>
+            </select>
+        </div>
         <!-- Products Section -->
         <h6>PRODUKTY</h6>
         <div id="products-container"></div>

@@ -684,6 +684,21 @@ h2 {
     background-color: #f8f9fa;
 }
 
+.sort-container {
+    display: absolute;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.sort-container label {
+    margin-right: 10px;
+    font-size: 16px;
+}
+
+.sort-container select {
+    padding: 5px;
+    font-size: 16px
+}
 /*---------------Przycisk tabeli rozmiarow--------------- */
 
 
