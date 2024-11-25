@@ -936,7 +936,11 @@ function addToCart(product, modal) {
 
     // Aktualizujemy liczbę produktów w koszyku
     updateCartCount();
+    
+    // Odświeżamy widok koszyka dynamicznie
+    updateCartDynamic();
 }
+
 
 // Funkcja aktualizująca liczbę produktów w koszyku
 function updateCartCount() {
@@ -1052,30 +1056,81 @@ window.onload = () => {
 // Tablica do przechowywania produktów w ulubionych
 let favorites = [];
 
-// Funkcja dodająca produkt do ulubionych
 function addToFavorites(product) {
     if (!favorites.some(fav => fav.id === product.id)) {
-        favorites.push(product);  // Dodajemy produkt do ulubionych
-        alert(`${product.name} dodano do ulubionych!`);  // Informacja o sukcesie
-        updateFavoritesDisplay();  // Aktualizowanie wyświetlania ulubionych
+        favorites.push(product); // Dodajemy produkt do ulubionych
+
+        // Wyświetlamy powiadomienie o sukcesie
+        const notification = document.createElement('div');
+        notification.style.position = 'fixed';
+        notification.style.bottom = '10px';
+        notification.style.right = '10px';
+        notification.style.backgroundColor = 'green';
+        notification.style.color = 'white';
+        notification.style.padding = '10px';
+        notification.style.borderRadius = '5px';
+        notification.innerText = `${product.name} dodano do ulubionych!`;
+        document.body.appendChild(notification);
+
+        // Usunięcie powiadomienia po 3 sekundach
+        setTimeout(() => notification.remove(), 3000);
+
+        updateFavoritesDisplay(); // Aktualizowanie wyświetlania ulubionych
     } else {
         alert(`${product.name} jest już w ulubionych!`);
     }
 }
 
+// Funkcja dodająca produkt do ulubionych
+function addToFavorites(product) {
+    const sizeSelected = document.querySelector('.size-options button.active'); // Sprawdzamy, czy wybrano rozmiar
+    if (!sizeSelected) {
+        alert('Proszę wybrać rozmiar przed dodaniem do ulubionych!');
+        return;
+    }
+
+    const selectedSize = sizeSelected.innerText; // Pobieramy wybrany rozmiar
+
+    // Sprawdzamy, czy produkt o tym samym rozmiarze już istnieje w ulubionych
+    if (!favorites.some(fav => fav.id === product.id && fav.selectedSize === selectedSize)) {
+        favorites.push({ ...product, selectedSize }); // Dodajemy produkt z rozmiarem do ulubionych
+
+        // Wyświetlamy powiadomienie o sukcesie
+        const notification = document.createElement('div');
+        notification.style.position = 'fixed';
+        notification.style.bottom = '10px';
+        notification.style.right = '10px';
+        notification.style.backgroundColor = 'green';
+        notification.style.color = 'white';
+        notification.style.padding = '10px';
+        notification.style.borderRadius = '5px';
+        notification.innerText = `${product.name} (Rozmiar: ${selectedSize}) dodano do ulubionych!`;
+        document.body.appendChild(notification);
+
+        // Usunięcie powiadomienia po 3 sekundach
+        setTimeout(() => notification.remove(), 3000);
+
+        updateFavoritesDisplay(); // Aktualizowanie wyświetlania ulubionych
+    } else {
+        alert(`${product.name} w rozmiarze ${selectedSize} jest już w ulubionych!`);
+    }
+}
+
+
+
 // Funkcja wyświetlająca ulubione produkty
 function updateFavoritesDisplay() {
     const favoritesContainer = document.getElementById('cart-liked');
-    favoritesContainer.innerHTML = '';  // Czyścimy obecny widok
+    favoritesContainer.innerHTML = ''; // Czyścimy obecny widok
 
     if (favorites.length === 0) {
         favoritesContainer.innerHTML = '<p>Brak ulubionych produktów.</p>';
     } else {
-        favorites.forEach(product => {
+        favorites.forEach((product, index) => {
             const productElement = document.createElement('div');
             productElement.classList.add('favorite-product');
 
-
+            // Obrazek produktu
             const img = document.createElement('img');
             img.src = `${product.mainImage}`;
             img.alt = product.name;
@@ -1083,11 +1138,12 @@ function updateFavoritesDisplay() {
             img.style.marginRight = '10px';
             productElement.appendChild(img);
 
-
+            // Nazwa produktu
             const name = document.createElement('h4');
-            name.innerText = product.name;
+            name.innerText = `${product.name} (Rozmiar: ${product.selectedSize})`;
             productElement.appendChild(name);
 
+            // Cena produktu
             const price = document.createElement('p');
             price.innerText = product.price;
             productElement.appendChild(price);
@@ -1102,18 +1158,57 @@ function updateFavoritesDisplay() {
             removeButton.style.borderRadius = '5px';
             removeButton.style.cursor = 'pointer';
 
+            // Obsługa kliknięcia w przycisk usuwania
+            removeButton.addEventListener('click', () => {
+                favorites.splice(index, 1); // Usuwamy element z ulubionych
+                updateFavoritesDisplay(); // Aktualizujemy widok ulubionych
+            });
+
+            productElement.appendChild(removeButton);
+
+            // Przycisk dodania do koszyka
+            const addToCartButton = document.createElement('button');
+            addToCartButton.innerText = 'Dodaj do koszyka';
+            addToCartButton.style.backgroundColor = 'blue';
+            addToCartButton.style.color = 'white';
+            addToCartButton.style.border = 'none';
+            addToCartButton.style.padding = '5px 10px';
+            addToCartButton.style.borderRadius = '5px';
+            addToCartButton.style.cursor = 'pointer';
+
+            // Obsługa kliknięcia w przycisk dodania do koszyka
+            addToCartButton.addEventListener('click', () => {
+                cart.push(product); // Dodajemy produkt do koszyka
+                updateCartDynamic(); // Odświeżamy widok koszyka
+                updateCartCount(); // Aktualizujemy licznik koszyka
+                alert(`${product.name} (Rozmiar: ${product.selectedSize}) dodano do koszyka!`);
+            });
+
+            productElement.appendChild(addToCartButton);
+
+            // Dodanie elementu produktu do kontenera ulubionych
             favoritesContainer.appendChild(productElement);
         });
     }
 }
 
-// Inicjalizowanie strony - tworzenie produktów
-window.onload = () => {
-    products.forEach(createProductHTML);  // Tworzenie produktów
-    updateFavoritesDisplay();  // Wyświetlanie ulubionych na starcie
-};
+// Funkcja przenosząca wszystkie przedmioty z ulubionych do koszyka
+function addFavoritesToCart() {
+    if (favorites.length === 0) {
+        alert('Brak ulubionych produktów do dodania do koszyka!');
+        return;
+    }
 
+    favorites.forEach(product => {
+        cart.push(product); // Dodajemy produkt do koszyka
+    });
 
+    favorites = []; // Czyścimy ulubione po przeniesieniu
+    updateFavoritesDisplay(); // Odświeżamy widok ulubionych
+    updateCartDynamic(); // Odświeżamy widok koszyka
+    updateCartCount(); // Aktualizujemy licznik koszyka
 
+    alert('Wszystkie ulubione produkty zostały dodane do koszyka!');
+}
 
 
