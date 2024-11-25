@@ -166,7 +166,8 @@ const products = [
     {
         id: 'yeezyslidebone',
         name: 'Yeezy Slide Bone',
-        price: '$175.99',
+        price: '175.99',
+        id_kategorii: 3,
         mainImage: 'images/yeezyslidebone/YeezySlideBone1.jpg',
         thumbnails: [
             'images/yeezyslidebone/YeezySlideBone1.jpg',
@@ -178,7 +179,8 @@ const products = [
     {
         id: 'yeezyslide',
         name: 'Yeezy Slide Onyx',
-        price: '$129.99',
+        price: '129.99',
+        id_kategorii: 3,
         mainImage: 'images/yeezyslide/YeezySlides1.jpg',
         thumbnails: [
             'images/yeezyslide/YeezySlides1.jpg',
@@ -190,7 +192,8 @@ const products = [
     {
         id: 'yeezyfoamrunner',
         name: 'Yeezy Foam Runner Carbon',
-        price: '$156.99',
+        price: '156.99',
+        id_kategorii: 1,
         mainImage: 'images/foamrnr/foamrnr1.jpg',
         thumbnails: [
             'images/foamrnr/foamrnr1.jpg',
@@ -202,7 +205,8 @@ const products = [
     {
         id: 'yeezy350',
         name: 'Yeezy 350 Beluga',
-        price: '$249.99',
+        price: '249.99',
+        id_kategorii: 1,
         mainImage: 'images/yeezy350beluga/yeezy350beluga1.jpg',
         thumbnails: [
             'images/yeezy350beluga/yeezy350beluga1.jpg',
@@ -214,7 +218,8 @@ const products = [
     {
         id: 'yeezy350zebra',
         name: 'Yeezy 350 Zebra',
-        price: '$360.99',
+        price: '360.99',
+        id_kategorii: 1,
         mainImage: 'images/yeezy350zebra/yeezy3501.jpg',
         thumbnails: [
             'images/yeezy350zebra/yeezy3501.jpg',
@@ -227,7 +232,8 @@ const products = [
     {
         id: 'yeezy350sesame',
         name: 'Yeezy 350 Sesame',
-        price: '$325.99',
+        price: '325.99',
+        id_kategorii: 3,
         mainImage: 'images/yeezy350sesame/yeezy3501.jpg',
         thumbnails: [
             'images/yeezy350sesame/yeezy3501.jpg',
@@ -240,7 +246,8 @@ const products = [
     {
         id: 'yeezy350oreo',
         name: 'Yeezy 350 Oreo',
-        price: '$554.99',
+        price: '554.99',
+        id_kategorii: 1,
         mainImage: 'images/yeezy350oreo/yeezy3501.jpg',
         thumbnails: [
             'images/yeezy350oreo/yeezy3501.jpg',
@@ -252,7 +259,8 @@ const products = [
     {
         id: 'yeezy350darksalt',
         name: 'Yeezy 350 Dark Salt',
-        price: '$340.99',
+        price: '340.99',
+        id_kategorii: 1,
         mainImage: 'images/yeezy350darksalt/yeezy3501.jpg',
         thumbnails: [
             'images/yeezy350darksalt/yeezy3501.jpg',
@@ -263,7 +271,8 @@ const products = [
     {
         id: 'yeezy500',
         name: 'Yeezy 500 Utility Black',
-        price: '$340.99',
+        price: '340.99',
+        id_kategorii: 1,
         mainImage: 'images/yeezy500/yeezy5001.jpg',
         thumbnails: [
             'images/yeezy500/yeezy5001.jpg',
@@ -275,7 +284,8 @@ const products = [
     {
         id: 'yeezy500white',
         name: 'Yeezy 500 Bone White',
-        price: '$180.99',
+        price: '180.99',
+        id_kategorii: 1,
         mainImage: 'images/yeezy500white/yeezy5001.jpg',
         thumbnails: [
             'images/yeezy500white/yeezy5001.jpg',
@@ -287,7 +297,8 @@ const products = [
     {
         id: 'nikeaf1supreme',
         name: 'Nike Air Force 1 Supreme',
-        price: '$120.99',
+        price: '120.99',
+        id_kategorii: 1,
         mainImage: 'images/nikeaf1s/nikeaf1s.jpg',
         thumbnails: [
             'images/nikeaf1s/nikeaf1s.jpg',
@@ -297,7 +308,8 @@ const products = [
     {
         id: 'nikeaf1',
         name: 'Nike Air Force 1',
-        price: '$120.99',
+        price: '120.99',
+        id_kategorii: 3,
         mainImage: 'images/af1/af11.jpg',
         thumbnails: [
             'images/af1/af11.jpg',
@@ -309,7 +321,8 @@ const products = [
     {
         id: 'nikeaf1tiffany',
         name: 'Nike Air Force 1 Tiffany & Co. 1837',
-        price: '$1599.99',
+        price: '1599.99',
+        id_kategorii: 3,
         mainImage: 'images/af1tiffany/af1tiffany1.jpg',
         thumbnails: [
             'images/af1tiffany/af1tiffany1.jpg',
@@ -321,7 +334,8 @@ const products = [
     {
         id: 'dunkfuchsia',
         name: 'Nike Dunk Fuchsia',
-        price: '$156.99',
+        price: '156.99',
+        id_kategorii: 2,
         mainImage: 'images/dunkfuchsia/dunk1.jpg',
         thumbnails: [
             'images/dunkfuchsia/dunk1.jpg',
@@ -333,7 +347,8 @@ const products = [
     {
         id: 'dunkvalerianblue',
         name: 'Nike Dunk Valerian Blue',
-        price: '$168.99',
+        price: '168.99',
+        id_kategorii: 1,
         mainImage: 'images/dunkvalerianblue/dunk1.jpg',
         thumbnails: [
             'images/dunkvalerianblue/dunk1.jpg',
@@ -345,7 +360,8 @@ const products = [
     {
         id: 'dunkunc',
         name: 'Nike Dunk UNC',
-        price: '$156.99',
+        price: '156.99',
+        id_kategorii: 1,
         mainImage: 'images/dunkunc/dunkunc1.jpg',
         thumbnails: [
             'images/dunkunc/dunkunc1.jpg',
@@ -357,7 +373,8 @@ const products = [
     {
         id: 'dunkpink',
         name: 'Nike Dunk Triple Pink',
-        price: '$180.99',
+        price: '180.99',
+        id_kategorii: 2,
         mainImage: 'images/dunkpink/dunk1.jpg',
         thumbnails: [
             'images/dunkpink/dunk1.jpg',
@@ -369,7 +386,8 @@ const products = [
     {
         id: 'dunkpanda',
         name: 'Nike Dunk Panda',
-        price: '$84.99',
+        price: '84.99',
+        id_kategorii: 3,
         mainImage: 'images/dunkpanda/dunk1.jpg',
         thumbnails: [
             'images/dunkpanda/dunk1.jpg',
@@ -380,7 +398,8 @@ const products = [
     {
         id: 'dunkblackgum',
         name: 'Nike Dunk Blackgum',
-        price: '$120.99',
+        price: '120.99',
+        id_kategorii: 2,
         mainImage: 'images/dunkblackgum/dunkblackgum1.jpg',
         thumbnails: [
             'images/dunkblackgum/dunkblackgum1.jpg',
@@ -392,7 +411,8 @@ const products = [
     {
         id: 'dunkts',
         name: 'Nike Dunk Travis Scott',
-        price: '$1199.99',
+        price: '1199.99',
+        id_kategorii: 1,
         mainImage: 'images/dunkts/dunkts1.jpg',
         thumbnails: [
             'images/dunkts/dunkts1.jpg',
@@ -405,7 +425,8 @@ const products = [
     {
         id: 'dunkstrangelove',
         name: 'Nike Dunk Strange Love',
-        price: '$1499.99',
+        price: '1499.99',
+        id_kategorii: 2,
         mainImage: 'images/dunkstrangelove/dunk1.jpg',
         thumbnails: [
             'images/dunkstrangelove/dunk1.jpg',
@@ -417,7 +438,8 @@ const products = [
     {
         id: 'dunksupreme',
         name: 'Nike Dunk Supreme Black',
-        price: '$842.99',
+        price: '842.99',
+        id_kategorii: 3,
         mainImage: 'images/dunksupreme/dunk1.jpg',
         thumbnails: [
             'images/dunksupreme/dunk1.jpg',
@@ -429,7 +451,8 @@ const products = [
     {
         id: 'dunkof',
         name: 'Nike Dunk Off-White Lot 50',
-        price: '$1567.99',
+        price: '1567.99',
+        id_kategorii: 3,
         mainImage: 'images/dunkof/dunk1.jpg',
         thumbnails: [
             'images/dunkof/dunk1.jpg',
@@ -442,7 +465,8 @@ const products = [
     {
         id: 'aj1cement',
         name: 'Air Jordan 1 High White Cement',
-        price: '$240.99',
+        price: '240.99',
+        id_kategorii: 3,
         mainImage: 'images/aj1cement/aj11.jpg',
         thumbnails: [
             'images/aj1cement/aj11.jpg',
@@ -454,7 +478,8 @@ const products = [
     {
         id: 'aj1green',
         name: 'Air Jordan 1 High Lucky Green',
-        price: '$279.99',
+        price: '279.99',
+        id_kategorii: 1,
         mainImage: 'images/aj1green/aj11.jpg',
         thumbnails: [
             'images/aj1green/aj11.jpg',
@@ -466,7 +491,8 @@ const products = [
     {
         id: 'aj1taxi',
         name: 'Air Jordan 1 High Taxi',
-        price: '$199.99',
+        price: '199.99',
+        id_kategorii: 1,
         mainImage: 'images/aj1taxi/aj11.jpg',
         thumbnails: [
             'images/aj1taxi/aj11.jpg',
@@ -478,7 +504,8 @@ const products = [
     {
         id: 'aj1pink',
         name: 'Air Jordan 1 High Washed Pink',
-        price: '$252.99',
+        price: '252.99',
+        id_kategorii: 2,
         mainImage: 'images/aj1pink/aj11.jpg',
         thumbnails: [
             'images/aj1pink/aj11.jpg',
@@ -490,7 +517,8 @@ const products = [
     {
         id: 'aj1unc',
         name: 'Air Jordan 1 High University Blue (UNC)',
-        price: '$484.99',
+        price: '484.99',
+        id_kategorii: 1,
         mainImage: 'images/aj1unc/aj11.jpg',
         thumbnails: [
             'images/aj1unc/aj11.jpg',
@@ -502,7 +530,8 @@ const products = [
     {
         id: 'aj1bubblegum',
         name: 'Air Jordan 1 High Atmosphere Bubble Gum',
-        price: '$250.99',
+        price: '250.99',
+        id_kategorii: 2,
         mainImage: 'images/aj1bubblegum/aj11.jpg',
         thumbnails: [
             'images/aj1bubblegum/aj11.jpg',
@@ -514,7 +543,8 @@ const products = [
     {
         id: 'aj1balvin',
         name: 'Air Jordan 1 High J. Balvin',
-        price: '$620.99',
+        price: '620.99',
+        id_kategorii: 3,
         mainImage: 'images/aj1balvin/aj1balvin1.jpg',
         thumbnails: [
             'images/aj1balvin/aj1balvin1.jpg',
@@ -526,7 +556,8 @@ const products = [
     {
         id: 'aj1ts',
         name: 'Air Jordan 1 High Travis Scott',
-        price: '$2409.99',
+        price: '2409.99',
+        id_kategorii: 1,
         mainImage: 'images/aj1ts/aj1ts1.jpg',
         thumbnails: [
             'images/aj1ts/aj1ts1.jpg',
@@ -538,7 +569,8 @@ const products = [
     {
         id: 'aj1dior',
         name: 'Air Jordan 1 High Dior',
-        price: '$14199.99',
+        price: '14199.99',
+        id_kategorii: 3,
         mainImage: 'images/aj1dior/aj1dior1.jpg',
         thumbnails: [
             'images/aj1dior/aj1dior1.jpg',
@@ -550,7 +582,8 @@ const products = [
     {
         id: 'aj1of',
         name: 'Air Jordan 1 High Off-White NRG',
-        price: '$8439.99',
+        price: '8439.99',
+        id_kategorii: 3,
         mainImage: 'images/aj1of/aj1of1.jpg',
         thumbnails: [
             'images/aj1of/aj1of1.jpg',
@@ -562,7 +595,8 @@ const products = [
     {
         id: 'aj4whitethunder',
         name: 'Air Jordan 4 White Thunder',
-        price: '$190.99',
+        price: '190.99',
+        id_kategorii: 3,
         mainImage: 'images/aj4whitethunder/aj4whitethunder1.jpg',
         thumbnails: [
             'images/aj4whitethunder/aj4whitethunder1.jpg',
@@ -574,7 +608,8 @@ const products = [
     {
         id: 'aj4cacao',
         name: 'Air Jordan 4 Cacao Wow',
-        price: '$260.99',
+        price: '260.99',
+        id_kategorii: 3,
         mainImage: 'images/aj4cacao/aj4cacao1.jpg',
         thumbnails: [
             'images/aj4cacao/aj4cacao1.jpg',
@@ -586,19 +621,21 @@ const products = [
     {
         id: 'aj4military',
         name: 'Air Jordan 4 Military Black',
-        price: '$530.99',
+        price: '530.99',
+        id_kategorii: 3,
         mainImage: 'images/aj4military/aj4military1.jpg',
         thumbnails: [
             'images/aj4military/aj4military1.jpg',
             'images/aj4military/aj4military2.jpg',
-            'images/aj4military/aj4military.jpg'
+            'images/aj4military/aj4military3.jpg'
         ],
         sizes: [38, 39, 40, 41, 42, 43, 44, 45]
     },
     {
         id: 'aj4metallicgold',
         name: 'Air Jordan 4 Metallic Gold',
-        price: '$264.99',
+        price: '264.99',
+        id_kategorii: 3,
         mainImage: 'images/aj4metallicgold/aj4metallicgold1.jpg',
         thumbnails: [
             'images/aj4metallicgold/aj4metallicgold1.jpg',
@@ -610,7 +647,8 @@ const products = [
     {
         id: 'aj4metallicgreen',
         name: 'Air Jordan 4 Metallic Green',
-        price: '$1155.99',
+        price: '1155.99',
+        id_kategorii: 3,
         mainImage: 'images/aj4mgreen/aj4mgreen1.jpg',
         thumbnails: [
             'images/aj4mgreen/aj4mgreen1.jpg',
@@ -622,7 +660,8 @@ const products = [
     {
         id: 'aj4metallicorange',
         name: 'Air Jordan 4 Metallic Orange',
-        price: '$1155.99',
+        price: '1155.99',
+        id_kategorii: 3,
         mainImage: 'images/aj4morange/aj4morange1.jpg',
         thumbnails: [
             'images/aj4morange/aj4morange1.jpg',
@@ -634,7 +673,8 @@ const products = [
     {
         id: 'aj4ts',
         name: 'Air Jordan 4 Cactus Jack',
-        price: '$2049.99',
+        price: '2049.99',
+        id_kategorii: 1,
         mainImage: 'images/aj4ts/aj4ts1.jpg',
         thumbnails: [
             'images/aj4ts/aj4ts1.jpg',
@@ -646,7 +686,8 @@ const products = [
     {
         id: 'aj4bcat',
         name: 'Air Jordan 4 Black Cat',
-        price: '$1350.99',
+        price: '1350.99',
+        id_kategorii: 1,
         mainImage: 'images/aj4bcat/aj4bcat1.jpg',
         thumbnails: [
             'images/aj4bcat/aj4bcat1.jpg',
@@ -658,7 +699,8 @@ const products = [
     {
         id: 'aj4kaws',
         name: 'Air Jordan 4 Kaws Gray',
-        price: '$3375.99',
+        price: '3375.99',
+        id_kategorii: 1,
         mainImage: 'images/aj4kaws/aj4kaws1.jpg',
         thumbnails: [
             'images/aj4kaws/aj4kaws1.jpg',
@@ -670,7 +712,8 @@ const products = [
     {
         id: 'newbalance550unc',
         name: 'New Balance 550 UNC',
-        price: '$239.99',
+        price: '239.99',
+        id_kategorii: 1,
         mainImage: 'images/newbalance550unc/newbalance5501.jpg',
         thumbnails: [
             'images/newbalance550unc/newbalance5501.jpg',
@@ -682,7 +725,8 @@ const products = [
     {
         id: 'newbalance550pink',
         name: 'New Balance 550 White Pink Sea Salt',
-        price: '$119.99',
+        price: '119.99',
+        id_kategorii: 2,
         mainImage: 'images/newbalance550pink/newbalance5501.jpg',
         thumbnails: [
             'images/newbalance550pink/newbalance5501.jpg',
@@ -694,7 +738,8 @@ const products = [
     {
         id: 'newbalance550white',
         name: 'New Balance 550 White Grey',
-        price: '$144.99',
+        price: '144.99',
+        id_kategorii: 3,
         mainImage: 'images/newbalance550white/newbalance5501.jpg',
         thumbnails: [
             'images/newbalance550white/newbalance5501.jpg',
@@ -706,7 +751,8 @@ const products = [
     {
         id: 'newbalance530silver',
         name: 'New Balance 530 Silver Navy',
-        price: '$156.99',
+        price: '156.99',
+        id_kategorii: 1,
         mainImage: 'images/newbalance530silver/newbalance5301.jpg',
         thumbnails: [
             'images/newbalance530silver/newbalance5301.jpg',
@@ -718,7 +764,8 @@ const products = [
     {
         id: 'newbalance530pink',
         name: 'New Balance 530 Pink Sugar',
-        price: '$156.99',
+        price: '156.99',
+        id_kategorii: 2,
         mainImage: 'images/newbalance530pink/newbalance5301.jpg',
         thumbnails: [
             'images/newbalance530pink/newbalance5301.jpg',
@@ -730,6 +777,17 @@ const products = [
     
     
 ];
+
+fetch('add_products.php', {
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(products),
+})
+    .then(response => response.json())
+    .then(data => console.log('Dodano produkty:', data))
+    .catch(error => console.error('Błąd:', error));
 
 // Przechowywanie produktów w koszyku
 let cart = [];
