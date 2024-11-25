@@ -15,6 +15,32 @@ function closeRegisterModal() {
     document.getElementById("registerModal").style.display = "none";
 }
 
+//heart- polubione
+
+function showAccessLiked() {
+    var messageDiv = document.getElementById('cart-liked-modal');
+    messageDiv.classList.add('visible'); 
+    document.addEventListener('click', handleOutsideClick_Liked);
+}
+
+function closeAccessLiked() {
+    var messageDiv = document.getElementById('cart-liked-modal');
+    messageDiv.classList.remove('visible'); 
+    document.removeEventListener('click', handleOutsideClick_Liked);
+}
+
+function toggleEarlyAccessLiked() {
+    var messageDiv = document.getElementById('cart-liked-modal');
+    messageDiv.classList.toggle('hidden');
+}
+
+function handleOutsideClick_Liked(event) {
+    const accessDiv = document.getElementById('cart-liked-modal');
+    if (!accessDiv.contains(event.target) && event.target.id !== '') {
+        closeAccessLiked(); 
+    }
+}
+
 
 //CART MODAL
 
@@ -778,6 +804,10 @@ function openProductWindow(productId) {
     const addToCartButton = modal.querySelector('.add-to-cart');
     addToCartButton.onclick = () => addToCart(product, modal);  // Przekazujemy modal, żeby sprawdzić rozmiar
 
+    // Dodanie przycisku "Dodaj do ulubionych" w oknie modalnym
+    const addToFavoritesButton = modal.querySelector('.add-to-favorites');
+    addToFavoritesButton.onclick = () => addToFavorites(product);  // Dodajemy do ulubionych
+
     // Dodajemy przycisk zamknięcia
     const closeButton = modal.querySelector('.close-modal');
     closeButton.onclick = () => closeModal(modal); // Zamknięcie modalu po kliknięciu w przycisk 'x'
@@ -876,6 +906,7 @@ function removeFromCart(index) {
     updateCartCount(); // Aktualizujemy liczbę produktów w koszyku
 }
 
+
 function updateCartDynamic() {
     const cartItemsContainer = document.getElementById('cart-items');
     const cartTotalContainer = document.getElementById('cart-total');
@@ -960,7 +991,69 @@ window.onload = () => {
 
 
 
+// Tablica do przechowywania produktów w ulubionych
+let favorites = [];
 
+// Funkcja dodająca produkt do ulubionych
+function addToFavorites(product) {
+    if (!favorites.some(fav => fav.id === product.id)) {
+        favorites.push(product);  // Dodajemy produkt do ulubionych
+        alert(`${product.name} dodano do ulubionych!`);  // Informacja o sukcesie
+        updateFavoritesDisplay();  // Aktualizowanie wyświetlania ulubionych
+    } else {
+        alert(`${product.name} jest już w ulubionych!`);
+    }
+}
+
+// Funkcja wyświetlająca ulubione produkty
+function updateFavoritesDisplay() {
+    const favoritesContainer = document.getElementById('cart-liked');
+    favoritesContainer.innerHTML = '';  // Czyścimy obecny widok
+
+    if (favorites.length === 0) {
+        favoritesContainer.innerHTML = '<p>Brak ulubionych produktów.</p>';
+    } else {
+        favorites.forEach(product => {
+            const productElement = document.createElement('div');
+            productElement.classList.add('favorite-product');
+
+
+            const img = document.createElement('img');
+            img.src = `${product.mainImage}`;
+            img.alt = product.name;
+            img.style.width = '80px';
+            img.style.marginRight = '10px';
+            productElement.appendChild(img);
+
+
+            const name = document.createElement('h4');
+            name.innerText = product.name;
+            productElement.appendChild(name);
+
+            const price = document.createElement('p');
+            price.innerText = product.price;
+            productElement.appendChild(price);
+
+            // Przycisk usuwania
+            const removeButton = document.createElement('button');
+            removeButton.innerText = 'Usuń';
+            removeButton.style.backgroundColor = 'red';
+            removeButton.style.color = 'white';
+            removeButton.style.border = 'none';
+            removeButton.style.padding = '5px 10px';
+            removeButton.style.borderRadius = '5px';
+            removeButton.style.cursor = 'pointer';
+
+            favoritesContainer.appendChild(productElement);
+        });
+    }
+}
+
+// Inicjalizowanie strony - tworzenie produktów
+window.onload = () => {
+    products.forEach(createProductHTML);  // Tworzenie produktów
+    updateFavoritesDisplay();  // Wyświetlanie ulubionych na starcie
+};
 
 
 

@@ -55,7 +55,7 @@
                     </div>
                     <div id="search-results"></div>
                     <button class="button-icon"><div class="background-circle"></div><img class="elements" src="user.png" alt="user" onclick="openLoginModal()"></button>
-                    <button class="button-icon"><div class="background-circle"></div><img class="elements" src="heart.png" alt="heart"></button>
+                    <button class="button-icon"><div class="background-circle" onclick="showAccessLiked()"></div><img class="elements" src="heart.png" alt="heart" onclick="showAccessLiked()"></button>
                     <button class="button-icon" onclick="openCart()">
 
                     <div class="background-circle" onclick="showAccessShop()"></div>
@@ -196,8 +196,17 @@
                 <div class="size-options"></div>
                 
                 <button class="add-to-cart">Dodaj do koszyka</button>
+
+                <button class="add-to-favorites">Dodaj do polubionych</button>
             </div>
         </div>
+
+        <!-- Polubione produkty---------------------------------------------------------------------------------------->
+        <div id="cart-liked-modal">
+            <div id="cart-liked"></div>
+        </div>
+
+
         <div id="cart-modal">
             <div id="cart-items"></div>
             <div id="cart-total"></div> <!-- Tu będzie wyświetlana łączna cena -->

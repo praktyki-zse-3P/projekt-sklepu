@@ -763,17 +763,13 @@ h2 {
 
 #cart-count {
     position: absolute;
-    top: 1px;
-    right: -5px;
-    color: black;
+    top: 2px;
+    right: 6px;
+    color: black; /* Kolor tekstu */
     font-size: 12px;
     font-weight: bold;
-    padding: 2px 6px;
-    border-radius: 50%;
     display: inline-block;
-    min-width: 20px;
-    text-align: center;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    pointer-events: none;
 }
 /*---------Powiadomienie o dodaniu do koszyka---------- */
 
@@ -798,7 +794,7 @@ h2 {
     transition: opacity 0.5s ease; 
 }
 
-/* ----------------------------------------------*/
+/* -------cart-modal-shopping-bag-------------------------------*/
 
 #cart-modal {
     width: 350px;
@@ -814,6 +810,33 @@ h2 {
 
 #cart-modal.visible {
     transform: translateX(-655px);
+}
+
+/* -------cart-modal-liked------------------------------*/
+
+#cart-liked-modal{
+    width: 350px;
+    height: 770px;
+    top: 88px;
+    right: -653px;
+    background-color: white;
+    z-index: 1002;
+    position: absolute;
+    transition: transform 0.5s ease-in-out; /* Animacja przesuwania */
+    overflow: hidden;
+}
+#cart-liked-modal.visible {
+    transform: translateX(-655px);
+}
+
+#cart-liked {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    margin-bottom: 10px;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 5px;
+    padding: 15px;
 }
 
 #cart-items {
