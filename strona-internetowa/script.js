@@ -936,7 +936,11 @@ function addToCart(product, modal) {
 
     // Aktualizujemy liczbę produktów w koszyku
     updateCartCount();
+    
+    // Odświeżamy widok koszyka dynamicznie
+    updateCartDynamic();
 }
+
 
 // Funkcja aktualizująca liczbę produktów w koszyku
 function updateCartCount() {
