@@ -1098,7 +1098,7 @@ function addToFavorites(product) {
         // Wyświetlamy powiadomienie o sukcesie
         const notification = document.createElement('div');
         notification.style.position = 'fixed';
-        notification.style.bottom = '10px';
+        notification.style.top = '10px';
         notification.style.right = '10px';
         notification.style.backgroundColor = 'green';
         notification.style.color = 'white';
