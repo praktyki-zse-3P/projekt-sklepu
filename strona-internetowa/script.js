@@ -1056,31 +1056,6 @@ window.onload = () => {
 // Tablica do przechowywania produktów w ulubionych
 let favorites = [];
 
-function addToFavorites(product) {
-    if (!favorites.some(fav => fav.id === product.id)) {
-        favorites.push(product); // Dodajemy produkt do ulubionych
-
-        // Wyświetlamy powiadomienie o sukcesie
-        const notification = document.createElement('div');
-        notification.style.position = 'fixed';
-        notification.style.bottom = '10px';
-        notification.style.right = '10px';
-        notification.style.backgroundColor = 'green';
-        notification.style.color = 'white';
-        notification.style.padding = '10px';
-        notification.style.borderRadius = '5px';
-        notification.innerText = `${product.name} dodano do ulubionych!`;
-        document.body.appendChild(notification);
-
-        // Usunięcie powiadomienia po 3 sekundach
-        setTimeout(() => notification.remove(), 3000);
-
-        updateFavoritesDisplay(); // Aktualizowanie wyświetlania ulubionych
-    } else {
-        alert(`${product.name} jest już w ulubionych!`);
-    }
-}
-
 // Funkcja dodająca produkt do ulubionych
 function addToFavorites(product) {
     const sizeSelected = document.querySelector('.size-options button.active'); // Sprawdzamy, czy wybrano rozmiar
@@ -1099,6 +1074,7 @@ function addToFavorites(product) {
         const notification = document.createElement('div');
         notification.style.position = 'fixed';
         notification.style.top = '10px';
+        notification.style.zIndex = '1001'
         notification.style.right = '10px';
         notification.style.backgroundColor = 'green';
         notification.style.color = 'white';
