@@ -36,7 +36,7 @@ body{
 /* --------* ALL CONTENTS - Styles for all-----------------------------------------------------------------------------------------------------------------*/
 
 .content-left, .content-middle, .content-right {
-    background-color:  #e9e9f3;
+    background-color:  #e6e6fa;
     align-items: center;
     display: flex;
 }
@@ -653,6 +653,7 @@ h2 {
     overflow: auto;
     padding-top: 60px;
 }
+
 .modal-content {
     background-color: #fff;
     margin: 5% auto;
@@ -697,7 +698,7 @@ h2 {
     grid-template-columns: repeat(10, minmax(200px, 1fr));
     gap: 40px;
     padding: 20px;
-    background-color: #f8f9fa;
+    background-color: white;
 }
 
 .sort-container {
