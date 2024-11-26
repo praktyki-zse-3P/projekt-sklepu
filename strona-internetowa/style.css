@@ -270,17 +270,21 @@ li:hover{
 }
 
 
-#search-results-container {
+.search-results-container {
     display: none; /* Domyślnie ukryte */
-    position: fixed;  /* Ustawienie pozycji na stałe po prawej stronie */ 
-    right: 0;    /* Wyrównanie do prawej strony */
-    width: 300px; /* Stała szerokość okienka, możesz dostosować */
+    position: fixed; /* Ustawienie pozycji na stałe po prawej stronie */
+    top: -273px;
+    right: -739px; /* Mały odstęp od prawej strony */
+    width: 300px; /* Stała szerokość okienka */
     background-color: white;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    max-height: 80vh; /* Maksymalna wysokość okienka, reszta przewija się */
+    max-height: 80vw; /* Maksymalna wysokość okienka */
     overflow-y: auto; /* Dodanie przewijania */
     padding: 10px;
-    z-index: 1000; /* Upewnij się, że jest nad innymi elementami */
+    z-index: 9999; /* Gwarantuje, że jest nad innymi elementami */
+    border: 1px solid #ccc; /* Lekki obrys dla lepszej widoczności */
+    border-radius: 8px; /* Zaokrąglone rogi */
+    color:black;
 }
 .button-icon-search {
     position: absolute;

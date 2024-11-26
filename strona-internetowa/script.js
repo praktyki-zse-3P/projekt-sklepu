@@ -1213,7 +1213,6 @@ function searchProducts(query) {
     return products.filter(product => product.name.toLowerCase().includes(query.toLowerCase()));
 }
 
-// Funkcja obsługująca kliknięcie w lupę (przycisk wyszukiwania)
 document.getElementById('search-button').addEventListener('click', () => {
     const query = document.getElementById('search-input').value.trim();
     const results = searchProducts(query);
@@ -1221,13 +1220,14 @@ document.getElementById('search-button').addEventListener('click', () => {
     const resultsContainer = document.getElementById('search-results-container');
     resultsContainer.innerHTML = ''; // Czyszczenie poprzednich wyników
 
+    // Dodajemy wyniki wyszukiwania
     if (results.length > 0) {
         results.forEach(product => {
             const productElement = document.createElement('div');
             productElement.style.cursor = 'pointer';
             productElement.style.display = 'flex';
             productElement.style.alignItems = 'center';
-            productElement.style.marginBottom = '20px'; // Odstęp między produktami
+            productElement.style.marginBottom = '20px';
             productElement.style.border = '1px solid #ccc';
             productElement.style.padding = '10px';
             productElement.style.borderRadius = '5px';
@@ -1241,27 +1241,38 @@ document.getElementById('search-button').addEventListener('click', () => {
                 </div>
             `;
 
-            // Kliknięcie na produkt, aby otworzyć jego szczegóły
+            // Obsługa kliknięcia na produkt
             productElement.onclick = () => {
-                // Ukrywanie wyników wyszukiwania
-                resultsContainer.style.display = 'none';
-
-                // Otwieranie okna modala z szczegółami produktu
-                openProductWindow(product.id);  // Otwórz okno z szczegółami produktu
+                resultsContainer.style.display = 'none'; // Ukryj wyniki
+                openProductWindow(product.id); // Otwórz szczegóły produktu
             };
 
             resultsContainer.appendChild(productElement);
         });
 
-        // Ustawianie wysokości okienka zależnie od liczby wyników
-        const containerHeight = results.length * 80; // Obliczamy wysokość w zależności od liczby produktów
-        resultsContainer.style.height = `${Math.min(containerHeight, 600)}px`; // Maksymalna wysokość okienka 600px
+        resultsContainer.style.height = 'auto'; // Dopasowanie wysokości do zawartości
+        resultsContainer.style.maxHeight = '600px'; // Maksymalna wysokość
     } else {
         resultsContainer.innerHTML = '<p>Brak wyników.</p>';
-        resultsContainer.style.height = '100px'; // Jeśli brak wyników, ustawiamy małą wysokość
+        resultsContainer.style.height = '100px';
     }
 
-    // Pokazanie okienka z wynikami
+    // Ustawienia pozycji kontenera
     resultsContainer.style.display = 'block';
+
+
 });
 
+// Ukryj wyniki po kliknięciu poza kontenerem
+document.addEventListener('click', (event) => {
+    const resultsContainer = document.getElementById('search-results-container');
+    const searchInput = document.getElementById('search-input');
+    const searchButton = document.getElementById('search-button');
+    
+    // Sprawdzamy, czy kliknięcie nie było w kontenerze wyników lub na wyszukiwarce
+    if (!resultsContainer.contains(event.target) && 
+        !searchInput.contains(event.target) && 
+        !searchButton.contains(event.target)) {
+        resultsContainer.style.display = 'none';
+    }
+});
