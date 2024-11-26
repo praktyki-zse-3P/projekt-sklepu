@@ -1227,7 +1227,7 @@ document.getElementById('search-button').addEventListener('click', () => {
             productElement.style.cursor = 'pointer';
             productElement.style.display = 'flex';
             productElement.style.alignItems = 'center';
-            productElement.style.marginBottom = '40px';
+            productElement.style.marginBottom = '20px'; // Odstęp między produktami
             productElement.style.border = '1px solid #ccc';
             productElement.style.padding = '10px';
             productElement.style.borderRadius = '5px';
@@ -1252,9 +1252,16 @@ document.getElementById('search-button').addEventListener('click', () => {
 
             resultsContainer.appendChild(productElement);
         });
+
+        // Ustawianie wysokości okienka zależnie od liczby wyników
+        const containerHeight = results.length * 80; // Obliczamy wysokość w zależności od liczby produktów
+        resultsContainer.style.height = `${Math.min(containerHeight, 600)}px`; // Maksymalna wysokość okienka 600px
     } else {
         resultsContainer.innerHTML = '<p>Brak wyników.</p>';
+        resultsContainer.style.height = '100px'; // Jeśli brak wyników, ustawiamy małą wysokość
     }
 
-    resultsContainer.style.display = 'block';  // Upewnij się, że kontener z wynikami jest widoczny
+    // Pokazanie okienka z wynikami
+    resultsContainer.style.display = 'block';
 });
+
