@@ -273,8 +273,8 @@ li:hover{
 .search-results-container {
     display: none; /* Domyślnie ukryte */
     position: fixed; /* Ustawienie pozycji na stałe po prawej stronie */
-    top: -273px;
-    right: -739px; /* Mały odstęp od prawej strony */
+    top: -118%;
+    right: -173%; /* Mały odstęp od prawej strony */
     width: 300px; /* Stała szerokość okienka */
     background-color: white;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -718,11 +718,34 @@ h2 {
 
 #products-container {
     display: grid;
-    grid-template-columns: repeat(10, minmax(200px, 1fr));
-    gap: 40px;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Dynamiczne kolumny */
+    gap: 20px; /* Odstęp między elementami */
     padding: 20px;
     background-color: white;
 }
+
+/* Stylizacja dla mniejszych ekranów */
+@media (max-width: 1200px) {
+    #products-container {
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* Mniejsze kafelki */
+        gap: 15px; /* Mniejsze odstępy */
+    }
+}
+
+@media (max-width: 768px) {
+    #products-container {
+        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); /* Jeszcze mniejsze kafelki */
+        gap: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    #products-container {
+        grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); /* Minimalny rozmiar kafelków */
+        gap: 5px;
+    }
+}
+
 
 .sort-container {
     display: absolute;
