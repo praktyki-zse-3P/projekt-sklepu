@@ -533,6 +533,19 @@ li:hover{
 }
 
 
+.password-container {
+    position: relative;
+    width: 100%;
+}
+
+.toggle-icon {
+    position: absolute;
+    right: -20px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+}
+
 
 
 
