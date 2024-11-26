@@ -1193,3 +1193,68 @@ function addFavoritesToCart() {
     alert('Wszystkie ulubione produkty zostały dodane do koszyka!');
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// Funkcja wyszukiwania produktów
+function searchProducts(query) {
+    if (!query) return [];
+    return products.filter(product => product.name.toLowerCase().includes(query.toLowerCase()));
+}
+
+// Funkcja obsługująca kliknięcie w lupę (przycisk wyszukiwania)
+document.getElementById('search-button').addEventListener('click', () => {
+    const query = document.getElementById('search-input').value.trim();
+    const results = searchProducts(query);
+
+    const resultsContainer = document.getElementById('search-results-container');
+    resultsContainer.innerHTML = ''; // Czyszczenie poprzednich wyników
+
+    if (results.length > 0) {
+        results.forEach(product => {
+            const productElement = document.createElement('div');
+            productElement.style.cursor = 'pointer';
+            productElement.style.display = 'flex';
+            productElement.style.alignItems = 'center';
+            productElement.style.marginBottom = '40px';
+            productElement.style.border = '1px solid #ccc';
+            productElement.style.padding = '10px';
+            productElement.style.borderRadius = '5px';
+            productElement.style.backgroundColor = '#f9f9f9';
+
+            productElement.innerHTML = `
+                <img src="${product.mainImage}" alt="${product.name}" style="width: 50px; height: 30px; margin-right: 10px;">
+                <div>
+                    <p><strong>${product.name}</strong></p>
+                    <p>$${product.price}</p>
+                </div>
+            `;
+
+            // Kliknięcie na produkt, aby otworzyć jego szczegóły
+            productElement.onclick = () => {
+                // Ukrywanie wyników wyszukiwania
+                resultsContainer.style.display = 'none';
+
+                // Otwieranie okna modala z szczegółami produktu
+                openProductWindow(product.id);  // Otwórz okno z szczegółami produktu
+            };
+
+            resultsContainer.appendChild(productElement);
+        });
+    } else {
+        resultsContainer.innerHTML = '<p>Brak wyników.</p>';
+    }
+
+    resultsContainer.style.display = 'block';  // Upewnij się, że kontener z wynikami jest widoczny
+});

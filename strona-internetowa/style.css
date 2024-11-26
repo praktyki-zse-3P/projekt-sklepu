@@ -270,11 +270,17 @@ li:hover{
 }
 
 
-#search-results {
-    margin-top: 10px;
-    padding: 10px;
-    border: 1px solid #ccc;
+#search-modal {
     display: none; 
+    position: fixed; 
+    top: 11%; 
+    left: 90%; 
+    transform: translate(-50%, -50%); 
+    width: 400px; 
+    background-color: white;
+    border-radius: 10px; 
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
+    z-index: 1000;
 }
 .button-icon-search {
     position: absolute;

@@ -48,13 +48,14 @@
                 
                 <div class="content-right">
                     <div class="search-container">
-                        <input type="text" id="search-input" placeholder="Wyszukaj produkt..." />
+                        <input type="text" id="search-input" placeholder="Wyszukaj produkty...">
                         <button class="button-icon-search" id="search-button">
                             <div class="background-circle-search"></div>
                             <img class="elements" src="search.png" alt="search">
                         </button>
+                        <!-- Wyniki wyszukiwania będą wyświetlane poniżej -->
+                        <div id="search-results-container" class="search-results-container"></div>
                     </div>
-                    <div id="search-results"></div>
                     <button class="button-icon"><div class="background-circle"></div><img class="elements" src="user.png" alt="user" onclick="openLoginModal()"></button>
                     <button class="button-icon"><div class="background-circle" onclick="showAccessLiked()"></div><img class="elements" src="heart.png" alt="heart" onclick="showAccessLiked()"></button>
                     <button class="button-icon" onclick="openCart()">
@@ -160,7 +161,7 @@
             <h1>AirKingDom</h1>
             <p id="wlk">Walk like King</p>
         </div>
-    
+        
         <!-- Video Background -->
         <div class="video-background">
             <video src="animacja(1).mp4" id="animation" type="video/mp4" autoplay loop muted playsinline ></video>
@@ -214,10 +215,31 @@
             <div id="cart-total"></div> <!-- Tu będzie wyświetlana łączna cena -->
         </div>
     </section>
-       
+    <div id="search-modal">
+        <div id="search-results" style="padding: 20px;">
+            <!-- Wyniki wyszukiwania pojawią się tutaj -->
+        </div>
+    </div>
+    
+    <!-- Szablon modalny szczegółów produktu -->
+    <div id="modal-template" style="display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 400px; background: white; border-radius: 10px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); z-index: 2000;">
+        <div class="modal-content" style="padding: 20px; position: relative;">
+            <button class="close-modal" onclick="closeModal()">x</button>
+                
+                <h2 class="product-name"></h2>
+                <p class="price"></p>
+                <img class="main-product-image" src="" alt="Product Image">
+                
+                <div class="product-thumbnails"></div>
+                
+                <div class="size-options"></div>
+                
+                <button class="add-to-cart">Dodaj do koszyka</button>
 
+                <button class="add-to-favorites">Dodaj do ulubionych</button>
+        </div>
+    </div>
 
-        
 
 
 
