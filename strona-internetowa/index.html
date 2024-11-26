@@ -10,6 +10,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Bangers&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Mrs+Sheppards&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Lugrasimo&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
 </head>
 <body>
     <!-- Header Section -->
@@ -256,10 +257,16 @@
                         <input type="email" placeholder="Adres e-mail" name="email" required>
                     </div>
                     <div class="textbox">
-                        <input type="password" placeholder="Hasło" name="password" required>
+                        <input type="password" id="password" placeholder="Hasło" name="password" required>
+                        <span id="togglePassword" class="toggle-icon">
+                            <i class="fas fa-eye-slash"></i> <!-- Ikona przekreślonego oka -->
+                        </span>
                     </div>
                     <div class="textbox">
-                        <input type="password" placeholder="Powtórz hasło" name="repeat_password" required>
+                        <input type="password" id="repeat_password" placeholder="Powtórz hasło" name="repeat_password" required>
+                        <span id="toggleRepeatPassword" class="toggle-icon">
+                            <i class="fas fa-eye-slash"></i> <!-- Ikona przekreślonego oka -->
+                        </span>
                     </div>
                     <div class="textbox">
                         <input type="text" placeholder="Miejscowość" name="miejscowosc" required>
@@ -283,6 +290,7 @@
                 </form>
             </div>
         </div>
+        
 
 
     <script src="script.js"></script>

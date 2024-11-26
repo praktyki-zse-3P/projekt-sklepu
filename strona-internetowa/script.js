@@ -68,23 +68,34 @@ function handleOutsideClick_shop(event) {
     }
 }
 
-// Funkcja do pokazywania i ukrywania hasła
-function togglePassword() {
-    var passwordField = document.getElementById("password");
-    var repeatPasswordField = document.getElementById("repeat_password");
-    var icon = event.target;
-    if (passwordField.type === "password") {
-        passwordField.type = "text";
-        repeatPasswordField.type = "text";
-        icon.classList.remove("fa-eye-slash");
-        icon.classList.add("fa-eye");
-    } else {
-        passwordField.type = "password";
-        repeatPasswordField.type = "password";
-        icon.classList.remove("fa-eye");
-        icon.classList.add("fa-eye-slash");
-    }
-}
+   // Funkcja do przełączania widoczności hasła
+const togglePassword = document.getElementById('togglePassword');
+const toggleRepeatPassword = document.getElementById('toggleRepeatPassword');
+const passwordField = document.getElementById('password');
+const repeatPasswordField = document.getElementById('repeat_password');
+
+togglePassword.addEventListener('click', function (e) {
+    // Toggle visibility of password
+    const type = passwordField.type === 'password' ? 'text' : 'password';
+    passwordField.type = type;
+
+    // Toggle eye icon (fa-eye or fa-eye-slash)
+    const icon = this.querySelector('i');
+    icon.classList.toggle('fa-eye');
+    icon.classList.toggle('fa-eye-slash');
+});
+
+toggleRepeatPassword.addEventListener('click', function (e) {
+    // Toggle visibility of repeat password
+    const type = repeatPasswordField.type === 'password' ? 'text' : 'password';
+    repeatPasswordField.type = type;
+
+    // Toggle eye icon (fa-eye or fa-eye-slash)
+    const icon = this.querySelector('i');
+    icon.classList.toggle('fa-eye');
+    icon.classList.toggle('fa-eye-slash');
+});
+
 
 //Funkcja do mozliwosci klikniecia w background przycisku i dzialania jego
 document.querySelectorAll('.button-icon').forEach(button => {
