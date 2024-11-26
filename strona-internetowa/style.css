@@ -943,6 +943,24 @@ h2 {
 }
 
 
+.add-to-cart1 {
+    display: absolute;
+    font-family: "Bangers", system-ui;
+    letter-spacing: 3px;
+    margin-top:15px;
+    margin-left: 40px;
+    padding: 6px;
+    width: 80% ;
+    background-color: #707172;
+    color: white;
+    font-size: 17px;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
 
 
 
