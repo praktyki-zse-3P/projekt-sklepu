@@ -728,7 +728,7 @@ h2 {
 @media (max-width: 1200px) {
     #products-container {
         grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* Mniejsze kafelki */
-        gap: 15px; /* Mniejsze odstępy */
+        gap: 14px; /* Mniejsze odstępy */
     }
 }
 
