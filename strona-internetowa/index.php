@@ -11,6 +11,20 @@
     <link href="https://fonts.googleapis.com/css2?family=Mrs+Sheppards&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Lugrasimo&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <?php
+session_start();
+$isLoggedIn = isset($_SESSION['user_id']);
+$userData = $isLoggedIn ? [
+    'email' => $_SESSION['email'],
+    'name' => $_SESSION['imie'],
+    'surname' => $_SESSION['nazwisko'],
+] : null;
+?>
+<script>
+    const isLoggedIn = <?php echo json_encode($isLoggedIn); ?>;
+    const userData = <?php echo json_encode($userData); ?>;
+</script>
+
 </head>
 <body>
     <!-- Header Section -->
@@ -56,7 +70,7 @@
 
                     </div>
 
-                    <button class="button-icon"><div class="background-circle"></div><img class="elements" src="user.png" alt="user" onclick="openLoginModal()"></button>
+                    <button class="button-icon"><div class="background-circle" id ="background-circle-man"></div><img class="elements" src="user.png" alt="user" onclick="openLoginModal()"></button>
                     <button class="button-icon"><div class="background-circle" onclick="showAccessLiked()"></div><img class="elements" src="heart.png" alt="heart" onclick="showAccessLiked()"></button>
                     <button class="button-icon" onclick="openCart()">
 
@@ -74,86 +88,28 @@
                 
                 <div class="category-button-access" id="nowe-i-polecane-access">
                     <h3>Nowe i Polecane</h3>
-                    <ul id="left" type="none">
-                        <li>but1</li>
-                        <li>but2</li>
-                        <li>but3</li>
-                        <li>but4</li>
-                        <li>but5</li>
-                        <li>but6</li>
-                    </ul>
-    
-                    <ul id="right" type="none">
-                        <li>but7</li>
-                        <li>but8</li>
-                        <li>but9</li>
-                        <li>but10</li>
-                        <li>but11</li>
-                        <li>but12</li>
-                    </ul>
+                    <ul id="left" type="none"></ul>
+                    <ul id="right" type="none"></ul>
                 </div>
+        
                 <div class="category-button-access" id="mezczyzni-access">
                     <h3>Mężczyźni</h3>
-                    <ul id="left" type="none">
-                        <li>but1</li>
-                        <li>but2</li>
-                        <li>but3</li>
-                        <li>but4</li>
-                        <li>but5</li>
-                        <li>but6</li>
-                    </ul>
-    
-                    <ul id="right" type="none">
-                        <li>but7</li>
-                        <li>but8</li>
-                        <li>but9</li>
-                        <li>but10</li>
-                        <li>but11</li>
-                        <li>but12</li>
-                    </ul>
+                    <ul id="left" type="none"></ul>
+                    <ul id="right" type="none"></ul>
                 </div>
+        
                 <div class="category-button-access" id="kobiety-access">
                     <h3>Kobiety</h3>
-                    <ul id="left" type="none">
-                        <li>but1</li>
-                        <li>but2</li>
-                        <li>but3</li>
-                        <li>but4</li>
-                        <li>but5</li>
-                        <li>but6</li>
-                    </ul>
-    
-                    <ul id="right" type="none">
-                        <li>but7</li>
-                        <li>but8</li>
-                        <li>but9</li>
-                        <li>but10</li>
-                        <li>but11</li>
-                        <li>but12</li>
-                    </ul>
+                    <ul id="left" type="none"></ul>
+                    <ul id="right" type="none"></ul>
                 </div>
+        
                 <div class="category-button-access" id="unisex-access">
                     <h3>Unisex</h3>
-                    <ul id="left" type="none">
-                        <li>but1</li>
-                        <li>but2</li>
-                        <li>but3</li>
-                        <li>but4</li>
-                        <li>but5</li>
-                        <li>but6</li>
-                    </ul>
-    
-                    <ul id="right" type="none">
-                        <li>but7</li>
-                        <li>but8</li>
-                        <li>but9</li>
-                        <li>but10</li>
-                        <li>but11</li>
-                        <li>but12</li>
-                    </ul>
+                    <ul id="left" type="none"></ul>
+                    <ul id="right" type="none"></ul>
                 </div>
             </div>
-
 
 
 
@@ -247,6 +203,15 @@
 
 
         <!-- Login Modal -->
+
+        <div id="userInfo" style="display: none;">
+            <p><strong>Email:</strong> <span id="userEmail"></span></p>
+            <p><strong>Imię i nazwisko:</strong> <span id="userName"></span></p>
+            <button onclick="viewOrderHistory()">Historia zamówień</button>
+            <button onclick="logout()">Wyloguj</button>
+        </div>
+
+        
         <div id="loginModal" class="modal">
             <div class="login-content">
                 <span class="close" onclick="closeLoginModal()">&times;</span>

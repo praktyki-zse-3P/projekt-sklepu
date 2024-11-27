@@ -188,7 +188,13 @@ body{
     padding-left: 50px;
     padding-top:20px;
 }
-
+ul {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    display: inline-block;
+    flex-wrap: wrap;
+}
 li{
     padding-top:10px;
     color:rgb(83, 82, 82);
