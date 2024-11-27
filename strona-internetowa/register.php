@@ -61,7 +61,7 @@ if (isset($_POST['register'])) {
         $_SESSION['user_id'] = $id_klienta;  
         $_SESSION['email'] = $email;         
 
-        header("Location: index.html");
+        header("Location: index.php");
         exit();
     }
 }

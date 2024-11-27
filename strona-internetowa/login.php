@@ -21,24 +21,26 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['login'])) {
     if (empty($email) || empty($haslo)) {
         $error = "Proszę wypełnić wszystkie pola.";
     } else {
+        // Pobierz użytkownika z bazy na podstawie emaila
         $stmt = $pdo->prepare("SELECT * FROM logowanie WHERE email = :email");
         $stmt->execute(['email' => $email]);
         $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
         if ($user) {
-           
+            // Weryfikacja hasła
             if (password_verify($haslo, $user['hashed_password'])) {
-                
+                // Zapisz dane do sesji
                 $_SESSION['user_id'] = $user['id_klienta'];
                 $_SESSION['email'] = $user['email'];
-                $_SESSION['role'] = $user['role']; 
+                $_SESSION['imie'] = $user['imie'];       // Dodano imię
+                $_SESSION['nazwisko'] = $user['nazwisko']; // Dodano nazwisko
+                $_SESSION['role'] = $user['role'];
 
-                
+                // Przekierowanie w zależności od roli
                 if ($_SESSION['role'] == 'admin') {
                     header("Location: dashboard.php");
                 } else {
-                   
-                    header("Location: index.html");
+                    header("Location: index.php");
                 }
                 exit();
             } else {

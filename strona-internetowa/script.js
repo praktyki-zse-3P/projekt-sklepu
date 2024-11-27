@@ -1,11 +1,30 @@
-// Funkcje do otwierania i zamykania modali
+
+
 function openLoginModal() {
-    document.getElementById("loginModal").style.display = "flex";
+    if (isLoggedIn) {
+        // Wyświetl dane użytkownika
+        document.getElementById("userEmail").textContent = userData.email;
+        document.getElementById("userName").textContent = `${userData.name} ${userData.surname}`;
+        document.getElementById("userInfo").style.display = "flex";
+    } else {
+        // Pokaż modal logowania
+        document.getElementById("loginModal").style.display = "flex";
+    }
 }
 
 function closeLoginModal() {
     document.getElementById("loginModal").style.display = "none";
+    document.getElementById("userInfo").style.display = "none";
 }
+
+function logout() {
+    window.location.href = "logout.php"; // Obsługa wylogowania
+}
+
+function viewOrderHistory() {
+    window.location.href = "order_history.php"; // Strona z historią zamówień
+}
+
 
 function openRegisterModal() {
     document.getElementById("registerModal").style.display = "flex";
@@ -149,6 +168,14 @@ function showAccessDiv_category(category) {
     const categorySection = document.getElementById(category + '-access');
     if (categorySection) {
         categorySection.style.display = 'block';
+
+        // Dodaj obsługę kliknięcia na elementy w sekcji
+        const items = categorySection.querySelectorAll('.item'); // Klasa elementów w sekcji
+        items.forEach(item => {
+            item.addEventListener('click', () => {
+                closeAccessDiv_category(); // Zamknij panel po kliknięciu na element
+            });
+        });
     }
 
     document.addEventListener('click', handleOutsideClick_category); // Dodaj nasłuchiwacz do kliknięcia poza panelem
@@ -171,6 +198,7 @@ function handleOutsideClick_category(event) {
         closeAccessDiv_category();
     }
 }
+
 
 // Dane o produktach
 const products = [
@@ -1275,4 +1303,81 @@ document.addEventListener('click', (event) => {
         !searchButton.contains(event.target)) {
         resultsContainer.style.display = 'none';
     }
+});
+
+
+
+
+
+// Funkcja pobierania produktów według kategorii
+function getProductsByCategory(categoryId) {
+    return products.filter(product => product.id_kategorii === categoryId);
+}
+
+// Funkcja losowania produktów
+function getRandomProducts(count) {
+    const shuffled = [...products].sort(() => 0.5 - Math.random());
+    return shuffled.slice(0, count);
+}
+
+// Funkcja wyświetlania produktów w dwóch listach (lewa i prawa)
+function displayProductsInCategory(categoryId, containerId) {
+    const categoryContainer = document.getElementById(containerId);
+    const leftList = categoryContainer.querySelector('ul#left');
+    const rightList = categoryContainer.querySelector('ul#right');
+    const categoryProducts = categoryId === 'random' 
+        ? getRandomProducts(12) // Dla "Nowe i Polecane" losowe produkty
+        : getProductsByCategory(categoryId);
+
+    // Czyścimy listy
+    leftList.innerHTML = '';
+    rightList.innerHTML = '';
+
+    if (categoryProducts.length > 0) {
+        categoryProducts.forEach((product, index) => {
+            const productElement = document.createElement('li');
+            productElement.style.cursor = 'pointer';
+            productElement.style.display = 'flex';
+            productElement.style.alignItems = 'center';
+            productElement.style.marginBottom = '10px';
+
+            productElement.innerHTML = `
+                <img src="${product.mainImage}" alt="${product.name}" style="width: 50px; height: 30px; margin-right: 10px;">
+                <div>
+                    <p><strong>${product.name}</strong></p>
+                    <p>$${product.price}</p>
+                </div>
+            `;
+
+            // Obsługa kliknięcia na produkt
+            productElement.onclick = () => {
+                openProductWindow(product.id); // Otwórz szczegóły produktu
+                closeAccessDiv_category(); // Zamknij panel kategorii
+            };
+
+            // Przydzielanie do lewej lub prawej listy
+            if (index % 2 === 0) {
+                leftList.appendChild(productElement); // Produkt do lewej listy
+            } else {
+                rightList.appendChild(productElement); // Produkt do prawej listy
+            }
+        });
+    } else {
+        // Brak produktów
+        leftList.innerHTML = '<li>Brak produktów w tej kategorii.</li>';
+        rightList.innerHTML = '';
+    }
+}
+
+// Funkcja do otwierania szczegółów produktu
+function handleProductClick(productId) {
+    openMainProductModal(productId); // Wywołanie funkcji otwierającej modal
+}
+
+// Wyświetlanie produktów w rozwijalnych listach na podstawie kategorii
+document.addEventListener('DOMContentLoaded', () => {
+    displayProductsInCategory('random', 'nowe-i-polecane-access'); // Losowe produkty w "Nowe i Polecane"
+    displayProductsInCategory(1, 'mezczyzni-access'); // Produkty dla kategorii "Mężczyźni"
+    displayProductsInCategory(2, 'kobiety-access'); // Produkty dla kategorii "Kobiety"
+    displayProductsInCategory(3, 'unisex-access'); // Produkty dla kategorii "Unisex"
 });
