@@ -1,16 +1,185 @@
+// Funkcja do zamknięcia wszystkich modali (z wyjątkiem tego, który ma zostać otwarty)
+function closeAllModalsExcept(exceptModalId) {
+    // Lista identyfikatorów modali, które chcemy kontrolować
+    const modalIds = ['userInfo', 'cart-liked-modal', 'cart-modal', 'search-results-container'];
 
+    modalIds.forEach(modalId => {
+        if (modalId !== exceptModalId) {
+            var modal = document.getElementById(modalId);
+            if (modal) {
+                // Zamykamy modale, które są otwarte
+                if (modal.style.display === 'flex') {
+                    modal.style.display = 'none';
+                }
+                if (modal.classList.contains('visible')) {
+                    modal.classList.remove('visible');
+                }
+                // Usuwamy event listeners, które były dodane
+                if (modalId === 'cart-liked-modal') {
+                    document.removeEventListener('click', handleOutsideClick_Liked);
+                } else if (modalId === 'cart-modal') {
+                    document.removeEventListener('click', handleOutsideClick_Shop);
+                }
+            }
+        }
+    });
+}
 
-function openLoginModal() {
-    if (isLoggedIn) {
-        // Wyświetl dane użytkownika
+// USERINFO - OPEN & CLOSE
+function toggleUserInfo() {
+    const userInfo = document.getElementById("userInfo");
+    const loginModal = document.getElementById("loginModal");
+
+    // Zamyka wszystkie inne otwarte modale, z wyjątkiem userInfo
+    closeAllModalsExcept('userInfo');
+
+    if (userInfo.style.display === "flex") {
+        // Jeśli już otwarte, to zamykamy
+        userInfo.style.display = "none";
+    } else {
+        // Jeśli nie jest otwarte, to otwieramy
+        userInfo.style.display = "flex";
+        // Ukryj modal logowania (jeśli był otwarty)
+        loginModal.style.display = "none";
+        // Wypełnij dane użytkownika
         document.getElementById("userEmail").textContent = userData.email;
         document.getElementById("userName").textContent = `${userData.name} ${userData.surname}`;
-        document.getElementById("userInfo").style.display = "flex";
-    } else {
-        // Pokaż modal logowania
-        document.getElementById("loginModal").style.display = "flex";
     }
 }
+
+// HEART - OPEN & CLOSE
+function toggleAccessLiked() {
+    var messageDiv = document.getElementById('cart-liked-modal');
+
+    // Zamyka wszystkie inne otwarte modale, z wyjątkiem cart-liked-modal
+    closeAllModalsExcept('cart-liked-modal');
+
+    // Sprawdzamy, czy modal jest widoczny
+    if (messageDiv.classList.contains('visible')) {
+        // Jeśli jest widoczny, to go zamykamy
+        messageDiv.classList.remove('visible');
+        document.removeEventListener('click', handleOutsideClick_Liked);
+    } else {
+        // Jeśli nie jest widoczny, to go otwieramy
+        messageDiv.classList.add('visible');
+        document.addEventListener('click', handleOutsideClick_Liked);
+    }
+}
+
+// Funkcja do zamknięcia modala po kliknięciu poza jego obszarem
+function handleOutsideClick_Liked(event) {
+    const accessDiv = document.getElementById('cart-liked-modal');
+    if (!accessDiv.contains(event.target) && event.target.id !== '') {
+        toggleAccessLiked(); // Zamyka modal, jeśli kliknięto poza nim
+    }
+}
+
+// SHOP - OPEN & CLOSE
+function toggleAccessShop() {
+    var messageDiv = document.getElementById('cart-modal');
+
+    // Zamyka wszystkie inne otwarte modale, z wyjątkiem cart-modal
+    closeAllModalsExcept('cart-modal');
+
+    // Sprawdzamy, czy modal jest widoczny
+    if (messageDiv.classList.contains('visible')) {
+        // Jeśli jest widoczny, to go zamykamy
+        messageDiv.classList.remove('visible');
+        document.removeEventListener('click', handleOutsideClick_Shop);
+    } else {
+        // Jeśli nie jest widoczny, to go otwieramy
+        messageDiv.classList.add('visible');
+        document.addEventListener('click', handleOutsideClick_Shop);
+    }
+}
+
+// Funkcja do zamknięcia modala po kliknięciu poza jego obszarem
+function handleOutsideClick_Shop(event) {
+    const accessDiv = document.getElementById('cart-modal');
+    if (!accessDiv.contains(event.target) && event.target.id !== '') {
+        toggleAccessShop(); // Zamyka modal, jeśli kliknięto poza nim
+    }
+}
+
+// Funkcja wyszukiwania produktów
+function searchProducts(query) {
+    if (!query) return [];
+    return products.filter(product => product.name.toLowerCase().includes(query.toLowerCase()));
+}
+
+document.getElementById('search-button').addEventListener('click', () => {
+    const query = document.getElementById('search-input').value.trim();
+    const results = searchProducts(query);
+
+    const resultsContainer = document.getElementById('search-results-container');
+    resultsContainer.innerHTML = ''; // Czyszczenie poprzednich wyników
+
+    // Dodajemy wyniki wyszukiwania
+    if (results.length > 0) {
+        results.forEach(product => {
+            const productElement = document.createElement('div');
+            productElement.style.cursor = 'pointer';
+            productElement.style.display = 'flex';
+            productElement.style.alignItems = 'center';
+            productElement.style.marginBottom = '20px';
+            productElement.style.border = '1px solid #ccc';
+            productElement.style.padding = '10px';
+            productElement.style.borderRadius = '5px';
+            productElement.style.backgroundColor = '#f9f9f9';
+
+            productElement.innerHTML = `
+                <img src="${product.mainImage}" alt="${product.name}" style="width: 50px; height: 30px; margin-right: 10px;">
+                <div>
+                    <p><strong>${product.name}</strong></p>
+                    <p>$${product.price}</p>
+                </div>
+            `;
+
+            // Obsługa kliknięcia na produkt
+            productElement.onclick = () => {
+                resultsContainer.style.display = 'none'; // Ukryj wyniki
+                openProductWindow(product.id); // Otwórz szczegóły produktu
+                closeAllModalsExcept(); // Zamknięcie wszystkich modali po kliknięciu w wynik wyszukiwania
+            };
+
+            resultsContainer.appendChild(productElement);
+        });
+
+        resultsContainer.style.height = 'auto'; // Dopasowanie wysokości do zawartości
+        resultsContainer.style.maxHeight = '600px'; // Maksymalna wysokość
+    } else {
+        resultsContainer.innerHTML = '<p>Brak wyników.</p>';
+        resultsContainer.style.height = '100px';
+    }
+
+    // Ustawienia pozycji kontenera
+    resultsContainer.style.display = 'block';
+
+    // Zamyka inne modale, jeśli zostały otwarte
+    closeAllModalsExcept('search-results-container');
+});
+
+// Funkcja do zamknięcia wyników wyszukiwania po ponownym kliknięciu na przycisk wyszukiwania
+document.getElementById('search-input').addEventListener('focus', () => {
+    const resultsContainer = document.getElementById('search-results-container');
+    if (resultsContainer.style.display === 'block') {
+        resultsContainer.style.display = 'none'; // Ukryj wyniki, jeśli są widoczne
+    }
+});
+
+// Zamykanie lupy po kliknięciu w inne ikony
+document.querySelectorAll('.button-icon').forEach(button => {
+    button.addEventListener('click', () => {
+        const searchResultsContainer = document.getElementById('search-results-container');
+        if (searchResultsContainer.style.display === 'block') {
+            searchResultsContainer.style.display = 'none'; // Ukryj wyniki wyszukiwania, jeśli są widoczne
+        }
+    });
+});
+
+
+
+//--------------------------------------------------------------------------------
 
 function closeLoginModal() {
     document.getElementById("loginModal").style.display = "none";
@@ -32,58 +201,6 @@ function openRegisterModal() {
 
 function closeRegisterModal() {
     document.getElementById("registerModal").style.display = "none";
-}
-
-//heart- polubione
-
-function showAccessLiked() {
-    var messageDiv = document.getElementById('cart-liked-modal');
-    messageDiv.classList.add('visible'); 
-    document.addEventListener('click', handleOutsideClick_Liked);
-}
-
-function closeAccessLiked() {
-    var messageDiv = document.getElementById('cart-liked-modal');
-    messageDiv.classList.remove('visible'); 
-    document.removeEventListener('click', handleOutsideClick_Liked);
-}
-
-function toggleEarlyAccessLiked() {
-    var messageDiv = document.getElementById('cart-liked-modal');
-    messageDiv.classList.toggle('hidden');
-}
-
-function handleOutsideClick_Liked(event) {
-    const accessDiv = document.getElementById('cart-liked-modal');
-    if (!accessDiv.contains(event.target) && event.target.id !== '') {
-        closeAccessLiked(); 
-    }
-}
-
-//CART MODAL
-
-function showAccessShop() {
-    var messageDiv = document.getElementById('cart-modal');
-    messageDiv.classList.add('visible'); 
-    document.addEventListener('click', handleOutsideClick_shop);
-}
-
-function closeAccessShop() {
-    var messageDiv = document.getElementById('cart-modal');
-    messageDiv.classList.remove('visible'); 
-    document.removeEventListener('click', handleOutsideClick_shop);
-}
-
-function toggleEarlyAccessShop() {
-    var messageDiv = document.getElementById('cart-modal');
-    messageDiv.classList.toggle('hidden');
-}
-
-function handleOutsideClick_shop(event) {
-    const accessDiv = document.getElementById('cart-modal');
-    if (!accessDiv.contains(event.target) && event.target.id !== '') {
-        closeAccessShop(); 
-    }
 }
 
    // Funkcja do przełączania widoczności hasła
@@ -119,7 +236,7 @@ toggleRepeatPassword.addEventListener('click', function (e) {
 document.querySelectorAll('.button-icon').forEach(button => {
     button.addEventListener('click', function() {
         if (button.querySelector('img').alt === 'user') {
-            openLoginModal(); 
+            toggleUserInfo(); 
         }
     });
 });
@@ -986,13 +1103,6 @@ function updateCartCount() {
     cartCount.innerText = cart.length;
 }
 
-// Funkcja otwierająca modal z koszykiem
-function openCart() {
-    const cartModal = document.getElementById('cart-modal');
-    cartModal.style.display = 'block';
-    updateCart(); // Aktualizujemy zawartość koszyka
-}
-
 // Funkcja zamykająca modal z koszykiem
 function closeCart() {
     const cartModal = document.getElementById('cart-modal');
@@ -1166,7 +1276,7 @@ function updateFavoritesDisplay() {
             removeButton.style.backgroundColor = 'red';
             removeButton.style.color = 'white';
             removeButton.style.border = 'none';
-            removeButton.style.padding = '5px 10px';
+            removeButton.style.padding = '4px 8px';
             removeButton.style.borderRadius = '5px';
             removeButton.style.cursor = 'pointer';
 
@@ -1183,7 +1293,7 @@ function updateFavoritesDisplay() {
             addToCartButton.style.backgroundColor = 'blue';
             addToCartButton.style.color = 'white';
             addToCartButton.style.border = 'none';
-            addToCartButton.style.padding = '5px 10px';
+            addToCartButton.style.padding = '4px 8px';
             addToCartButton.style.borderRadius = '5px';
             addToCartButton.style.cursor = 'pointer';
 
@@ -1226,88 +1336,6 @@ function addFavoritesToCart() {
 
 
 
-
-
-
-
-
-
-
-
-// Funkcja wyszukiwania produktów
-function searchProducts(query) {
-    if (!query) return [];
-    return products.filter(product => product.name.toLowerCase().includes(query.toLowerCase()));
-}
-
-document.getElementById('search-button').addEventListener('click', () => {
-    const query = document.getElementById('search-input').value.trim();
-    const results = searchProducts(query);
-
-    const resultsContainer = document.getElementById('search-results-container');
-    resultsContainer.innerHTML = ''; // Czyszczenie poprzednich wyników
-
-    // Dodajemy wyniki wyszukiwania
-    if (results.length > 0) {
-        results.forEach(product => {
-            const productElement = document.createElement('div');
-            productElement.style.cursor = 'pointer';
-            productElement.style.display = 'flex';
-            productElement.style.alignItems = 'center';
-            productElement.style.marginBottom = '20px';
-            productElement.style.border = '1px solid #ccc';
-            productElement.style.padding = '10px';
-            productElement.style.borderRadius = '5px';
-            productElement.style.backgroundColor = '#f9f9f9';
-
-            productElement.innerHTML = `
-                <img src="${product.mainImage}" alt="${product.name}" style="width: 50px; height: 30px; margin-right: 10px;">
-                <div>
-                    <p><strong>${product.name}</strong></p>
-                    <p>$${product.price}</p>
-                </div>
-            `;
-
-            // Obsługa kliknięcia na produkt
-            productElement.onclick = () => {
-                resultsContainer.style.display = 'none'; // Ukryj wyniki
-                openProductWindow(product.id); // Otwórz szczegóły produktu
-            };
-
-            resultsContainer.appendChild(productElement);
-        });
-
-        resultsContainer.style.height = 'auto'; // Dopasowanie wysokości do zawartości
-        resultsContainer.style.maxHeight = '600px'; // Maksymalna wysokość
-    } else {
-        resultsContainer.innerHTML = '<p>Brak wyników.</p>';
-        resultsContainer.style.height = '100px';
-    }
-
-    // Ustawienia pozycji kontenera
-    resultsContainer.style.display = 'block';
-
-
-});
-
-// Ukryj wyniki po kliknięciu poza kontenerem
-document.addEventListener('click', (event) => {
-    const resultsContainer = document.getElementById('search-results-container');
-    const searchInput = document.getElementById('search-input');
-    const searchButton = document.getElementById('search-button');
-    
-    // Sprawdzamy, czy kliknięcie nie było w kontenerze wyników lub na wyszukiwarce
-    if (!resultsContainer.contains(event.target) && 
-        !searchInput.contains(event.target) && 
-        !searchButton.contains(event.target)) {
-        resultsContainer.style.display = 'none';
-    }
-});
-
-
-
-
-
 // Funkcja pobierania produktów według kategorii
 function getProductsByCategory(categoryId) {
     return products.filter(product => product.id_kategorii === categoryId);
@@ -1319,29 +1347,25 @@ function getRandomProducts(count) {
     return shuffled.slice(0, count);
 }
 
-// Funkcja wyświetlania produktów w dwóch listach (lewa i prawa)
+// Funkcja wyświetlania produktów w układzie 2 kolumn
 function displayProductsInCategory(categoryId, containerId) {
     const categoryContainer = document.getElementById(containerId);
-    const leftList = categoryContainer.querySelector('ul#left');
-    const rightList = categoryContainer.querySelector('ul#right');
+    const productList = categoryContainer.querySelector('.product-list');
+
     const categoryProducts = categoryId === 'random' 
-        ? getRandomProducts(12) // Dla "Nowe i Polecane" losowe produkty
+        ? getRandomProducts(12) // Losowe produkty dla "Nowe i Polecane"
         : getProductsByCategory(categoryId);
 
-    // Czyścimy listy
-    leftList.innerHTML = '';
-    rightList.innerHTML = '';
+    // Czyścimy listę
+    productList.innerHTML = '';
 
     if (categoryProducts.length > 0) {
-        categoryProducts.forEach((product, index) => {
+        categoryProducts.forEach((product) => {
             const productElement = document.createElement('li');
             productElement.style.cursor = 'pointer';
-            productElement.style.display = 'flex';
-            productElement.style.alignItems = 'center';
-            productElement.style.marginBottom = '10px';
 
             productElement.innerHTML = `
-                <img src="${product.mainImage}" alt="${product.name}" style="width: 50px; height: 30px; margin-right: 10px;">
+                <img src="${product.mainImage}" alt="${product.name}">
                 <div>
                     <p><strong>${product.name}</strong></p>
                     <p>$${product.price}</p>
@@ -1354,17 +1378,10 @@ function displayProductsInCategory(categoryId, containerId) {
                 closeAccessDiv_category(); // Zamknij panel kategorii
             };
 
-            // Przydzielanie do lewej lub prawej listy
-            if (index % 2 === 0) {
-                leftList.appendChild(productElement); // Produkt do lewej listy
-            } else {
-                rightList.appendChild(productElement); // Produkt do prawej listy
-            }
+            productList.appendChild(productElement);
         });
     } else {
-        // Brak produktów
-        leftList.innerHTML = '<li>Brak produktów w tej kategorii.</li>';
-        rightList.innerHTML = '';
+        productList.innerHTML = '<li>Brak produktów w tej kategorii.</li>';
     }
 }
 
@@ -1380,3 +1397,52 @@ document.addEventListener('DOMContentLoaded', () => {
     displayProductsInCategory(2, 'kobiety-access'); // Produkty dla kategorii "Kobiety"
     displayProductsInCategory(3, 'unisex-access'); // Produkty dla kategorii "Unisex"
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+function showUserInfo() {
+    var userInfo = document.getElementById('userInfo');
+    userInfo.classList.add('visible'); 
+    document.addEventListener('click', handleOutsideClick_userInfo);
+}
+
+function closeUserInfo() {
+    var userInfo = document.getElementById('userInfo');
+    userInfo.classList.remove('visible'); 
+    document.removeEventListener('click', handleOutsideClick_userInfo);
+}
+
+function toggleEarlyUserInfo() {
+    var userInfo = document.getElementById('userInfo');
+    userInfo.classList.toggle('hidden');
+}
+
+function handleOutsideClick_userInfo(event) {
+    const accessDiv = document.getElementById('userInfo');
+    if (!accessDiv.contains(event.target) && event.target.id !== '') {
+        closeUserInfo(); 
+    }
+}

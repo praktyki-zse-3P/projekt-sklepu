@@ -11,6 +11,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Mrs+Sheppards&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Lugrasimo&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
     <?php
 session_start();
 $isLoggedIn = isset($_SESSION['user_id']);
@@ -67,68 +70,74 @@ $userData = $isLoggedIn ? [
                             <div class="background-circle-search"></div>
                             <img class="elements" src="search.png" alt="search">
                         </button>
-
                     </div>
 
-                    <button class="button-icon"><div class="background-circle" id ="background-circle-man"></div><img class="elements" src="user.png" alt="user" onclick="openLoginModal()"></button>
-                    <button class="button-icon"><div class="background-circle" onclick="showAccessLiked()"></div><img class="elements" src="heart.png" alt="heart" onclick="showAccessLiked()"></button>
-                    <button class="button-icon" onclick="openCart()">
+                    <button class="button-icon"><div class="background-circle" id ="background-circle-man"></div>
+                    <img class="elements" src="user.png" alt="user"></button>
 
-                    <div class="background-circle" onclick="showAccessShop()"></div>
-                    <img class="elements" src="shopping-bag.png" alt="shopping bag" onclick="showAccessShop()">
-                        <span id="cart-count">0</span>
-                    </button>
+                    <button class="button-icon"><div class="background-circle" onclick="toggleAccessLiked()"></div>
+                    <img class="elements" src="heart.png" alt="heart" onclick="toggleAccessLiked()"></button>
+                    
+                    
+                    
+                    <button class="button-icon"><div class="background-circle" onclick="toggleAccessShop()"></div>
+                    <img class="elements" src="shopping-bag.png" alt="shopping bag" onclick="toggleAccessShop()">
+                    <span id="cart-count">0</span> </button>
                 </div>
             </div>
     
             
 
-            <div id="container-category-button-access">
-                <span class="close-btn-category" onclick="closeAccessDiv_category()">&times;</span>
-                
-                <div class="category-button-access" id="nowe-i-polecane-access">
-                    <h3>Nowe i Polecane</h3>
-                    <ul id="left" type="none"></ul>
-                    <ul id="right" type="none"></ul>
-                </div>
-        
-                <div class="category-button-access" id="mezczyzni-access">
-                    <h3>Mężczyźni</h3>
-                    <ul id="left" type="none"></ul>
-                    <ul id="right" type="none"></ul>
-                </div>
-        
-                <div class="category-button-access" id="kobiety-access">
-                    <h3>Kobiety</h3>
-                    <ul id="left" type="none"></ul>
-                    <ul id="right" type="none"></ul>
-                </div>
-        
-                <div class="category-button-access" id="unisex-access">
-                    <h3>Unisex</h3>
-                    <ul id="left" type="none"></ul>
-                    <ul id="right" type="none"></ul>
-                </div>
-            </div>
+    <div id="container-category-button-access">
+        <span class="close-btn-category" onclick="closeAccessDiv_category()">&times;</span>
+
+        <div class="category-button-access" id="nowe-i-polecane-access">
+            <h3 id="categorys-name">Nowe i Polecane</h3>
+            <ul class="product-list" id="nowe-i-polecane-list"></ul>
+        </div>
+
+        <div class="category-button-access" id="mezczyzni-access">
+            <h3 id="categorys-name">Mężczyźni</h3>
+            <ul class="product-list" id="mezczyzni-list"></ul>
+        </div>
+
+        <div class="category-button-access" id="kobiety-access">
+            <h3 id="categorys-name">Kobiety</h3>
+            <ul class="product-list" id="kobiety-list"></ul>
+        </div>
+
+        <div class="category-button-access" id="unisex-access">
+            <h3 id="categorys-name">Unisex</h3>
+            <ul class="product-list" id="unisex-list"></ul>
+        </div>
+</div>
 
 
-
+        
         
         <!--Video Text -->
         <div class="content-overlay">
             <h1>AirKingDom</h1>
             <p id="wlk">Walk like King</p>
             <div id="search-results-container" class="search-results-container"></div>
+            <div id="userInfo">
+                <p><strong>Email:</strong> <span id="userEmail"></span></p>
+                <p><strong>Imię i nazwisko:</strong> <span id="userName"></span></p>
+                <button onclick="viewOrderHistory()">Historia zamówień</button>
+                <button onclick="logout()">Wyloguj</button>
+            </div>
         </div>
         
         <!-- Video Background -->
         <div class="video-background">
-            <video src="animacja(1).mp4" id="animation" type="video/mp4" autoplay loop muted playsinline ></video>
+            <video src="animacja(1).mp4" id="animation" type="video/mp4" autoplay loop muted playsinline ></video>  
         </div>
         
+       
     
         <!-- Notification Container -->
         <div id="notification-container"></div>
+        
         <div class="sort-container">
             <label for="sort">Sortuj według:</label>
             <select id="sort" onchange="sortProducts()">
@@ -141,7 +150,10 @@ $userData = $isLoggedIn ? [
         <!-- Products Section -->
         <h6>PRODUKTY</h6>
         <div id="products-container"></div>
+
+       
     
+        
         <!-- Product Modal -->
         <div id="modal-template" class="modal">
             <div class="modal-content">
@@ -168,11 +180,13 @@ $userData = $isLoggedIn ? [
             <button onclick="addFavoritesToCart()" class="add-to-cart1">Przenieś ulubione do koszyka</button>
         </div>
 
-
         <div id="cart-modal">
             <div id="cart-items"></div>
             <div id="cart-total"></div> <!-- Tu będzie wyświetlana łączna cena -->
         </div>
+    
+        
+
     </section>
     <div id="search-modal">
         <div id="search-results" style="padding: 20px;">
@@ -180,38 +194,19 @@ $userData = $isLoggedIn ? [
         </div>
     </div>
     
-    <!-- Szablon modalny szczegółów produktu -->
-    <div id="modal-template" style="display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 400px; background: white; border-radius: 10px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); z-index: 2000;">
-        <div class="modal-content" style="padding: 20px; position: relative;">
-            <button class="close-modal" onclick="closeModal()">x</button>
-                
-                <h2 class="product-name"></h2>
-                <p class="price"></p>
-                <img class="main-product-image" src="" alt="Product Image">
-                
-                <div class="product-thumbnails"></div>
-                
-                <div class="size-options"></div>
-                
-                <button class="add-to-cart">Dodaj do koszyka</button>
-
-                <button class="add-to-favorites">Dodaj do ulubionych</button>
-        </div>
-    </div>
 
 
 
-
+       
+    
+    
+    
+    
+    
+    
+    
+    
         <!-- Login Modal -->
-
-        <div id="userInfo" style="display: none;">
-            <p><strong>Email:</strong> <span id="userEmail"></span></p>
-            <p><strong>Imię i nazwisko:</strong> <span id="userName"></span></p>
-            <button onclick="viewOrderHistory()">Historia zamówień</button>
-            <button onclick="logout()">Wyloguj</button>
-        </div>
-
-        
         <div id="loginModal" class="modal">
             <div class="login-content">
                 <span class="close" onclick="closeLoginModal()">&times;</span>
