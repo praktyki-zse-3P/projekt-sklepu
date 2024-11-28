@@ -25,25 +25,34 @@ function closeAllModalsExcept(exceptModalId) {
     });
 }
 
-// USERINFO - OPEN & CLOSE
 function toggleUserInfo() {
     const userInfo = document.getElementById("userInfo");
     const loginModal = document.getElementById("loginModal");
 
-    // Zamyka wszystkie inne otwarte modale, z wyjątkiem userInfo
-    closeAllModalsExcept('userInfo');
 
-    if (userInfo.style.display === "flex") {
-        // Jeśli już otwarte, to zamykamy
-        userInfo.style.display = "none";
+    closeAllModalsExcept('userInfo');
+    
+    if (isLoggedIn) {
+        // Przełącz widoczność sekcji z danymi użytkownika
+        if (userInfo.style.display === "flex") {
+            userInfo.style.display = "none";
+        } else {
+            userInfo.style.display = "flex";
+            // Ukryj modal logowania (jeśli był otwarty)
+            loginModal.style.display = "none";
+            // Wypełnij dane użytkownika
+            document.getElementById("userEmail").textContent = userData.email;
+            document.getElementById("userName").textContent = `${userData.name} ${userData.surname}`;
+        }
     } else {
-        // Jeśli nie jest otwarte, to otwieramy
-        userInfo.style.display = "flex";
-        // Ukryj modal logowania (jeśli był otwarty)
-        loginModal.style.display = "none";
-        // Wypełnij dane użytkownika
-        document.getElementById("userEmail").textContent = userData.email;
-        document.getElementById("userName").textContent = `${userData.name} ${userData.surname}`;
+        // Przełącz widoczność modala logowania
+        if (loginModal.style.display === "flex") {
+            loginModal.style.display = "none";
+        } else {
+            loginModal.style.display = "flex";
+            // Ukryj sekcję z danymi użytkownika (jeśli była otwarta)
+            userInfo.style.display = "none";
+        }
     }
 }
 
@@ -167,7 +176,7 @@ document.getElementById('search-input').addEventListener('focus', () => {
     }
 });
 
-// Zamykanie lupy po kliknięciu w inne ikony
+// Zamykanie lupy po kliknięciu w inne ikony (np. koszyk, użytkownik, itp.)
 document.querySelectorAll('.button-icon').forEach(button => {
     button.addEventListener('click', () => {
         const searchResultsContainer = document.getElementById('search-results-container');
@@ -175,6 +184,62 @@ document.querySelectorAll('.button-icon').forEach(button => {
             searchResultsContainer.style.display = 'none'; // Ukryj wyniki wyszukiwania, jeśli są widoczne
         }
     });
+});
+
+// Zamknięcie lupy po ponownym kliknięciu na lupę
+let isSearchOpen = false; // Flaga do śledzenia stanu lupy
+document.getElementById('search-button').addEventListener('click', () => {
+    const resultsContainer = document.getElementById('search-results-container');
+    if (isSearchOpen) {
+        // Jeśli lupka jest otwarta, zamykamy wyniki wyszukiwania
+        resultsContainer.style.display = 'none';
+        isSearchOpen = false; // Aktualizujemy stan
+    } else {
+        const query = document.getElementById('search-input').value.trim();
+        const results = searchProducts(query);
+
+        resultsContainer.innerHTML = ''; // Czyszczenie poprzednich wyników
+
+        if (results.length > 0) {
+            results.forEach(product => {
+                const productElement = document.createElement('div');
+                productElement.style.cursor = 'pointer';
+                productElement.style.display = 'flex';
+                productElement.style.alignItems = 'center';
+                productElement.style.marginBottom = '20px';
+                productElement.style.border = '1px solid #ccc';
+                productElement.style.padding = '10px';
+                productElement.style.borderRadius = '5px';
+                productElement.style.backgroundColor = '#f9f9f9';
+
+                productElement.innerHTML = `
+                    <img src="${product.mainImage}" alt="${product.name}" style="width: 50px; height: 30px; margin-right: 10px;">
+                    <div>
+                        <p><strong>${product.name}</strong></p>
+                        <p>$${product.price}</p>
+                    </div>
+                `;
+
+                productElement.onclick = () => {
+                    resultsContainer.style.display = 'none'; // Ukryj wyniki
+                    openProductWindow(product.id); // Otwórz szczegóły produktu
+                    closeAllModalsExcept(); // Zamknięcie wszystkich modali po kliknięciu w wynik wyszukiwania
+                };
+
+                resultsContainer.appendChild(productElement);
+            });
+
+            resultsContainer.style.height = 'auto';
+            resultsContainer.style.maxHeight = '600px';
+        } else {
+            resultsContainer.innerHTML = '<p>Brak wyników.</p>';
+            resultsContainer.style.height = '100px';
+        }
+
+        resultsContainer.style.display = 'block'; // Pokazujemy wyniki
+        closeAllModalsExcept('search-results-container');
+        isSearchOpen = true; // Aktualizujemy stan
+    }
 });
 
 
