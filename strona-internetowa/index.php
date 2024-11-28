@@ -270,7 +270,7 @@ $userData = $isLoggedIn ? [
                     </div>
                     <input type="submit" name="register" value="Zarejestruj się" class="btn-register">
                     <div class="login-link">
-                        <p>Masz już konto? <a href="#" onclick="openLoginModal(); closeRegisterModal();">Zaloguj się</a></p>
+                        <p>Masz już konto? <a href="#" onclick="toggleUserInfo(); closeRegisterModal();">Zaloguj się</a></p>
                     </div>
                 </form>
             </div>

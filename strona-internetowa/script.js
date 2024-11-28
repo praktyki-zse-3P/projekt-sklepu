@@ -1,7 +1,7 @@
 // Funkcja do zamknięcia wszystkich modali (z wyjątkiem tego, który ma zostać otwarty)
 function closeAllModalsExcept(exceptModalId) {
     // Lista identyfikatorów modali, które chcemy kontrolować
-    const modalIds = ['userInfo', 'cart-liked-modal', 'cart-modal', 'search-results-container'];
+    const modalIds = ['userInfo', 'cart-liked-modal', 'cart-modal', 'search-results-container','container-category-button-access'];
 
     modalIds.forEach(modalId => {
         if (modalId !== exceptModalId) {
@@ -340,6 +340,8 @@ function handleOutsideClick(event) {
 function showAccessDiv_category(category) {
     var messageDiv = document.getElementById('container-category-button-access');
     messageDiv.classList.add('visible'); // Pokaż panel
+
+    closeAllModalsExcept('container-category-button-access');
 
     // Ukryj wszystkie sekcje
     const sections = document.querySelectorAll('.category-button-access');
