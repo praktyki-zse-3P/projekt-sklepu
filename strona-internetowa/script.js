@@ -1014,6 +1014,31 @@ fetch('add_products.php', {
 // Przechowywanie produktów w koszyku
 let cart = [];
 
+function sortAndRenderProducts() {
+    const sortOption = document.getElementById('sort').value;
+
+    // Sortowanie produktów
+    const sortedProducts = [...products].sort((a, b) => {
+        switch (sortOption) {
+            case 'name-asc':
+                return a.name.localeCompare(b.name);
+            case 'name-desc':
+                return b.name.localeCompare(a.name);
+            case 'price-asc':
+                return parseFloat(a.price) - parseFloat(b.price);
+            case 'price-desc':
+                return parseFloat(b.price) - parseFloat(a.price);
+            default:
+                return 0;
+        }
+    });
+
+    // Czyszczenie i ponowne wyświetlenie produktów
+    const container = document.getElementById('products-container');
+    container.innerHTML = ''; // Czyszczenie poprzednich produktów
+    sortedProducts.forEach(createProductHTML); // Tworzenie produktów na nowo
+}
+
 // Funkcja tworząca HTML dla każdego produktu
 function createProductHTML(product) {
     const productContainer = document.createElement('div');
@@ -1032,13 +1057,25 @@ function createProductHTML(product) {
     h3.innerText = product.name;
     const p = document.createElement('p');
     p.classList.add('price');
-    p.innerText = product.price;
     p.innerText = `$${product.price}`;
     productContainer.appendChild(h3);
     productContainer.appendChild(p);
 
+    // Dodajemy do kontenera produktów
     document.getElementById('products-container').appendChild(productContainer);
 }
+
+// Inicjalizacja - Wyświetlenie produktów na starcie
+window.onload = () => {
+    sortAndRenderProducts(); // Domyślnie wyświetl produkty w kolejności sortowania
+};
+
+
+
+
+
+
+
 
 // Funkcja do otwierania okna modalnego dla wybranego produktu
 function openProductWindow(productId) {

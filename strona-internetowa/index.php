@@ -140,7 +140,7 @@ $userData = $isLoggedIn ? [
         
         <div class="sort-container">
             <label for="sort">Sortuj według:</label>
-            <select id="sort" onchange="sortProducts()">
+            <select id="sort" onchange="sortAndRenderProducts()">
                 <option value="name-asc">Nazwa (A-Z)</option>
                 <option value="name-desc">Nazwa (Z-A)</option>
                 <option value="price-asc">Cena (rosnąco)</option>
