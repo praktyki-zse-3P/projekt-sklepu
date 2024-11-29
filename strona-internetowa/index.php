@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>AirKingDom</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css" type= "text/css">
     <link rel="icon" href="favicon.ico" type="image/x-icon">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
@@ -19,8 +19,6 @@ session_start();
 $isLoggedIn = isset($_SESSION['user_id']);
 $userData = $isLoggedIn ? [
     'email' => $_SESSION['email'],
-    'name' => $_SESSION['imie'],
-    'surname' => $_SESSION['nazwisko'],
 ] : null;
 ?>
 <script>
@@ -33,7 +31,7 @@ $userData = $isLoggedIn ? [
     <!-- Header Section -->
     <section id="section-header">
         <div id="header">
-            <p id="header_word" onclick="showAccessDiv()">ZAREJESTRUJ SIĘ, DOSTAĆ WCZEŚNIEJSZY DOSTĘP!</p>
+            <p id="header_word" onclick="showAccessDiv()">ZAREJESTRUJ SIĘ, ABY DOSTAĆ WCZEŚNIEJSZY DOSTĘP!</p>
         </div>
     </section>
 
@@ -72,7 +70,7 @@ $userData = $isLoggedIn ? [
                         </button>
                     </div>
 
-                    <button class="button-icon"><div class="background-circle" id ="background-circle-man"></div>
+                    <button class="button-icon"><div class="background-circle"></div>
                     <img class="elements" src="user.png" alt="user"></button>
 
                     <button class="button-icon"><div class="background-circle" onclick="toggleAccessLiked()"></div>
@@ -119,13 +117,10 @@ $userData = $isLoggedIn ? [
         <div class="content-overlay">
             <h1>AirKingDom</h1>
             <p id="wlk">Walk like King</p>
+
             <div id="search-results-container" class="search-results-container"></div>
-            <div id="userInfo">
-                <p><strong>Email:</strong> <span id="userEmail"></span></p>
-                <p><strong>Imię i nazwisko:</strong> <span id="userName"></span></p>
-                <button onclick="viewOrderHistory()">Historia zamówień</button>
-                <button onclick="logout()">Wyloguj</button>
-            </div>
+            
+            
         </div>
         
         <!-- Video Background -->
@@ -185,14 +180,22 @@ $userData = $isLoggedIn ? [
             <div id="cart-total"></div> <!-- Tu będzie wyświetlana łączna cena -->
         </div>
     
-        
+        <div id="userInfo">
+            <p><strong>Email:</strong> <span id="userEmail"></span></p>
+            <button class = "userInfobutton" onclick="viewOrderHistory()">Historia zamówień</button>
+            <button class = "userInfobutton" onclick="logout()">Wyloguj</button>
+            <p style="margin-top:20px">Liczba odwiedzin strony: </p>
+            <script src="visitCounter.js"></script>
+        </div>
+
+        <div id="search-modal">
+            <div id="search-results" style="padding: 20px;">
+                <!-- Wyniki wyszukiwania pojawią się tutaj -->
+            </div>
+        </div>
 
     </section>
-    <div id="search-modal">
-        <div id="search-results" style="padding: 20px;">
-            <!-- Wyniki wyszukiwania pojawią się tutaj -->
-        </div>
-    </div>
+        
     
 
 

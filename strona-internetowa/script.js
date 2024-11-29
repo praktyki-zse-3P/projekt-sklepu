@@ -1,62 +1,74 @@
-// Funkcja do zamknięcia wszystkich modali (z wyjątkiem tego, który ma zostać otwarty)
 function closeAllModalsExcept(exceptModalId) {
     // Lista identyfikatorów modali, które chcemy kontrolować
-    const modalIds = ['userInfo', 'cart-liked-modal', 'cart-modal', 'search-results-container','container-category-button-access'];
+    const modalIds = ['cart-liked-modal', 'cart-modal', 'userInfo', 'search-results-container', 'container-category-button-access', 'earlyAccessMessage'];
 
     modalIds.forEach(modalId => {
-        if (modalId !== exceptModalId) {
+        if (modalId !== exceptModalId) { // Upewniamy się, że nie zamykamy wyjątku
             var modal = document.getElementById(modalId);
             if (modal) {
-                // Zamykamy modale, które są otwarte
-                if (modal.style.display === 'flex') {
-                    modal.style.display = 'none';
+                // Zamyka modale, które są otwarte
+                modal.classList.remove('visible');
+                if (modalId === 'userInfo') {
+                    // Zamykanie userInfo
+                    modal.style.transform = "translateX(100%)";
+                    modal.style.opacity = "0";
+                    document.removeEventListener('click', handleOutsideClick_userInfo); // Usuwamy nasłuchiwacz
                 }
-                if (modal.classList.contains('visible')) {
-                    modal.classList.remove('visible');
-                }
-                // Usuwamy event listeners, które były dodane
-                if (modalId === 'cart-liked-modal') {
-                    document.removeEventListener('click', handleOutsideClick_Liked);
-                } else if (modalId === 'cart-modal') {
-                    document.removeEventListener('click', handleOutsideClick_Shop);
-                }
+                document.removeEventListener('click', handleOutsideClick_Liked);
+                document.removeEventListener('click', handleOutsideClick_Shop);
             }
         }
     });
 }
 
+// Funkcja do zamknięcia modala po kliknięciu poza jego obszarem
+function handleOutsideClick_userInfo(event) {
+    const accessDiv = document.getElementById('userInfo');
+    if (!accessDiv.contains(event.target) && event.target.id !== '') {
+        toggleUserInfo(); // Zamyka modal, jeśli kliknięto poza nim
+    }
+}
+
+
+
+
+// Funkcja przełączająca widoczność sekcji z danymi użytkownika (userInfo)
 function toggleUserInfo() {
     const userInfo = document.getElementById("userInfo");
     const loginModal = document.getElementById("loginModal");
 
-
-    closeAllModalsExcept('userInfo');
+    closeAllModalsExcept('userInfo');  // Zamyka wszystkie inne modale, oprócz userInfo
     
     if (isLoggedIn) {
         // Przełącz widoczność sekcji z danymi użytkownika
-        if (userInfo.style.display === "flex") {
-            userInfo.style.display = "none";
+        if (userInfo.style.opacity === "1") {
+            // Animacja znikania
+            userInfo.style.transform = "translateX(100%)";
+            userInfo.style.opacity = "0";
+            document.removeEventListener('click', handleOutsideClick_userInfo);  // Usuwamy nasłuchiwacz kliknięcia, gdy modal jest zamknięty
         } else {
-            userInfo.style.display = "flex";
+            // Animacja pojawiania
+            userInfo.style.transform = "translateX(0)";
+            userInfo.style.opacity = "1";
+            document.addEventListener('click', handleOutsideClick_userInfo);  // Dodajemy nasłuchiwacz kliknięcia, gdy modal jest widoczny
+
             // Ukryj modal logowania (jeśli był otwarty)
             loginModal.style.display = "none";
             // Wypełnij dane użytkownika
             document.getElementById("userEmail").textContent = userData.email;
-            document.getElementById("userName").textContent = `${userData.name} ${userData.surname}`;
         }
     } else {
-        // Przełącz widoczność modala logowania
-        if (loginModal.style.display === "flex") {
-            loginModal.style.display = "none";
-        } else {
-            loginModal.style.display = "flex";
-            // Ukryj sekcję z danymi użytkownika (jeśli była otwarta)
-            userInfo.style.display = "none";
+        // Jeśli użytkownik nie jest zalogowany, ukryj `userInfo` (jeśli jest widoczny)
+        userInfo.style.display = "none";  // Zmieniamy na display: none, by ukryć userInfo
+        document.removeEventListener('click', handleOutsideClick_userInfo);  // Usuwamy nasłuchiwacz kliknięcia, gdy modal jest zamknięty
+        
+        // Pokaż modal logowania (jeśli jeszcze nie jest widoczny)
+        if (loginModal.style.display !== "flex") {
+            loginModal.style.display = "flex";  // Zmieniamy na display: flex, by pokazać loginModal
         }
     }
-}
+}    
 
-// HEART - OPEN & CLOSE
 function toggleAccessLiked() {
     var messageDiv = document.getElementById('cart-liked-modal');
 
@@ -83,7 +95,6 @@ function handleOutsideClick_Liked(event) {
     }
 }
 
-// SHOP - OPEN & CLOSE
 function toggleAccessShop() {
     var messageDiv = document.getElementById('cart-modal');
 
@@ -1289,13 +1300,6 @@ function updateCartDynamic() {
     }
 }
 
-// Funkcja otwierająca modal koszyka z dynamiczną aktualizacją
-function openCart() {
-    const cartModal = document.getElementById('cart-modal');
-    cartModal.style.display = 'block';
-    updateCartDynamic(); // Dynamicznie odświeżamy zawartość koszyka
-}
-
 // Inicjalizowanie strony - tworzenie produktów
 window.onload = () => {
     products.forEach(createProductHTML);
@@ -1526,27 +1530,3 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
-
-function showUserInfo() {
-    var userInfo = document.getElementById('userInfo');
-    userInfo.classList.add('visible'); 
-    document.addEventListener('click', handleOutsideClick_userInfo);
-}
-
-function closeUserInfo() {
-    var userInfo = document.getElementById('userInfo');
-    userInfo.classList.remove('visible'); 
-    document.removeEventListener('click', handleOutsideClick_userInfo);
-}
-
-function toggleEarlyUserInfo() {
-    var userInfo = document.getElementById('userInfo');
-    userInfo.classList.toggle('hidden');
-}
-
-function handleOutsideClick_userInfo(event) {
-    const accessDiv = document.getElementById('userInfo');
-    if (!accessDiv.contains(event.target) && event.target.id !== '') {
-        closeUserInfo(); 
-    }
-}
